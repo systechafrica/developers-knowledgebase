@@ -40,10 +40,6 @@ module.exports = {
           {text: 'Basic Setup', link: '/guide/' },
           {text: 'Oracle Database Cheat Sheet', link: '/guide/setup-pluggable' },
         ]
-      },
-      {
-        text: 'VuePress',
-        link: 'https://v1.vuepress.vuejs.org'
       }
     ],
     sidebar: {
