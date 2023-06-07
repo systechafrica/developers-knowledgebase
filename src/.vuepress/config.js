@@ -4,7 +4,8 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: 'Vuepress Docs Boilerplate',
+  logo: "https://systechafrica.com/wp-content/uploads/2021/02/outline-fundmaster-500x500.png",
+  title: 'Technical Knowledge Base',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -34,12 +35,11 @@ module.exports = {
     lastUpdated: false,
     nav: [
       {
-        text: 'Guide',
-        link: '/guide/',
-      },
-      {
-        text: 'Config',
-        link: '/config/'
+        text: 'Getting Started',
+        items: [
+          {text: 'Basic Setup', link: '/guide/' },
+          {text: 'Oracle Database Cheat Sheet', link: '/guide/setup-pluggable' },
+        ]
       },
       {
         text: 'VuePress',
@@ -49,11 +49,11 @@ module.exports = {
     sidebar: {
       '/guide/': [
         {
-          title: 'Guide',
+          title: 'Getting Started',
           collapsable: false,
           children: [
             '',
-            'using-vue',
+            'setup-pluggable',
           ]
         }
       ],
