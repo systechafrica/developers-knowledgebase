@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>How To Install Free SSL Certificate Using  Let’s Encrypt, APACHE  and Reverse Proxy on Linux | Technical Knowledge Base</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="Contains the developers knowledge base">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <link rel="preload" href="/assets/css/0.styles.66c960d3.css" as="style"><link rel="preload" href="/assets/js/app.2ba60ac0.js" as="script"><link rel="preload" href="/assets/js/2.6b092d03.js" as="script"><link rel="preload" href="/assets/js/18.37ed9412.js" as="script"><link rel="prefetch" href="/assets/js/10.074e78e0.js"><link rel="prefetch" href="/assets/js/11.ab2bc05e.js"><link rel="prefetch" href="/assets/js/12.4bdec156.js"><link rel="prefetch" href="/assets/js/13.dd45a34c.js"><link rel="prefetch" href="/assets/js/14.4a3803ae.js"><link rel="prefetch" href="/assets/js/15.f9ccb768.js"><link rel="prefetch" href="/assets/js/16.108de67f.js"><link rel="prefetch" href="/assets/js/17.baa318db.js"><link rel="prefetch" href="/assets/js/19.444a12d1.js"><link rel="prefetch" href="/assets/js/3.c6b3779b.js"><link rel="prefetch" href="/assets/js/4.7cb587c0.js"><link rel="prefetch" href="/assets/js/5.0023bf4c.js"><link rel="prefetch" href="/assets/js/6.4e53a11e.js"><link rel="prefetch" href="/assets/js/7.da886956.js"><link rel="prefetch" href="/assets/js/8.7683134d.js"><link rel="prefetch" href="/assets/js/9.dda5bb24.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.66c960d3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="https://systechafrica.com/wp-content/uploads/2021/03/Overlay-logo.png" alt="Technical Knowledge Base" class="logo"> <span class="site-name can-hide">Technical Knowledge Base</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/getting-started/" class="nav-link">
+  Getting Started
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Database Setup" class="dropdown-title"><span class="title">Database Setup</span> <span class="arrow down"></span></button> <button type="button" aria-label="Database Setup" class="mobile-dropdown-title"><span class="title">Database Setup</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/database-setup/oracle-guide/" class="nav-link">
+  Oracle Database Setup
+</a></li><li class="dropdown-item"><!----> <a href="/database-setup/edb-postgres-guide/" class="nav-link">
+  EDB Postgres Setup
+</a></li><li class="dropdown-item"><!----> <a href="/database-setup/postgres-guide/" class="nav-link">
+  Postgres Setup
+</a></li><li class="dropdown-item"><!----> <a href="/database-setup/mysql-guide/" class="nav-link">
+  Mysql Setup
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Security Center" class="dropdown-title"><span class="title">Security Center</span> <span class="arrow down"></span></button> <button type="button" aria-label="Security Center" class="mobile-dropdown-title"><span class="title">Security Center</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/security/" class="nav-link router-link-active">
+  Introduction
+</a></li><li class="dropdown-item"><!----> <a href="/security/ssl-reverse-proxy/" class="nav-link">
+  SSL Installation Using Reverse Proxy
+</a></li><li class="dropdown-item"><!----> <a href="/security/ssl-letsencrypt/" class="nav-link">
+  SSl Installation using self signed certificate from letsencrypt, apache and reverse proxy
+</a></li></ul></div></div><div class="nav-item"><a href="/pension-domain/" class="nav-link">
+  Pension Domain
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Fundmaster Guide" class="dropdown-title"><span class="title">Fundmaster Guide</span> <span class="arrow down"></span></button> <button type="button" aria-label="Fundmaster Guide" class="mobile-dropdown-title"><span class="title">Fundmaster Guide</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://documentation.systechafrica.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Documentation
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://knowledgebase.systechafrica.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Knowledge Base
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/getting-started/" class="nav-link">
+  Getting Started
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Database Setup" class="dropdown-title"><span class="title">Database Setup</span> <span class="arrow down"></span></button> <button type="button" aria-label="Database Setup" class="mobile-dropdown-title"><span class="title">Database Setup</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/database-setup/oracle-guide/" class="nav-link">
+  Oracle Database Setup
+</a></li><li class="dropdown-item"><!----> <a href="/database-setup/edb-postgres-guide/" class="nav-link">
+  EDB Postgres Setup
+</a></li><li class="dropdown-item"><!----> <a href="/database-setup/postgres-guide/" class="nav-link">
+  Postgres Setup
+</a></li><li class="dropdown-item"><!----> <a href="/database-setup/mysql-guide/" class="nav-link">
+  Mysql Setup
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Security Center" class="dropdown-title"><span class="title">Security Center</span> <span class="arrow down"></span></button> <button type="button" aria-label="Security Center" class="mobile-dropdown-title"><span class="title">Security Center</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/security/" class="nav-link router-link-active">
+  Introduction
+</a></li><li class="dropdown-item"><!----> <a href="/security/ssl-reverse-proxy/" class="nav-link">
+  SSL Installation Using Reverse Proxy
+</a></li><li class="dropdown-item"><!----> <a href="/security/ssl-letsencrypt/" class="nav-link">
+  SSl Installation using self signed certificate from letsencrypt, apache and reverse proxy
+</a></li></ul></div></div><div class="nav-item"><a href="/pension-domain/" class="nav-link">
+  Pension Domain
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Fundmaster Guide" class="dropdown-title"><span class="title">Fundmaster Guide</span> <span class="arrow down"></span></button> <button type="button" aria-label="Fundmaster Guide" class="mobile-dropdown-title"><span class="title">Fundmaster Guide</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://documentation.systechafrica.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Documentation
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://knowledgebase.systechafrica.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Knowledge Base
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Getting Started</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Database Setup</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Security Center</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/security/" aria-current="page" class="sidebar-link">Security</a></li><li><a href="/security/ssl-reverse-proxy.html" class="sidebar-link">SSL Installation Using APACHE and Reverse Proxy on Linux</a></li><li><a href="/security/ssl-letsencrypt.html" aria-current="page" class="active sidebar-link">How To Install Free SSL Certificate Using  Let’s Encrypt, APACHE  and Reverse Proxy on Linux</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/security/ssl-letsencrypt.html#pre-requisites" class="sidebar-link">pre-requisites</a></li><li class="sidebar-sub-header"><a href="/security/ssl-letsencrypt.html#step-1-add-a-records-on-your-cpanel-for-your-domain-eg" class="sidebar-link">Step 1: Add A Records on  your  Cpanel for your domain EG</a></li><li class="sidebar-sub-header"><a href="/security/ssl-letsencrypt.html#step-2-generating-certificate-file-from-letsencrypt" class="sidebar-link">Step 2:   Generating Certificate file from Letsencrypt</a></li><li class="sidebar-sub-header"><a href="/security/ssl-letsencrypt.html#step-3-ssl-and-reverse-proxy-configuration" class="sidebar-link">Step 3:   SSL and Reverse Proxy Configuration</a></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Pension Domain</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="how-to-install-free-ssl-certificate-using-let-s-encrypt-apache-and-reverse-proxy-on-linux"><a href="#how-to-install-free-ssl-certificate-using-let-s-encrypt-apache-and-reverse-proxy-on-linux" class="header-anchor">#</a> <strong>How To Install Free SSL Certificate Using  Let’s Encrypt, APACHE  and Reverse Proxy on Linux</strong></h1> <h2 id="pre-requisites"><a href="#pre-requisites" class="header-anchor">#</a> pre-requisites</h2> <p><code>Apache installed ,enabled and started. In order to configure SSL, you will need to ensure that the Apache mod_ssl module is installed on the server.</code></p> <blockquote><p>sudo yum install mod_ssl</p></blockquote> <h2 id="step-1-add-a-records-on-your-cpanel-for-your-domain-eg"><a href="#step-1-add-a-records-on-your-cpanel-for-your-domain-eg" class="header-anchor">#</a> Step 1: Add A Records on  your  Cpanel for your domain EG</h2> <hr> <div class="language- extra-class"><pre class="language-text"><code>for domain site.mydomain.com
+
+create two a records for site.mydomain.com and www.site.mydomain.com
+
+</code></pre></div><h2 id="step-2-generating-certificate-file-from-letsencrypt"><a href="#step-2-generating-certificate-file-from-letsencrypt" class="header-anchor">#</a> Step 2:   Generating Certificate file from Letsencrypt</h2> <hr> <h3 id="_2-1-install-certbot-tool"><a href="#_2-1-install-certbot-tool" class="header-anchor">#</a> 2.1 Install certbot tool</h3> <div class="language- extra-class"><pre class="language-text"><code># Ubuntu / Debian
+sudo apt-get update
+sudo apt-get install certbot
+
+# Fedora
+sudo dnf install certbot python2-certbot-apache
+
+# CentOS 8
+sudo dnf -y install epel-release
+sudo dnf -y install certbot
+
+# CentOS 7
+sudo yum -y install epel-release
+sudo yum -y install certbot
+</code></pre></div><h3 id="_2-2-stop-apache-server-according-to-your-linux-release"><a href="#_2-2-stop-apache-server-according-to-your-linux-release" class="header-anchor">#</a> 2.2 Stop Apache Server according to your Linux Release.</h3> <h3 id="_2-3-generate-certificate-from-letsencrypt"><a href="#_2-3-generate-certificate-from-letsencrypt" class="header-anchor">#</a> 2.3 Generate Certificate from Letsencrypt.</h3> <p><code>pre-requisite: Test your domain name dns record if they are pointing to your public ip address. You can user the following site. EG https://dnschecker.org/</code></p> <blockquote><p>sudo certbot certonly -d  site.mydomain.com -d www.site.mydomain.com</p></blockquote> <p>As you make first request, the script will install required packages/dependencies and setup virtual environment. Initially you can choose to spin up a a temporary webserver (standalone) for domain verification.</p> <p><code>The generated file will be found in /etc/letsencrypt/live/site.mydomain.com/. The Location Varies according to your domain name</code></p> <p><code>Note the above location since we are going to use them in the next step</code></p> <h2 id="step-3-ssl-and-reverse-proxy-configuration"><a href="#step-3-ssl-and-reverse-proxy-configuration" class="header-anchor">#</a> Step 3:   SSL and Reverse Proxy Configuration</h2> <hr> <p>Edit the virtual host entry available in <code>/etc/httpd/conf.d/ssl.conf</code> file to assign the Private Key, Certificate and the Intermediate CA file to the configuration.
+<code>The Above location is variant across different Linux Distributions. The above location is for RHEL-based Distro</code></p> <h3 id="_3-1-setting-server-name-optional"><a href="#_3-1-setting-server-name-optional" class="header-anchor">#</a> 3.1 Setting Server Name  (Optional)</h3> <p>inside the following tag <code>&lt;VirtualHost _default_:443&gt;</code></p> <blockquote><p>set server name e.g for domain<code>site.mydomain.com</code> would be
+<code>ServerName site.mydomain.com</code></p></blockquote> <h3 id="_3-2-setting-path-to-server-certificate-server-private-key-and-server-certificate-chain-files"><a href="#_3-2-setting-path-to-server-certificate-server-private-key-and-server-certificate-chain-files" class="header-anchor">#</a> 3.2 Setting path to  Server Certificate , Server Private Key and  Server Certificate Chain files.</h3> <p>Find the tags and edit the corresponding correct path E.G</p> <blockquote><p>For Server Certificate
+<code>/etc/letsencrypt/live/site.mydomain.com/cert.pem</code></p></blockquote> <blockquote><p>For Server Private Key
+<code>/etc/letsencrypt/live/site.mydomain.com/privkey.pem</code></p></blockquote> <blockquote><p>For Server Certificate Chain:
+<code>/etc/letsencrypt/live/site.mydomain.com/fullchain.pem</code></p></blockquote> <p><strong>NB</strong>
+The Above File naming pattern can be different.</p> <h3 id="_3-3-set-up-the-reverse-proxy"><a href="#_3-3-set-up-the-reverse-proxy" class="header-anchor">#</a> 3.3 Set up The Reverse Proxy</h3> <blockquote><p>Just before the<code>&lt;/VirtualHost&gt;</code> tag
+add the following lines</p></blockquote> <div class="language-xml extra-class"><pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Proxy</span> <span class="token attr-name">*</span><span class="token punctuation">&gt;</span></span>
+	Order deny,allow
+        Allow from all
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Proxy</span><span class="token punctuation">&gt;</span></span>
+  
+   ProxyRequests Off
+   ProxyPreserveHost On
+   ProxyPass / http://localhost:8081/
+   ProxyPassReverse / http://localhost:8081/
+</code></pre></div><p>Where by http://localhost:8081/ is the URL to your application.</p> <h1 id="finally-restart-apache-and-enjoy"><a href="#finally-restart-apache-and-enjoy" class="header-anchor">#</a> Finally restart Apache  and enjoy</h1> <p>😊</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">6/8/2023, 5:12:38 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/security/ssl-reverse-proxy.html" class="prev">
+        SSL Installation Using APACHE and Reverse Proxy on Linux
+      </a></span> <span class="next"><a href="/pension-domain/">
+        Pension Domain
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.2ba60ac0.js" defer></script><script src="/assets/js/2.6b092d03.js" defer></script><script src="/assets/js/18.37ed9412.js" defer></script>
+  </body>
+</html>
