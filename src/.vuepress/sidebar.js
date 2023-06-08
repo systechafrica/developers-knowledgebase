@@ -14,6 +14,20 @@ module.exports = {
                 '/database-setup/postgres-guide',
                 '/database-setup/mysql-guide',
             ]
+        },
+        {
+            title: 'Security Center',
+            children: [
+                '/security/',
+                '/security/ssl-reverse-proxy',
+                '/security/ssl-letsencrypt',
+            ]
+        },
+        {
+            title: 'Pension Domain',
+            children: [
+                '/pension-domain/',
+            ]
         }
     ]
 }

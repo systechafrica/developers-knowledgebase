@@ -13,6 +13,18 @@ module.exports =  [
         ]
     },
     {
+        text: 'Security Center',
+        items: [
+            {text: 'Introduction', link: '/security/' },
+            {text: 'SSL Installation Using Reverse Proxy', link: '/security/ssl-reverse-proxy/' },
+            {text: 'SSl Installation using self signed certificate from letsencrypt, apache and reverse proxy', link: '/security/ssl-letsencrypt/' },
+        ]
+    },
+    {
+        text: 'Pension Domain',
+        link: '/pension-domain/'
+    },
+    {
         text: 'Fundmaster Guide',
         items: [
             {text: 'Documentation', link: 'https://documentation.systechafrica.com/' },
