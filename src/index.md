@@ -1,9 +1,9 @@
 ---
 home: true
-heroImage: https://systechafrica.com/wp-content/uploads/2021/03/Overlay-logo.png
+heroImage: https://systechafrica.com/wp-content/uploads/2021/02/outline-fundmaster-500x500.png
 tagline: The Technical knowledge base - This central repository provides relevant information on how to setup various products and getting started
 actionText: Getting Started →
-actionLink: /guide/
+actionLink: /getting-started/
 features:
   - title: Our Vision
     details: To be the leading innovative retirement benefits technology solutions provider in Africa.
@@ -18,5 +18,5 @@ features:
       Always and steadily becoming  
 ---
 ::: slot footer
-Licensed | Copyright © 2023 [Systech Africa Ltd](https://systechafrica.com/)
+Copyright © 2023 [Systech Limited](https://systechafrica.com/)
 :::

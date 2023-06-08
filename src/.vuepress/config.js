@@ -4,7 +4,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  logo: "https://systechafrica.com/wp-content/uploads/2021/02/outline-fundmaster-500x500.png",
+  logo: "https://systechafrica.com/wp-content/uploads/2021/03/Overlay-logo.png",
   title: 'Technical Knowledge Base',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
@@ -28,32 +28,15 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
    */
   themeConfig: {
-    repo: '',
-    editLinks: false,
-    docsDir: '',
-    editLinkText: '',
-    lastUpdated: false,
-    nav: [
-      {
-        text: 'Getting Started',
-        items: [
-          {text: 'Basic Setup', link: '/guide/' },
-          {text: 'Oracle Database Cheat Sheet', link: '/guide/setup-pluggable' },
-        ]
-      }
-    ],
-    sidebar: {
-      '/guide/': [
-        {
-          title: 'Getting Started',
-          collapsable: false,
-          children: [
-            '',
-            'setup-pluggable',
-          ]
-        }
-      ],
-    }
+    logo: "https://systechafrica.com/wp-content/uploads/2021/03/Overlay-logo.png",
+    searchPlaceholder: 'Search...',
+    search:true,
+    lastUpdated: 'Last Updated',
+    smoothScroll: true,
+    nextLinks: true,
+    prevLinks: true,
+    nav: require('./navbar'),
+    sidebar:require('./sidebar.js'),
   },
 
   /**
