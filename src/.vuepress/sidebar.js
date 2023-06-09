@@ -19,6 +19,7 @@ module.exports = {
             title: 'DevSecOps',
             children: [
                 '/security/',
+                '/security/proactive-control',
                 '/security/ssl-reverse-proxy',
                 '/security/ssl-letsencrypt',
             ]

@@ -16,6 +16,7 @@ module.exports =  [
         text: 'DevSecOps',
         items: [
             {text: 'Introduction', link: '/security/' },
+            {text: 'Proactive Controls', link: '/security/proactive-control/' },
             {text: 'SSL Installation Using Reverse Proxy', link: '/security/ssl-reverse-proxy/' },
             {text: 'SSl Installation using self signed certificate from letsencrypt, apache and reverse proxy', link: '/security/ssl-letsencrypt/' },
         ]
