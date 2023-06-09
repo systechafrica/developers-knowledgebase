@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>SSL Installation Using APACHE and Reverse Proxy on Linux | Technical Knowledge Base</title>
+    <title>SSL Installation Using APACHE and Reverse Proxy on Linux | Systech Knowledge Base</title>
     <meta name="generator" content="VuePress 1.9.9">
     
     <meta name="description" content="Contains the developers knowledge base">
@@ -11,11 +11,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     
-    <link rel="preload" href="/assets/css/0.styles.66c960d3.css" as="style"><link rel="preload" href="/assets/js/app.2ba60ac0.js" as="script"><link rel="preload" href="/assets/js/2.6b092d03.js" as="script"><link rel="preload" href="/assets/js/19.444a12d1.js" as="script"><link rel="prefetch" href="/assets/js/10.074e78e0.js"><link rel="prefetch" href="/assets/js/11.ab2bc05e.js"><link rel="prefetch" href="/assets/js/12.4bdec156.js"><link rel="prefetch" href="/assets/js/13.dd45a34c.js"><link rel="prefetch" href="/assets/js/14.4a3803ae.js"><link rel="prefetch" href="/assets/js/15.f9ccb768.js"><link rel="prefetch" href="/assets/js/16.108de67f.js"><link rel="prefetch" href="/assets/js/17.baa318db.js"><link rel="prefetch" href="/assets/js/18.37ed9412.js"><link rel="prefetch" href="/assets/js/3.c6b3779b.js"><link rel="prefetch" href="/assets/js/4.7cb587c0.js"><link rel="prefetch" href="/assets/js/5.0023bf4c.js"><link rel="prefetch" href="/assets/js/6.4e53a11e.js"><link rel="prefetch" href="/assets/js/7.da886956.js"><link rel="prefetch" href="/assets/js/8.7683134d.js"><link rel="prefetch" href="/assets/js/9.dda5bb24.js">
+    <link rel="preload" href="/assets/css/0.styles.66c960d3.css" as="style"><link rel="preload" href="/assets/js/app.a6a299cf.js" as="script"><link rel="preload" href="/assets/js/2.6b092d03.js" as="script"><link rel="preload" href="/assets/js/19.444a12d1.js" as="script"><link rel="prefetch" href="/assets/js/10.074e78e0.js"><link rel="prefetch" href="/assets/js/11.ab2bc05e.js"><link rel="prefetch" href="/assets/js/12.4bdec156.js"><link rel="prefetch" href="/assets/js/13.dd45a34c.js"><link rel="prefetch" href="/assets/js/14.4a3803ae.js"><link rel="prefetch" href="/assets/js/15.c661f107.js"><link rel="prefetch" href="/assets/js/16.ec009ab9.js"><link rel="prefetch" href="/assets/js/17.031e080b.js"><link rel="prefetch" href="/assets/js/18.8057b31d.js"><link rel="prefetch" href="/assets/js/3.c6b3779b.js"><link rel="prefetch" href="/assets/js/4.7cb587c0.js"><link rel="prefetch" href="/assets/js/5.0023bf4c.js"><link rel="prefetch" href="/assets/js/6.4e53a11e.js"><link rel="prefetch" href="/assets/js/7.da886956.js"><link rel="prefetch" href="/assets/js/8.7683134d.js"><link rel="prefetch" href="/assets/js/9.dda5bb24.js">
     <link rel="stylesheet" href="/assets/css/0.styles.66c960d3.css">
   </head>
   <body>
-    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="https://systechafrica.com/wp-content/uploads/2021/03/Overlay-logo.png" alt="Technical Knowledge Base" class="logo"> <span class="site-name can-hide">Technical Knowledge Base</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/getting-started/" class="nav-link">
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="https://systechafrica.com/wp-content/uploads/2021/03/Overlay-logo.png" alt="Systech Knowledge Base" class="logo"> <span class="site-name can-hide">Systech Knowledge Base</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/getting-started/" class="nav-link">
   Getting Started
 </a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Database Setup" class="dropdown-title"><span class="title">Database Setup</span> <span class="arrow down"></span></button> <button type="button" aria-label="Database Setup" class="mobile-dropdown-title"><span class="title">Database Setup</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/database-setup/oracle-guide/" class="nav-link">
   Oracle Database Setup
@@ -92,7 +92,7 @@ add the following lines</p></blockquote> <div class="language-xml extra-class"><
 <code>sudo /usr/sbin/setsebool -P httpd_can_network_connect 1</code></p> <p>To Test Your configurations Use
 <code>sudo httpd -S</code></p> <p>To check for ssl error logs use
 <code>sudo tail -f /etc/httpd/logs/ssl_error_log</code></p> <p>To check for ssl access logs use
-<code>sudo tail -f /etc/httpd/logs/ssl_access_log</code></p> <h1 id="finally-restart-apache-and-enjoy"><a href="#finally-restart-apache-and-enjoy" class="header-anchor">#</a> Finally restart Apache  and enjoy</h1> <p>😊</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">6/8/2023, 5:12:38 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+<code>sudo tail -f /etc/httpd/logs/ssl_access_log</code></p> <h1 id="finally-restart-apache-and-enjoy"><a href="#finally-restart-apache-and-enjoy" class="header-anchor">#</a> Finally restart Apache  and enjoy</h1> <p>😊</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">6/9/2023, 11:00:36 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
       ←
       <a href="/security/" class="prev router-link-active">
         Security
@@ -101,6 +101,6 @@ add the following lines</p></blockquote> <div class="language-xml extra-class"><
       </a>
       →
     </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.2ba60ac0.js" defer></script><script src="/assets/js/2.6b092d03.js" defer></script><script src="/assets/js/19.444a12d1.js" defer></script>
+    <script src="/assets/js/app.a6a299cf.js" defer></script><script src="/assets/js/2.6b092d03.js" defer></script><script src="/assets/js/19.444a12d1.js" defer></script>
   </body>
 </html>
