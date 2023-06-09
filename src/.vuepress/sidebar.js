@@ -16,7 +16,7 @@ module.exports = {
             ]
         },
         {
-            title: 'Security Center',
+            title: 'DevSecOps',
             children: [
                 '/security/',
                 '/security/ssl-reverse-proxy',

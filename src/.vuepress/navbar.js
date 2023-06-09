@@ -13,7 +13,7 @@ module.exports =  [
         ]
     },
     {
-        text: 'Security Center',
+        text: 'DevSecOps',
         items: [
             {text: 'Introduction', link: '/security/' },
             {text: 'SSL Installation Using Reverse Proxy', link: '/security/ssl-reverse-proxy/' },

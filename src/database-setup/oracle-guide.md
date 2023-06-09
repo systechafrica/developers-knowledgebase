@@ -1,4 +1,4 @@
-# Pluggable database Setup
+# Oracle Database Setup
 ------------------------
 
 # Windows
