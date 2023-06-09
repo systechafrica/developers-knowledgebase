@@ -5,7 +5,7 @@ module.exports = {
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
   logo: "https://systechafrica.com/wp-content/uploads/2021/03/Overlay-logo.png",
-  title: 'Technical Knowledge Base',
+  title: 'Systech Knowledge Base',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
