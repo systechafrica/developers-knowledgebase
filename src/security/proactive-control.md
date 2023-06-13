@@ -20,6 +20,7 @@ The goal of the *OWASP Top 10 Proactive Controls project &#40;OPC&#41;* is to ra
 **INTRODUCTION**
 
 The OWASP Top Ten Proactive Controls 2018 is a list of security techniques that should be considered for every software development project. This document is written for developers to assist those new to secure development.
+---
 
 **The Top 10 Proactive Controls**
 
@@ -44,6 +45,8 @@ The list is ordered by importance with list item number 1 being the most importa
 - C9:**Implement Security Logging and Monitoring**
 
 - C10:**Handle All Errors and Exceptions**
+
+---
 
 ***C1: Define Security Requirements***
 
@@ -111,6 +114,8 @@ Security requirements define the security functionality of an application. Bette
 - [OWASPTopTen] 
 (https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project)
 
+--- 
+
 ***C2: Leverage Security Frameworks and Libraries***
 
 Secure  coding  libraries  and  software  frameworks  with  embedded  security  help  software developers  guard  against security-related  design  and  implementation  flaws.  A  developer writing an application from scratch might not have sufficient knowledge, time, or budget to properly  implement  or  maintain  security  features.  Leveraging  security  frameworks  helps accomplish security goals more efficiently and accurately.
@@ -137,342 +142,273 @@ Secure  frameworks  and  libraries  can  help  to  prevent  a  wide  range  of  
 
 - [Retire.JS](http://retirejs.github.io/retire.js/) scanner for JavaScript libraries 
 
-[//]: # ()
-[//]: # (**C3: Secure Database Access ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.006.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.022.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.023.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.018.png&#41;Description**)
+---
 
-[//]: # ()
-[//]: # (<a name="_page10_x68.00_y203.92"></a>This section describes secure access to all data stores, including both relational databases and NoSQL databases. Some areas to consider:)
+***C3: Secure Database Access***
 
-[//]: # ()
-[//]: # (1. Secure queries)
+This section describes secure access to all data stores, including both relational databases and NoSQL databases. Some areas to consider :)
 
-[//]: # (1. Secure configuration)
+1. Secure queries
 
-[//]: # (1. Secure authentication)
+2. Secure configuration
 
-[//]: # (1. Secure communication)
+3. Secure authentication
 
-[//]: # ()
-[//]: # (**Secure Queries**)
+4. Secure communication
 
-[//]: # ()
-[//]: # (SQL Injection occurs when untrusted user input is dynamically added to a SQL query in an insecure  manner,  often  via  basic  string  concatenation.  SQL  Injection  is  one  of  the  most dangerous application security risks. SQL Injection is easy to exploit and could lead to the entire database being stolen, wiped, or modified. The application can even be used to run dangerous commands against the operating system hosting your database, thereby giving an attacker a foothold on your network.)
+**Secure Queries**
 
-[//]: # ()
-[//]: # (In  order  to  mitigate  SQL  injection,  untrusted  input  should  be  prevented  from  being interpreted as part of a SQL command. The best way to do this is with the programming technique known as ‘Query Parameterization’. This defense should be applied to SQL, OQL, as well as stored procedure construction.)
+SQL Injection occurs when untrusted user input is dynamically added to a SQL query in an insecure  manner,  often  via  basic  string  concatenation.  SQL  Injection  is  one  of  the  most dangerous application security risks. SQL Injection is easy to exploit and could lead to the entire database being stolen, wiped, or modified. The application can even be used to run dangerous commands against the operating system hosting your database, thereby giving an attacker a foothold on your network.
 
-[//]: # ()
-[//]: # (A good list of query parameterization examples in ASP, ColdFusion, C#, Delphi, .NET, Go, Java, Perl, PHP, PL/SQL, PostgreSQL, Python, R, Ruby and Scheme can  be  found  at [ http://bobby-tables.com* ]&#40;http://bobby-tables.com/&#41; and  the *[ OWASP  Cheat  Sheet  on  Query Parameterization*.]&#40;https://www.owasp.org/index.php/Query_Parameterization_Cheat_Sheet&#41;*)
+In  order  to  mitigate  SQL  injection,  untrusted  input  should  be  prevented  from  being interpreted as part of a SQL command. The best way to do this is with the programming technique known as ‘Query Parameterization’. This defense should be applied to SQL, OQL, as well as stored procedure construction.
 
-[//]: # ()
-[//]: # (***Caution on Query Parameterization***)
+A good list of query parameterization examples in ASP, ColdFusion, C#, Delphi, .NET, Go, Java, Perl, PHP, PL/SQL, PostgreSQL, Python, R, Ruby and Scheme can  be  found  at 
+- [http://bobby-tables.com](http://bobby-tables.com/) and the 
+- [OWASPCheatSheetonQuery Parameterization.](https://www.owasp.org/index.php/Query_Parameterization_Cheat_Sheet)
 
-[//]: # ()
-[//]: # (Certain locations in a database query are not parameterizable. These locations are different for each database vendor. Be certain to do very careful exact-match validation or manual escaping  when  confronting  database  query  parameters  that  cannot  be  bound  to  a parameterized  query.  Also,  while  the  use  of  parameterized  queries  largely  has  a  positive impact on performance, certain parameterized queries in specific database implementations ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41; will  affect  performance  negatively.  Be  sure  to  test  queries  for  performance;  especially complex queries with extensive like clause or text searching capabilities.)
+***Caution on Query Parameterization***
 
-[//]: # ()
-[//]: # (**Secure Configuration**)
+Certain locations in a database query are not parameterizable. These locations are different for each database vendor. Be certain to do very careful exact-match validation or manual escaping  when  confronting  database  query  parameters  that  cannot  be  bound  to  a parameterized  query.  Also,  while  the  use  of  parameterized  queries  largely  has  a  positive impact on performance, certain parameterized queries in specific database implementations  will  affect  performance  negatively.  Be  sure  to  test  queries  for  performance;  especially complex queries with extensive like clause or text searching capabilities.)
 
-[//]: # ()
-[//]: # (Unfortunately, database management systems do not always ship in a “secure by default” configuration. Care must be taken to ensure that the security controls available from the Database  Management  System  &#40;DBMS&#41;  and  hosting  platform  are  enabled  and  properly configured. There are standards, guides, and benchmarks available for most common DBMS.)
+**Secure Configuration**
 
-[//]: # ()
-[//]: # (**Secure Authentication**)
+Unfortunately, database management systems do not always ship in a “secure by default” configuration. Care must be taken to ensure that the security controls available from the Database  Management  System (DBMS) and  hosting  platform  are  enabled  and  properly configured. There are standards, guides, and benchmarks available for most common DBMS.
 
-[//]: # ()
-[//]: # (All access to the database should be properly authenticated. Authentication to the DBMS should be accomplished in a secure manner. Authentication should take place only over a secure channel.  Credentials must be properly secured and available for use.)
+**Secure Authentication**
 
-[//]: # ()
-[//]: # (**Secure Communication**)
+All access to the database should be properly authenticated. Authentication to the DBMS should be accomplished in a secure manner. Authentication should take place only over a secure channel.  Credentials must be properly secured and available for use.
 
-[//]: # ()
-[//]: # (Most  DBMS  support  a  variety  of  communications  methods  &#40;services,  APIs,  etc&#41; -  secure &#40;authenticated,  encrypted&#41;  and  insecure  &#40;unauthenticated  or  unencrypted&#41;.  It  is  a  good practice to only use the secure communications options per the *Protect Data Everywhere* control.)
+**Secure Communication**
 
-[//]: # ()
-[//]: # (**Vulnerabilities Prevented**)
+Most  DBMS  support  a  variety  of  communications  methods  &services,  APIs,  etc -  secure authenticated,  encrypted&and  insecure  unauthenticated  or  unencrypted.  It  is  a  good practice to only use the secure communications options per the *Protect Data Everywhere* control.
 
-[//]: # ()
-[//]: # (- [OWASP Top 10 2017- A1: Injection ]&#40;https://www.owasp.org/index.php/Top_10-2017_A1-Injection&#41;)
+**Vulnerabilities Prevented**)
 
-[//]: # (- [OWASP Mobile Top 10 2014-M1 Weak Server Side Controls]&#40;https://www.owasp.org/index.php/Mobile_Top_10_2014-M1&#41;)
+- [OWASP Top 10 2017- A1: Injection ](https://www.owasp.org/index.php/Top_10-2017_A1-Injection)
 
-[//]: # ()
-[//]: # (**References**)
+- [OWASP Mobile Top 10 2014-M1 Weak Server Side Controls](https://www.owasp.org/index.php/Mobile_Top_10_2014-M1)
 
-[//]: # ()
-[//]: # (- [OWASP Cheat Sheet: Query Parameterization]&#40;https://www.owasp.org/index.php/Query_Parameterization_Cheat_Sheet&#41;)
+**References**
 
-[//]: # (- [Bobby Tables: A guide to preventing SQL injection]&#40;http://bobby-tables.com/&#41;)
+- [OWASP Cheat Sheet: Query Parameterization](https://www.owasp.org/index.php/Query_Parameterization_Cheat_Sheet)
 
-[//]: # (- [CIS Database Hardening Standards]&#40;https://www.cisecurity.org/cis-benchmarks/&#41; ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
+- [Bobby Tables: A guide to preventing SQL injection](http://bobby-tables.com/)
 
-[//]: # ()
-[//]: # (**OWASP Proactive Controls v 3.0   ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.004.jpeg&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.014.png&#41;**)
+- [CIS Database Hardening Standards](https://www.cisecurity.org/cis-benchmarks/)
 
-[//]: # ()
-[//]: # (**C4: Encode and Escape Data ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.006.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.024.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.025.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.018.png&#41;Description**)
+---
 
-[//]: # ()
-[//]: # (<a name="_page12_x68.00_y210.92"></a>Encoding and escaping are defensive techniques meant to stop injection attacks. Encoding &#40;commonly  called  "Output  Encoding"&#41;  involves  translating  special  characters  into  some different  but  equivalent  form  that  is  no  longer  dangerous  in  the  target  interpreter,  for example translating the “<” character into the &lt; string when writing to an HTML page. Escaping  involves  adding  a  special  character  before  the  character/string  to  avoid  it  being misinterpreted, for example, adding a “\” character before a “"” &#40;double quote&#41; character so that it is interpreted as text and not as closing a string.)
+**C4: Encode and Escape Data**
 
-[//]: # ()
-[//]: # (Output encoding is best applied just before the content is passed to the target interpreter. If this  defense  is  performed  too  early  in  the  processing  of  a  request  then  the  encoding  or escaping  may  interfere  with  the  use  of  the  content  in  other  parts  of  the  program.  For example if you HTML escape content before storing that data in the database and the UI automatically escapes that data a second time then the content will not display properly due to being double escaped.)
+Encoding and escaping are defensive techniques meant to stop injection attacks. 
+- Encoding: commonly  called  "Output  Encoding"  involves  translating  special  characters  into  some different  but  equivalent  form  that  is  no  longer  dangerous  in  the  target  interpreter,  for example translating the “<” character into the \&lt; string when writing to an HTML page. 
+- Escaping  involves  adding  a  special  character  before  the  character/string  to  avoid  it  being misinterpreted, for example, adding a “\” character before a “"” &double quote character so that it is interpreted as text and not as closing a string.
 
-[//]: # ()
-[//]: # (**Contextual Output Encoding**)
+Output encoding is best applied just before the content is passed to the target interpreter. If this  defense  is  performed  too  early  in  the  processing  of  a  request  then  the  encoding  or escaping  may  interfere  with  the  use  of  the  content  in  other  parts  of  the  program.  For example if you HTML escape content before storing that data in the database and the UI automatically escapes that data a second time then the content will not display properly due to being double escaped.
 
-[//]: # ()
-[//]: # (Contextual output encoding is a crucial security programming technique needed to stop XSS. This  defense  is  performed  on  output,  when  you’re  building  a  user interface,  at  the  last moment  before  untrusted  data  is  dynamically added  to  HTML.  The  type  of  encoding  will depend on the location &#40;or context&#41; in the document where data is being displayed or stored. The  different  types  of  encoding  that  would  be  used  for building  secure  user  interfaces includes  HTML  Entity  Encoding,  HTML  Attribute  Encoding,  JavaScript  Encoding,  and  URL Encoding.)
+**Contextual Output Encoding**
 
-[//]: # ()
-[//]: # (***Java Encoding Examples***)
+Contextual output encoding is a crucial security programming technique needed to stop XSS. This  defense  is  performed  on  output,  when  you’re  building  a  user interface,  at  the  last moment  before  untrusted  data  is  dynamically added  to  HTML.  The  type  of  encoding  will depend on the location or context in the document where data is being displayed or stored. The  different  types  of  encoding  that  would  be  used  for building  secure  user  interfaces includes  HTML  Entity  Encoding,  HTML  Attribute  Encoding,  JavaScript  Encoding,  and  URL Encoding.)
 
-[//]: # ()
-[//]: # (For examples of the OWASP Java Encoder providing contextual output encoding see[: OWASP Java Encoder Project Examples.]&#40;https://www.owasp.org/index.php/OWASP_Java_Encoder_Project#tab=Use_the_Java_Encoder_Project&#41; ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
+***Java Encoding Examples***
 
-[//]: # ()
-[//]: # (***.NET Encoding Examples***)
+For examples of the OWASP Java Encoder providing contextual output encoding see
+ [OWASP Java Encoder Project Examples](https://www.owasp.org/index.php/OWASP_Java_Encoder_Project#tab=Use_the_Java_Encoder_Project)
 
-[//]: # ()
-[//]: # (Starting with .NET 4.5 , the Anti-Cross Site Scripting library is part of the framework, but not enabled by default. You can specify to use AntiXssEncoder from this library as the default encoder for your entire application using the web.conf settings. When applied is important to contextual  encode  your  output  -  that  means  to  use  the  right  function  from  the AntiXSSEncoder library for the appropriate location of data in document.)
+***.NET Encoding Examples***
 
-[//]: # ()
-[//]: # (***PHP Encoding Examples*** Zend Framework 2)
+Starting with .NET 4.5 , the Anti-Cross Site Scripting library is part of the framework, but not enabled by default. You can specify to use AntiXssEncoder from this library as the default encoder for your entire application using the web.conf settings. When applied is important to contextual  encode  your  output  -  that  means  to  use  the  right  function  from  the AntiXSSEncoder library for the appropriate location of data in document.)
 
-[//]: # ()
-[//]: # (In  Zend  Framework  2  &#40;ZF2&#41;,  Zend\Escaper  can  be  used  for  encoding  the  output.  For contextual encoding examples see[  Context-specific escaping with zend-escaper.]&#40;https://framework.zend.com/blog/2017-05-16-zend-escaper.html&#41;)
+***PHP Encoding Examples*** Zend Framework 2
 
-[//]: # ()
-[//]: # (**Other Types of Encoding and Injection Defense**)
+In  Zend  Framework  2 (ZF2),  Zend\Escaper  can  be  used  for  encoding  the  output.  For contextual encoding examples see
+[Context-specific escaping with zend-escaper.](https://framework.zend.com/blog/2017-05-16-zend-escaper.html)
 
-[//]: # ()
-[//]: # (Encoding/Escaping can be used to neutralize content against other forms of injection. For example, it's possible to neutralize certain special meta-characters when adding input to an operating  system  command.  This  is  called  "OS  command  escaping",  "shell  escaping",  or similar. This defense can be used to stop "Command Injection" vulnerabilities.)
+**Other Types of Encoding and Injection Defense**
 
-[//]: # ()
-[//]: # (There are other forms of escaping that can be used to stop injection such as XML attribute escaping stopping various forms of XML and XML path injection, as well as LDAP distinguished name escaping that can be used to stop various forms of LDAP injection.)
+Encoding/Escaping can be used to neutralize content against other forms of injection. For example, it's possible to neutralize certain special meta-characters when adding input to an operating  system  command.  This  is  called  "OS  command  escaping",  "shell  escaping",  or similar. This defense can be used to stop "Command Injection" vulnerabilities.)
 
-[//]: # ()
-[//]: # (***Character Encoding and Canonicalization***)
+There are other forms of escaping that can be used to stop injection such as XML attribute escaping stopping various forms of XML and XML path injection, as well as LDAP distinguished name escaping that can be used to stop various forms of LDAP injection.
 
-[//]: # ()
-[//]: # (Unicode Encoding is a method for storing characters with multiple bytes. Wherever input data is allowed, data can be entered using[ Unicode ]&#40;https://www.owasp.org/index.php/Unicode_Encoding&#41;to disguise malicious code and permit a variety of attacks.[ RFC 2279 ]&#40;https://tools.ietf.org/html/rfc2279&#41;references many ways that text can be encoded.)
+***Character Encoding and Canonicalization***
 
-[//]: # ()
-[//]: # (Canonicalization is a method in which systems convert data into a simple or standard form.  Web applications commonly use character canonicalization to ensure all content is of the same character type when stored or displayed.)
+Unicode Encoding is a method for storing characters with multiple bytes. Wherever input data is allowed, data can be entered using
+[Unicode](https://www.owasp.org/index.php/Unicode_Encoding) to disguise malicious code and permit a variety of attacks.
+[RFC2279](https://tools.ietf.org/html/rfc2279) references many ways that text can be encoded.)
 
-[//]: # ()
-[//]: # (To be secure against canonicalization related attacks means an application should be safe when malformed Unicode and other malformed character representations are entered. ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
+Canonicalization is a method in which systems convert data into a simple or standard form.  Web applications commonly use character canonicalization to ensure all content is of the same character type when stored or displayed.)
 
-[//]: # ()
-[//]: # (**Vulnerabilities Prevented**)
+To be secure against canonicalization related attacks means an application should be safe when malformed Unicode and other malformed character representations are entered.
 
-[//]: # ()
-[//]: # (- [OWASP Top 10 2017 - A1: Injection ]&#40;https://www.owasp.org/index.php/Top_10-2017_A1-Injection&#41;)
+**Vulnerabilities Prevented**
 
-[//]: # (- [OWASP Top 10 2017 - A7: Cross Site Scripting &#40;XSS&#41; ]&#40;https://www.owasp.org/index.php/Top_10-2017_A7-Cross-Site_Scripting_\&#40;XSS\&#41;&#41;)
+- [OWASP Top 10 2017 - A1: Injection ](https://www.owasp.org/index.php/Top_10-2017_A1-Injection)
 
-[//]: # (- [OWASP Mobile_Top_10_2014-M7 Client Side Injection]&#40;https://www.owasp.org/index.php/Mobile_Top_10_2014-M7&#41;)
+- [OWASP Top 10 2017 - A7: Cross Site Scripting,XSS ](https://www.owasp.org/index.php/Top_10-2017_A7-Cross-Site_Scripting_\&#40;XSS\&#41;)
 
-[//]: # ()
-[//]: # (**References[** ]&#40;https://www.owasp.org/index.php/Top_10_2013-A1-Injection&#41;**)
+- [OWASP Mobile_Top_10_2014-M7 Client Side Injection](https://www.owasp.org/index.php/Mobile_Top_10_2014-M7)
 
-[//]: # ()
-[//]: # (- [XSS ]&#40;https://www.owasp.org/index.php/XSS&#41;- General informatio[n ]&#40;https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet&#41;)
+**References** 
 
-[//]: # (- [OWASP Cheat Sheet: XSS Prevention]&#40;https://www.owasp.org/index.php/XSS_\&#40;Cross_Site_Scripting\&#41;_Prevention_Cheat_Sheet&#41; - Stopping XSS in your web applic[ation ]&#40;https://www.owasp.org/index.php/XSS_\&#40;Cross_Site_Scripting\&#41;_Prevention_Cheat_Sheet&#41;)
+- https://www.owasp.org/index.php/Top_10_2013-A1-Injection)
 
-[//]: # (- [OWASP Cheat Sheet: DOM based XSS Prevention  ]&#40;https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet&#41;)
+- [XSS](https://www.owasp.org/index.php/XSS)
 
-[//]: # (- [OWASP Cheat Sheet: Injection Prevention]&#40;https://www.owasp.org/index.php/Injection_Prevention_Cheat_Sheet&#41;)
+- [Generalinformation](https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet)
 
-[//]: # ()
-[//]: # (**Tools**)
+- [OWASP Cheat Sheet: XSS Prevention](https://www.owasp.org/index.php/XSS_\&#40;Cross_Site_Scripting\&#41;_Prevention_Cheat_Sheet)
 
-[//]: # ()
-[//]: # (- [OWASP Java Encoder Project ]&#40;https://www.owasp.org/index.php/OWASP_Java_Encoder_Project&#41;)
+- [Stopping XSS in your web application](https://www.owasp.org/index.php/XSS_\Cross_Site_Scripting\_Prevention_Cheat_Sheet)
 
-[//]: # (- [AntiXSSEncoder ]&#40;https://msdn.microsoft.com/en-us/library/system.web.security.antixss.antixssencoder\&#40;v=vs.110\&#41;.aspx&#41;)
+- [OWASP Cheat Sheet: DOM based XSS Prevention](https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet)
 
-[//]: # (- [Zend\Escaper ]&#40;https://framework.zend.com/blog/2017-05-16-zend-escaper.html&#41;- examples of contextual encoding ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
+- [OWASP Cheat Sheet: Injection Prevention](https://www.owasp.org/index.php/Injection_Prevention_Cheat_Sheet)
 
-[//]: # ()
-[//]: # (**OWASP Proactive Controls v 3.0   ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.004.jpeg&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.014.png&#41;**)
+**Tools**
 
-[//]: # ()
-[//]: # (**C5: Validate All Inputs ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.026.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.027.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.028.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.018.png&#41;Description**)
+- [OWASP Java Encoder Project ](https://www.owasp.org/index.php/OWASP_Java_Encoder_Project)
 
-[//]: # ()
-[//]: # (Input validation is a programming technique that ensures only properly formatted data may enter a software system component.)
+- [AntiXSSEncoder ](https://msdn.microsoft.com/en-us/library/system.web.security.antixss.antixssencoder\v=vs.110.aspx)
 
-[//]: # ()
-[//]: # (**Syntax and Semantic Validity**)
+- [Zend\Escaper](https://framework.zend.com/blog/2017-05-16-zend-escaper.html)- examples of contextual encoding
 
-[//]: # ()
-[//]: # (An  application  should  check  that  data  is  both *syntactically*  and *semantically*  valid  &#40;in  that order&#41; before using it in any way &#40;including displaying it back to the user&#41;.)
+---
 
-[//]: # ()
-[//]: # (*Syntax validity* means that the data is in the form that is expected. For example, an application may allow a user to select a four-digit “account ID” to perform some kind of operation. The application should assume the user is entering a SQL injection payload, and should check that the data entered by the user is exactly four digits in length, and consists only of numbers &#40;in addition to utilizing proper query parameterization&#41;.)
+**C5: Validate All Inputs**
 
-[//]: # ()
-[//]: # (*Semantic validity* includes only accepting input that is within an acceptable range for the given application functionality and context. For example, a start date must be before an end date when choosing date ranges.)
+Input validation is a programming technique that ensures only properly formatted data may enter a software system component.
 
-[//]: # ()
-[//]: # (**Whitelisting vs Blacklisting**)
+**Syntax and Semantic Validity**
 
-[//]: # ()
-[//]: # (There are two general approaches to performing input syntax validation, commonly known as blacklisting and whitelisting:)
+An  application  should  check  that  data  is  both **syntactically**  and **semantically**  valid  in  that order before using it in any way & including displaying it back to the user.
 
-[//]: # ()
-[//]: # (- *Blacklisting* or *blacklist validation* attempts to check that given data does not contain “known bad” content. For example, a web application may block input that contains the exact text <SCRIPT> in order to help prevent XSS. However, this defense could be evaded with a lower case script tag or a script tag of mixed case.)
+- **Syntax validity** means that the data is in the form that is expected. For example, an application may allow a user to select a four-digit “account ID” to perform some kind of operation. The application should assume the user is entering a SQL injection payload, and should check that the data entered by the user is exactly four digits in length, and consists only of numbers in addition to utilizing proper query parameterization.
 
-[//]: # (- *Whitelisting* or *whitelist validation* attempts to check that a given data matches a set of “known good” rules. For example a whitelist validation rule for a US state would be a 2-letter code that is only one of the valid US states.)
+- **Semantic validity** includes only accepting input that is within an acceptable range for the given application functionality and context. For example, a start date must be before an end date when choosing date ranges.
 
-[//]: # ()
-[//]: # (When  building  secure  software,  whitelisting  is  the  recommended  minimal  approach. Blacklisting is prone to error and can be bypassed with various evasion techniques and can be dangerous when depended on by itself. Even though blacklisting can often be evaded it can ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41; often useful to help detect obvious attacks. So while *whitelisting* helps limit the attack surface by ensuring data is of the right syntactic and semantic validity, *blacklisting* helps detect and potentially stop obvious attacks.)
+**Whitelisting vs Blacklisting**
 
-[//]: # ()
-[//]: # (**Client side and Server side Validation**)
+There are two general approaches to performing input syntax validation, commonly known as blacklisting and whitelisting :)
 
-[//]: # ()
-[//]: # (Input  validation  must  always  be  done  on  the  server-side  for  security.  While  client  side validation can be useful for both functional and some security purposes it can often be easily bypassed. This makes server-side validation even more fundamental to security. For example, JavaScript validation may alert the user that a particular field must consist of numbers but the server side application must validate that the submitted data only consists of numbers in the appropriate numerical range for that feature.)
+- **Blacklisting** or **blacklist validation** attempts to check that given data does not contain “known bad” content. For example, a web application may block input that contains the exact text \<SCRIPT> in order to help prevent XSS. However, this defense could be evaded with a lower case script tag or a script tag of mixed case.
 
-[//]: # ()
-[//]: # (**Regular Expressions**)
+- **Whitelisting** or **whitelist validation** attempts to check that a given data matches a set of “known good” rules. For example a whitelist validation rule for a US state would be a 2-letter code that is only one of the valid US states.)
 
-[//]: # ()
-[//]: # (Regular expressions offer a way to check whether data matches a specific pattern. Let’s start with a basic example.)
+When  building  secure  software,  whitelisting  is  the  recommended  minimal  approach. Blacklisting is prone to error and can be bypassed with various evasion techniques and can be dangerous when depended on by itself. Even though blacklisting can often be evaded it can  often be useful to help detect obvious attacks. So while **whitelisting** helps limit the attack surface by ensuring data is of the right syntactic and semantic validity, **blacklisting** helps detect and potentially stop obvious attacks.
 
-[//]: # ()
-[//]: # (The following regular expression is used to define a whitelist rule to validate usernames.)
+**Client side and Server side Validation**
 
-[//]: # ()
-[//]: # (^[a-z0-9\_]{3,16}$ ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.029.png&#41;)
+Input  validation  must  always  be  done  on  the  server-side  for  security.  While  client  side validation can be useful for both functional and some security purposes it can often be easily bypassed. This makes server-side validation even more fundamental to security. For example, JavaScript validation may alert the user that a particular field must consist of numbers but the server side application must validate that the submitted data only consists of numbers in the appropriate numerical range for that feature.
 
-[//]: # ()
-[//]: # (This regular expression allows only lowercase letters, numbers and the underscore character. The username is also restricted to a length of 3 and 16 characters.)
+**Regular Expressions**
 
-[//]: # ()
-[//]: # (***Caution: Potential for Denial of Service***)
+Regular expressions offer a way to check whether data matches a specific pattern. Let’s start with a basic example.
 
-[//]: # ()
-[//]: # (Care should be exercised when creating regular expressions. Poorly designed expressions may result in potential denial of service conditions &#40;aka[ ReDoS&#41;.]&#40;https://www.owasp.org/index.php/Regular_expression_Denial_of_Service_-_ReDoS&#41; Various tools can test to verify that regular expressions are not vulnerable to ReDoS.)
+The following regular expression is used to define a whitelist rule to validate usernames.
 
-[//]: # ()
-[//]: # (***Caution: Complexity***)
+**^[a-z0-9_]{3,16}$**
 
-[//]: # ()
-[//]: # (Regular expressions are just one way to accomplish validation. Regular expressions can be difficult to maintain or understand for some developers. Other validation alternatives involve writing  validation  methods  programmatically  which  can  be  easier  to  maintain  for  some developers. ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
+This regular expression allows only lowercase letters, numbers and the underscore character. The username is also restricted to a length of 3 and 16 characters.
 
-[//]: # ()
-[//]: # (**Limits of Input Validation**)
+***Caution: Potential for Denial of Service***
 
-[//]: # ()
-[//]: # (Input validation does not always make data “safe” since certain forms of complex input may be "valid" but still dangerous. For example a valid email address may contain a SQL injection attack or a valid URL may contain a Cross Site Scripting attack.  Additional defenses besides input validation should always be applied to data such as query parameterization or escaping.)
+Care should be exercised when creating regular expressions. Poorly designed expressions may result in potential denial of service conditions, aka [ReDoS](https://www.owasp.org/index.php/Regular_expression_Denial_of_Service_-_ReDoS) Various tools can test to verify that regular expressions are not vulnerable to ReDoS.
 
-[//]: # ()
-[//]: # (**Challenges of Validating Serialized Data**)
+***Caution: Complexity***
 
-[//]: # ()
-[//]: # (Some  forms  of  input  are  so  complex  that  validation  can  only  minimally  protect  the application. For example, it's dangerous to deserialize untrusted data or data that can be manipulated by an attacker. The only safe architectural pattern is to not accept serialized objects from untrusted sources or to only deserialize in limited capacity for only simple data types. You should avoid processing serialized data formats and use easier to defend formats such as JSON when possible.)
+Regular expressions are just one way to accomplish validation. Regular expressions can be difficult to maintain or understand for some developers. Other validation alternatives involve writing  validation  methods  programmatically  which  can  be  easier  to  maintain  for  some developers. 
 
-[//]: # ()
-[//]: # (If that is not possible then consider a series of validation defenses when processing serialized data.)
+**Limits of Input Validation**
 
-[//]: # ()
-[//]: # (- Implement integrity checks or encryption of the serialized objects to prevent hostile object creation or data tampering.)
+Input validation does not always make data “safe” since certain forms of complex input may be "valid" but still dangerous. For example a valid email address may contain a SQL injection attack or a valid URL may contain a Cross Site Scripting attack.  Additional defenses besides input validation should always be applied to data such as query parameterization or escaping.)
 
-[//]: # (- Enforce strict type constraints during deserialization before object creation; typically code is expecting a definable set of classes. Bypasses to this technique have been demonstrated.)
+**Challenges of Validating Serialized Data**
 
-[//]: # (- Isolate code that deserializes, such that it runs in very low privilege environments, such as temporary containers.)
+Some  forms  of  input  are  so  complex  that  validation  can  only  minimally  protect  the application. For example, it's dangerous to deserialize untrusted data or data that can be manipulated by an attacker. The only safe architectural pattern is to not accept serialized objects from untrusted sources or to only deserialize in limited capacity for only simple data types. You should avoid processing serialized data formats and use easier to defend formats such as JSON when possible.)
 
-[//]: # (- Log security deserialization exceptions and failures, such as where the incoming type is not the expected type, or the deserialization throws exceptions.)
+If that is not possible then consider a series of validation defenses when processing serialized data.)
 
-[//]: # (- Restrict or monitor incoming and outgoing network connectivity from containers or servers that deserialize.)
+- Implement integrity checks or encryption of the serialized objects to prevent hostile object creation or data tampering.
 
-[//]: # (- Monitor deserialization, alerting if a user deserializes constantly. ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
+- Enforce strict type constraints during deserialization before object creation; typically code is expecting a definable set of classes. Bypasses to this technique have been demonstrated.
 
-[//]: # ()
-[//]: # (**Unexpected User Input &#40;Mass Assignment&#41;**)
+- Isolate code that deserializes, such that it runs in very low privilege environments, such as temporary containers.
 
-[//]: # ()
-[//]: # (Some  frameworks  support  automatic  binding  of  HTTP  requests  parameters  to  server-side objects used by the application. This auto-binding feature can allow an attacker to update server-side objects that were not meant to be modified. The attacker can possibly modify their access control level or circumvent the intended business logic of the application with this feature.)
+- Log security deserialization exceptions and failures, such as where the incoming type is not the expected type, or the deserialization throws exceptions.
 
-[//]: # ()
-[//]: # (This  attack  has  a  number  of  names  including:  mass  assignment,  autobinding  and  object injection.)
+- Restrict or monitor incoming and outgoing network connectivity from containers or servers that deserialize.)
 
-[//]: # ()
-[//]: # (As a simple example, if the user object has a field privilege which specifies the user's privilege level in the application, a malicious user can look for pages where user data is modified and add privilege=admin to the HTTP parameters sent.  If auto-binding is enabled in an insecure fashion, the server-side object representing the user will be modified accordingly.)
+- Monitor deserialization, alerting if a user deserializes constantly. 
 
-[//]: # ()
-[//]: # (Two approaches can be used to handle this:)
+**Unexpected User Input (Mass Assignment)**
 
-[//]: # ()
-[//]: # (- Avoid binding input directly and use Data Transfer Objects &#40;DTOs&#41; instead.)
+Some  frameworks  support  automatic  binding  of  HTTP  requests  parameters  to  server-side objects used by the application. This auto-binding feature can allow an attacker to update server-side objects that were not meant to be modified. The attacker can possibly modify their access control level or circumvent the intended business logic of the application with this feature.)
 
-[//]: # (- Enable auto-binding but set up whitelist rules for each page or feature to define which fields are allowed to be auto-bound.)
+This  attack  has  a  number  of  names  including:  mass  assignment,  autobinding  and  object injection.
 
-[//]: # ()
-[//]: # (More examples are available in the[ OWASP Mass Assignment Cheat Sheet.]&#40;https://www.owasp.org/index.php/Mass_Assignment_Cheat_Sheet&#41;)
+As a simple example, if the user object has a field privilege which specifies the user's privilege level in the application, a malicious user can look for pages where user data is modified and add privilege=admin to the HTTP parameters sent.  If auto-binding is enabled in an insecure fashion, the server-side object representing the user will be modified accordingly.)
 
-[//]: # ()
-[//]: # (**Validating and Sanitizing HTML**)
+Two approaches can be used to handle this :)
 
-[//]: # ()
-[//]: # (Consider an application that needs to accept HTML from users &#40;via a WYSIWYG editor that represents content as HTML or features that directly accept HTML in input&#41;. In this situation validation or escaping will not help.)
+- Avoid binding input directly and use Data Transfer Objects (DTOs) instead.
 
-[//]: # ()
-[//]: # (- Regular  expressions  are  not  expressive  enough  to  understand  the  complexity  of HTML5.)
+- Enable auto-binding but set up whitelist rules for each page or feature to define which fields are allowed to be auto-bound.
 
-[//]: # (- Encoding or escaping HTML will not help since it will cause the HTML to not render properly.)
+More examples are available in the [ OWASP Mass Assignment Cheat Sheet.](https://www.owasp.org/index.php/Mass_Assignment_Cheat_Sheet)
 
-[//]: # ()
-[//]: # (Therefore, you need a library that can parse and clean HTML formatted text. Please see the [XSS Prevention Cheat Sheet on HTML Sanitization ]&#40;https://www.owasp.org/index.php/XSS_\&#40;Cross_Site_Scripting\&#41;_Prevention_Cheat_Sheet#RULE_.236_-_Sanitize_HTML_Markup_with_a_Library_Designed_for_the_Job&#41;for more information on HTML Sanitization.)
+**Validating and Sanitizing HTML**
 
-[//]: # ()
-[//]: # (**Validation Functionality in Libraries and Frameworks**)
+Consider an application that needs to accept HTML from users via a WYSIWYG editor that represents content as HTML or features that directly accept HTML in input. In this situation validation or escaping will not help.
 
-[//]: # ()
-[//]: # (All languages and most frameworks provide validation libraries or functions which should be leveraged  to  validate  data.  Validation  libraries typically  cover  common  data  types,  length ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41; requirements,  integer  ranges,  "is  null"  checks  and  more.  Many  validation  libraries  and frameworks allow you to define your own regular expression or logic for custom validation in a way that allows the programmer to leverage that functionality throughout your application. Examples of validation functionality include PHP’[s filter functions ]&#40;https://secure.php.net/manual/en/filter.examples.validation.php&#41;or the[ Hibernate Validator ]&#40;http://hibernate.org/validator/&#41;for Java. Examples of HTML Sanitizers include[ Ruby on Rails sanitize method,]&#40;http://edgeapi.rubyonrails.org/classes/ActionView/Helpers/SanitizeHelper.html&#41; [OWASP Java HTML Sanitizer ]&#40;https://www.owasp.org/index.php/OWASP_Java_HTML_Sanitizer_Project&#41;or[ DOMPurify.]&#40;https://github.com/cure53/DOMPurify&#41;)
+- Regular  expressions  are  not  expressive  enough  to  understand  the  complexity  of HTML5.
 
-[//]: # ()
-[//]: # (**Vulnerabilities Prevented**)
+- Encoding or escaping HTML will not help since it will cause the HTML to not render properly.
 
-[//]: # ()
-[//]: # (- Input validation reduces the attack surface of applications and can sometimes make attacks more difficult against an application.)
+Therefore, you need a library that can parse and clean HTML formatted text. Please see the [XSS Prevention Cheat Sheet on HTML Sanitization ](https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet#RULE_.236_-_Sanitize_HTML_Markup_with_a_Library_Designed_for_the_Job) for more information on HTML Sanitization.
 
-[//]: # (- Input validation is a technique that provides security to certain forms of data, specific to certain attacks and cannot be reliably applied as a general security rule.)
+**Validation Functionality in Libraries and Frameworks**
 
-[//]: # (- Input validation should not be used as the primary method of preventing[ XSS,]&#40;https://www.owasp.org/index.php/XSS_\&#40;Cross_Site_Scripting\&#41;_Prevention_Cheat_Sheet&#41;[ SQL Injection ]&#40;https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet&#41;and other attacks.)
+All languages and most frameworks provide validation libraries or functions which should be leveraged  to  validate  data.  Validation  libraries typically  cover  common  data  types,  length requirements,  integer  ranges,  "is  null"  checks  and  more.  Many  validation  libraries  and frameworks allow you to define your own regular expression or logic for custom validation in a way that allows the programmer to leverage that functionality throughout your application. Examples of validation functionality include
+ - [PHP\’sfilter functions](https://secure.php.net/manual/en/filter.examples.validation.php) or 
+ - the[Hibernate Validator ](http://hibernate.org/validator/) for Java. 
+ Examples of HTML Sanitizers include
+ - [RubyonRailsSanitizeMethod,](http://edgeapi.rubyonrails.org/classes/ActionView/Helpers/SanitizeHelper.html) 
+ - [OWASP Java HTML Sanitizer ](https://www.owasp.org/index.php/OWASP_Java_HTML_Sanitizer_Project) or
+ - [DOMPurify](https://github.com/cure53/DOMPurify)
 
-[//]: # ()
-[//]: # (**References**)
+**Vulnerabilities Prevented**
 
-[//]: # ()
-[//]: # (- [OWASP Cheat Sheet: Input Validation]&#40;https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet&#41;)
+- Input validation reduces the attack surface of applications and can sometimes make attacks more difficult against an application.
 
-[//]: # (- [OWASP Cheat Sheet: iOS - Security Decisions via Untrusted Inputs]&#40;https://www.owasp.org/index.php/IOS_Developer_Cheat_Sheet#Security_Decisions_via_Untrusted_Inputs_.28M7.29&#41;)
+- Input validation is a technique that provides security to certain forms of data, specific to certain attacks and cannot be reliably applied as a general security rule.
 
-[//]: # (- [OWASP Testing Guide: Testing for Input Validation]&#40;https://www.owasp.org/index.php/Testing_for_Input_Validation&#41;)
+- Input validation should not be used as the primary method of preventing
+- [ XSS,](https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet)
+- [ SQL Injection ](https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet) and other attacks.
 
-[//]: # ()
-[//]: # (**Tools**)
+**References**
 
-[//]: # ()
-[//]: # (- [OWASP Java HTML Sanitizer Project]&#40;https://www.owasp.org/index.php/OWASP_Java_HTML_Sanitizer&#41;)
+- [OWASP Cheat Sheet: Input Validation](https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet)
 
-[//]: # (- [Java JSR-303/JSR-349 Bean Validation ]&#40;http://beanvalidation.org/&#41;)
+- [OWASP Cheat Sheet: iOS - Security Decisions via Untrusted Inputs](https://www.owasp.org/index.php/IOS_Developer_Cheat_Sheet#Security_Decisions_via_Untrusted_Inputs_.28M7.29)
 
-[//]: # (- [Java Hibernate Validator ]&#40;http://hibernate.org/validator/&#41;)
+- [OWASP Testing Guide: Testing for Input Validation](https://www.owasp.org/index.php/Testing_for_Input_Validation)
 
-[//]: # (- [JEP-290 Filter Incoming Serialization Data]&#40;http://openjdk.java.net/jeps/290&#41;)
+**Tools**
 
-[//]: # (- [Apache Commons Validator]&#40;https://commons.apache.org/proper/commons-validator/&#41;)
+- [OWASP Java HTML Sanitizer Project](https://www.owasp.org/index.php/OWASP_Java_HTML_Sanitizer)
 
-[//]: # (- PHP’s[ filter functions ]&#40;https://secure.php.net/manual/en/book.filter.php&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
+- [Java JSR-303/JSR-349 Bean Validation ](http://beanvalidation.org/)
 
-[//]: # ()
-[//]: # (**OWASP Proactive Controls v 3.0   ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.004.jpeg&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.014.png&#41;**)
+- [Java Hibernate Validator ](http://hibernate.org/validator/)
 
+- [JEP-290 Filter Incoming Serialization Data](http://openjdk.java.net/jeps/290)
+
+- [Apache Commons Validator](https://commons.apache.org/proper/commons-validator/)
+
+- PHP’s[ filter functions ](https://secure.php.net/manual/en/book.filter.php)
+
+--- 
 [//]: # ()
 [//]: # (**C6: Implement Digital Identity ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.026.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.030.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.031.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.018.png&#41;Description**)
 
