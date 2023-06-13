@@ -7,261 +7,109 @@
 
 The *Open Web Application Security Project* (OWASP) is a 501c3 non for profit educational charity  dedicated  to  enabling  organizations  to  design,  develop,  acquire,  operate,  and maintain secure software. All OWASP tools, documents, forums, and chapters are free and open  to  anyone  interested  in  improving  application  security.  We  can  be  found  at [www.owasp.org. ](http://www.owasp.org/)
 
-OWASP is a new kind of organization. Our freedom from commercial pressures allows us to provide unbiased, practical, cost effective information about application security.
+OWASP is not affiliated with any technology company. Similar to many open source software projects, OWASP produces many types of materials in a collaborative and open way. The OWASP Foundation is a not-for-profit entity that ensures the project's long-term success.
 
-[//]: # ()
-[//]: # (OWASP is not affiliated with any technology company. Similar to many open source software projects, OWASP produces many types of materials in a collaborative and open way. The OWASP Foundation is a not-for-profit entity that ensures the project's long-term success.![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
+**FOREWORD**
 
-[//]: # (/)
+Insecure software is undermining our financial, healthcare, defense, energy, and other critical infrastructure worldwide. As our digital, global infrastructure gets increasingly complex and interconnected, the difficulty of achieving application security increases exponentially. We can no longer afford to tolerate relatively simple security problems.
 
-[//]: # (**FOREWORD**)
+**AIM&OBJECTIF**
 
-[//]: # ()
-[//]: # (Insecure software is undermining our financial, healthcare, defense, energy, and other critical infrastructure worldwide. As our digital, global infrastructure gets increasingly complex and interconnected, the difficulty of achieving application security increases exponentially. We can no longer afford to tolerate relatively simple security problems.)
+The goal of the *OWASP Top 10 Proactive Controls project &#40;OPC&#41;* is to raise awareness about application  security  by  describing  the  most  important  areas  of  concern  that  software developers must be aware of. We encourage you to use the OWASP Proactive Controls to get your developers started with application security. Developers can learn from the mistakes of other organizations. We hope that the OWASP Proactive Controls is useful to your efforts in building secure software.)
 
-[//]: # ()
-[//]: # (AIM & OBJECTIF)
+**INTRODUCTION**
 
-[//]: # ()
-[//]: # (The goal of the *OWASP Top 10 Proactive Controls project &#40;OPC&#41;* is to raise awareness about application  security  by  describing  the  most  important  areas  of  concern  that  software developers must be aware of. We encourage you to use the OWASP Proactive Controls to get your developers started with application security. Developers can learn from the mistakes of other organizations. We hope that the OWASP Proactive Controls is useful to your efforts in building secure software.)
+The OWASP Top Ten Proactive Controls 2018 is a list of security techniques that should be considered for every software development project. This document is written for developers to assist those new to secure development.
 
-[//]: # ()
-[//]: # (CALL TO ACTION)
+**The Top 10 Proactive Controls**
 
-[//]: # ()
-[//]: # (Please don’t hesitate to contact the OWASP Proactive Control project with your questions, comments, and ideas, either publicly to our email list or privately to jim@owasp.org.)
+The list is ordered by importance with list item number 1 being the most important :)
 
-[//]: # ()
-[//]: # (COPYRIGHT AND LICENSE)
+- C1:**Define Security Requirements**
 
-[//]: # ()
-[//]: # (This document is released under the Creative Commons Attribution ShareAlike 3.0 license. For any reuse or distribution, you must make it clear to others the license terms of this work.)
+- C2:**Leverage Security Frameworks and Libraries**
 
-[//]: # ()
-[//]: # (PROJECT LEADERS)
+- C3:**Secure Database Access**
 
-[//]: # ()
-[//]: # (Katy Anton Jim Bird Jim Manico)
+- C4:**Encode and Escape Data**
 
-[//]: # ()
-[//]: # (CONTRIBUTORS)
+- C5:**Validate All Inputs**
 
-[//]: # ()
-[//]: # (Chris Romeo   Dan Anderson   David Cybuck Dave Ferguson   Josh Grossman   Osama Elnaggar Colin Watson    Rick Mitchell   And many more…![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
+- C6:**Implement Digital Identity**
 
-[//]: # ()
-[//]: # (**DOCUMENT STRUCTURE**)
+- C7:**Enforce Access Controls**
 
-[//]: # ()
-[//]: # (This document is structured as a list of security controls. Each control is described as follows:)
+- C8:**Protect Data Everywhere**
 
-[//]: # ()
-[//]: # (**OWASP Proactive Controls v 3.0   ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.004.jpeg&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.005.png&#41;**)
+- C9:**Implement Security Logging and Monitoring**
 
-[//]: # ()
-[//]: # (**Cx: Control Name  ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.006.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.007.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.008.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.009.png&#41;Description**)
+- C10:**Handle All Errors and Exceptions**
 
-[//]: # ()
-[//]: # (\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.010.png&#41;)
+**C1: Define Security Requirements**
 
-[//]: # ()
-[//]: # (A detailed description of the control)
+A security requirement is a statement of needed security functionality that ensures one of many different security properties of software is being satisfied. Security requirements are derived from industry standards, applicable laws, and a history of past vulnerabilities. Security requirements define new features or additions to existing features to solve a specific security problem or eliminate a potential vulnerability.
 
-[//]: # ()
-[//]: # (including  some  best  practices  to **Implementation**  consider.)
+Security requirements provide a foundation of vetted security functionality for an application. Instead of creating a custom approach to security for every application, standard security requirements allow developers to reuse the definition of security controls and best practices. Those  same  vetted  security  requirements  provide  solutions  for  security  issues  that  have occurred in the past. Requirements exist to prevent the repeat of past security failures.)
 
-[//]: # ()
-[//]: # (\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.011.png&#41;)
+***The OWASP ASVS***
 
-[//]: # ()
-[//]: # (**Vulnerabilities Prevented**  Implementation  best  practices)
+The[ OWASP Application Security Verification Standard &ASVS]
+ (https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project) is a catalog of available security requirements and verification criteria. OWASP ASVS  can be a source of detailed security requirements for development teams.
 
-[//]: # ()
-[//]: # (- \_\_\_\_\_\_\_\_\_\_\_\_\_  and examples to illustrate how to ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.012.png&#41;)
+Security requirements are categorized into different buckets based on a shared higher order security function. For example, the ASVS contains categories such as authentication, access control, error handling / logging, and web services. Each category contains a collection of requirements  that  represent  the  best  practices  for  that  category  drafted  as  verifiable statements.
 
-[//]: # (- \_\_\_\_\_\_\_\_\_\_\_\_\_  implement each control.)
+***Augmenting Requirements with User Stories and Misuse Cases***
 
-[//]: # ()
-[//]: # (**References**  List  of  prevented  vulnerabilities  or  risks  addressed)
+The ASVS requirements are basic verifiable statements which can be expanded upon with user stories and misuse cases. The advantage of a user story or misuse case is that it ties the application to exactly what the user or attacker does to the system, versus describing what the system offers to the user.
 
-[//]: # ()
-[//]: # (- \_\_\_\_\_\_\_\_\_\_\_\_\_  &#40;OWASP TOP 10 Risk, CWE, etc.&#41;)
+Here is an example of expanding on an ASVS 3.0.1 requirement. From the “Authentication Verification  Requirements”  section  of  ASVS  3.0.1,  requirement  2.19  focuses  on  default passwords.
 
-[//]: # (- \_\_\_\_\_\_\_\_\_\_\_\_\_)
+2.19 Verify there are no default passwords in use for the application framework or any components used by the application such as “admin/password”
 
-[//]: # ()
-[//]: # (List of references for further study &#40;OWASP Cheat sheet, **Tools**  Security Hardening Guidelines, etc.&#41;)
+This requirement contains both an action to verify that no default passwords exist, and also carries with it the guidance that no default passwords should be used within the application.
 
-[//]: # ()
-[//]: # (- \_\_\_\_\_\_\_\_\_\_\_\_\_ ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.013.png&#41;)
+A user story focuses on the perspective of the user, administrator, or attacker of the system, and describes functionality based on what a user wants the system to do for them. A user story takes the form of “As a user, I can do x, y, and z”
 
-[//]: # (- \_\_\_\_\_\_\_\_\_\_\_\_\_   Set  of  tools/projects  to  easily  introduce/integrate security controls into your software. ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
+As a user, I can enter my username and password to gain access to the application.
 
-[//]: # ()
-[//]: # (**INTRODUCTION**)
+As a user, I can enter a long password that has a maximum of 1023 characters.
 
-[//]: # ()
-[//]: # (The OWASP Top Ten Proactive Controls 2018 is a list of security techniques that should be considered for every software development project. This document is written for developers to assist those new to secure development.)
+When the story is focused on the attacker and their actions, it is referred to as a misuse case.
 
-[//]: # ()
-[//]: # (One of the main goals of this document is to provide concrete practical guidance that helps developers build secure software. These techniques should be applied proactively at the early stages of software development to ensure maximum effectiveness.)
+As an attacker, I can enter in a default username and password to gain access.
 
-[//]: # ()
-[//]: # (**The Top 10 Proactive Controls**)
+This  story  contains  the  same  message  as  the  traditional  requirement  from  ASVS,  with additional user or attacker details to help make the requirement more testable.
 
-[//]: # ()
-[//]: # (The list is ordered by importance with list item number 1 being the most important:)
+**Implementation**
 
-[//]: # ()
-[//]: # (C1:[ Define Security Requirements ]&#40;#_page6_x68.00_y203.92&#41;)
+Successful use of security requirements involves four steps. The process includes discovering / selecting, documenting, implementing, and then confirming correct implementation of new security features and functionality within an application.
 
-[//]: # ()
-[//]: # (C2:[ Leverage Security Frameworks and Libraries]&#40;#_page9_x0.00_y0.92&#41;)
+***Discovery and Selection***
 
-[//]: # ()
-[//]: # (C3:[ Secure Database Access]&#40;#_page10_x68.00_y203.92&#41;)
+The process begins with discovery and selection of security requirements. In this phase, the developer is understanding security requirements from a standard source such as ASVS and choosing which requirements to include for a given release of an application. The point of discovery and selection is to choose a manageable number of security requirements for this release  or  sprint,  and  then  continue  to  iterate  for  each  sprint,  adding  more  security functionality over time.
 
-[//]: # ()
-[//]: # (C4:[ Encode and Escape Data]&#40;#_page12_x68.00_y210.92&#41;)
+***Investigation and Documentation***
 
-[//]: # ()
-[//]: # (C5:[ Validate All Inputs]&#40;#_page15_x0.00_y0.92&#41;)
+During  investigation  and  documentation,  the  developer  reviews  the  existing  application against the new set of security requirements to determine whether the application currently meets the requirement or if some development is required. This investigation culminates in the documentation of the results of the review.
 
-[//]: # ()
-[//]: # (C6:[ Implement Digital Identity]&#40;#_page20_x0.00_y0.92&#41;)
+***Implementation and Test***
 
-[//]: # ()
-[//]: # (C7:[ Enforce Access Controls]&#40;#_page26_x69.00_y202.92&#41;)
+After  the  need  is  determined  for  development,  the  developer  must  now  modify  the application in some way to add the new functionality or eliminate an insecure option. In this phase the developer first determines the design required to address the requirement, and then completes the code changes to meet the requirement. Test cases should be created to confirm  the  existence  of  the  new  functionality  or  disprove  the existence  of  a  previously insecure option.
 
-[//]: # ()
-[//]: # (C8:[ Protect Data Everywhere]&#40;#_page30_x69.00_y203.92&#41;)
+**Vulnerabilities Prevented**
 
-[//]: # ()
-[//]: # (C9:[ Implement Security Logging and Monitoring]&#40;#_page33_x69.00_y203.92&#41;)
+Security requirements define the security functionality of an application. Better security built in from the beginning of an applications life cycle results in the prevention of many types of vulnerabilities.
 
-[//]: # ()
-[//]: # (C10:[ Handle All Errors and Exceptions]&#40;#_page36_x69.00_y210.92&#41;)
+**References**
 
-[//]: # ()
-[//]: # (**How this List Was Created**)
+- [OWASP Application Security Verification Standard &ASVS] 
+(https://www.owasp.org/index.php/Application_Security_Architecture_Cheat_Sheet)
 
-[//]: # ()
-[//]: # (This list was originally created by the current project leads with contributions from several volunteers. The document was then shared globally so even anonymous suggestions could be considered. Hundreds of changes were accepted from this open community process. ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
+- [OWASP Mobile Application Security Verification Standard MASVS] 
+(https://github.com/OWASP/owasp-masvs)
 
-[//]: # ()
-[//]: # (**Target Audience**)
-
-[//]: # ()
-[//]: # (This document is primarily written for developers. However, development managers, product owners, Q/A professionals, program managers, and anyone involved in building software can also benefit from this document.)
-
-[//]: # ()
-[//]: # (**How to Use this Document**)
-
-[//]: # ()
-[//]: # (This document is intended to provide initial awareness around building secure software. This document will also provide a good foundation of topics to help drive introductory software security  developer  training.  These  controls  should  be  used  consistently  and  thoroughly throughout all applications. However, this document should be seen as a starting point rather than a comprehensive set of techniques and practices. A full secure development process should include comprehensive requirements from a standard such as the OWASP ASVS in addition to including a range of software development activities described in maturity models such as[ OWASP SAMM ]&#40;https://www.owasp.org/index.php/OWASP_SAMM_Project&#41;and[ BSIMM.]&#40;https://www.bsimm.com/&#41;)
-
-[//]: # ()
-[//]: # (**Link to the OWASP Top 10 Project**)
-
-[//]: # ()
-[//]: # (The OWASP Top 10 Proactive Controls is similar to the OWASP Top 10 but is focused on defensive  techniques  and  controls  as  opposed  to  risks.  Each  technique  or  control  in  this document will map to one or more items in the *risk based* OWASP Top 10. This mapping information is included at the end of each control description. ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
-
-[//]: # ()
-[//]: # (**OWASP Proactive Controls v 3.0   ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.004.jpeg&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.014.png&#41;**)
-
-[//]: # ()
-[//]: # (**C1: Define Security Requirements  ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.015.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.016.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.017.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.018.png&#41;Description**)
-
-[//]: # ()
-[//]: # (<a name="_page6_x68.00_y203.92"></a>A security requirement is a statement of needed security functionality that ensures one of many different security properties of software is being satisfied. Security requirements are derived from industry standards, applicable laws, and a history of past vulnerabilities. Security requirements define new features or additions to existing features to solve a specific security problem or eliminate a potential vulnerability.)
-
-[//]: # ()
-[//]: # (Security requirements provide a foundation of vetted security functionality for an application. Instead of creating a custom approach to security for every application, standard security requirements allow developers to reuse the definition of security controls and best practices. Those  same  vetted  security  requirements  provide  solutions  for  security  issues  that  have occurred in the past. Requirements exist to prevent the repeat of past security failures.)
-
-[//]: # ()
-[//]: # (***The OWASP ASVS***)
-
-[//]: # ()
-[//]: # (The[ OWASP Application Security Verification Standard &#40;ASVS&#41;]&#40;https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project&#41; is a catalog of available security requirements and verification criteria. OWASP ASVS  can be a source of detailed security requirements for development teams.)
-
-[//]: # ()
-[//]: # (Security requirements are categorized into different buckets based on a shared higher order security function. For example, the ASVS contains categories such as authentication, access control, error handling / logging, and web services. Each category contains a collection of requirements  that  represent  the  best  practices  for  that  category  drafted  as  verifiable statements.)
-
-[//]: # ()
-[//]: # (***Augmenting Requirements with User Stories and Misuse Cases***)
-
-[//]: # ()
-[//]: # (The ASVS requirements are basic verifiable statements which can be expanded upon with user stories and misuse cases. The advantage of a user story or misuse case is that it ties the application to exactly what the user or attacker does to the system, versus describing what the system offers to the user.  ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
-
-[//]: # ()
-[//]: # (Here is an example of expanding on an ASVS 3.0.1 requirement. From the “Authentication Verification  Requirements”  section  of  ASVS  3.0.1,  requirement  2.19  focuses  on  default passwords.)
-
-[//]: # ()
-[//]: # (2\.19 Verify there are no default passwords in use for the application framework or any components used by the application &#40;such as “admin/password”&#41;.)
-
-[//]: # ()
-[//]: # (This requirement contains both an action to verify that no default passwords exist, and also carries with it the guidance that no default passwords should be used within the application.)
-
-[//]: # ()
-[//]: # (A user story focuses on the perspective of the user, administrator, or attacker of the system, and describes functionality based on what a user wants the system to do for them. A user story takes the form of “As a user, I can do x, y, and z”.)
-
-[//]: # ()
-[//]: # (As a user, I can enter my username and password to gain access to the application.)
-
-[//]: # ()
-[//]: # (As a user, I can enter a long password that has a maximum of 1023 characters.)
-
-[//]: # ()
-[//]: # (When the story is focused on the attacker and their actions, it is referred to as a misuse case.)
-
-[//]: # ()
-[//]: # (As an attacker, I can enter in a default username and password to gain access.)
-
-[//]: # ()
-[//]: # (This  story  contains  the  same  message  as  the  traditional  requirement  from  ASVS,  with additional user or attacker details to help make the requirement more testable.)
-
-[//]: # ()
-[//]: # (**Implementation**)
-
-[//]: # ()
-[//]: # (Successful use of security requirements involves four steps. The process includes discovering / selecting, documenting, implementing, and then confirming correct implementation of new security features and functionality within an application.)
-
-[//]: # ()
-[//]: # (***Discovery and Selection***)
-
-[//]: # ()
-[//]: # (The process begins with discovery and selection of security requirements. In this phase, the developer is understanding security requirements from a standard source such as ASVS and choosing which requirements to include for a given release of an application. The point of discovery and selection is to choose a manageable number of security requirements for this release  or  sprint,  and  then  continue  to  iterate  for  each  sprint,  adding  more  security functionality over time. ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
-
-[//]: # ()
-[//]: # (***Investigation and Documentation***)
-
-[//]: # ()
-[//]: # (During  investigation  and  documentation,  the  developer  reviews  the  existing  application against the new set of security requirements to determine whether the application currently meets the requirement or if some development is required. This investigation culminates in the documentation of the results of the review.)
-
-[//]: # ()
-[//]: # (***Implementation and Test***)
-
-[//]: # ()
-[//]: # (After  the  need  is  determined  for  development,  the  developer  must  now  modify  the application in some way to add the new functionality or eliminate an insecure option. In this phase the developer first determines the design required to address the requirement, and then completes the code changes to meet the requirement. Test cases should be created to confirm  the  existence  of  the  new  functionality  or  disprove  the existence  of  a  previously insecure option.)
-
-[//]: # ()
-[//]: # (**Vulnerabilities Prevented**)
-
-[//]: # ()
-[//]: # (Security requirements define the security functionality of an application. Better security built in from the beginning of an applications life cycle results in the prevention of many types of vulnerabilities.)
-
-[//]: # ()
-[//]: # (**References**)
-
-[//]: # ()
-[//]: # (- [OWASP Application Security Verification Standard &#40;ASVS&#41;]&#40;https://www.owasp.org/index.php/Application_Security_Architecture_Cheat_Sheet&#41;)
-
-[//]: # (- [OWASP Mobile Application Security Verification Standard &#40;MASVS&#41;]&#40;https://github.com/OWASP/owasp-masvs&#41;)
-
-[//]: # (- [OWASP Top Ten ]&#40;https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
-
-[//]: # ()
-[//]: # (**OWASP Proactive Controls v 3.0   ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.004.jpeg&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.004.jpeg&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.005.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.014.png&#41;**)
+- [OWASP Top Ten ] 
+(https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project)
 
 [//]: # ()
 [//]: # (**C2: Leverage Security Frameworks and Libraries ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.006.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.006.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.019.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.020.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.021.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.018.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.018.png&#41;Description**)
@@ -326,7 +174,7 @@ OWASP is a new kind of organization. Our freedom from commercial pressures allow
 [//]: # (In  order  to  mitigate  SQL  injection,  untrusted  input  should  be  prevented  from  being interpreted as part of a SQL command. The best way to do this is with the programming technique known as ‘Query Parameterization’. This defense should be applied to SQL, OQL, as well as stored procedure construction.)
 
 [//]: # ()
-[//]: # (A good list of query parameterization examples in ASP , ColdFusion , C# , Delphi, .NET , Go , Java , Perl , PHP , PL/SQL , PostgreSQL, Python , R , Ruby  and Scheme  can  be  found  at [ http://bobby-tables.com* ]&#40;http://bobby-tables.com/&#41; and  the *[ OWASP  Cheat  Sheet  on  Query Parameterization*.]&#40;https://www.owasp.org/index.php/Query_Parameterization_Cheat_Sheet&#41;*)
+[//]: # (A good list of query parameterization examples in ASP, ColdFusion, C#, Delphi, .NET, Go, Java, Perl, PHP, PL/SQL, PostgreSQL, Python, R, Ruby and Scheme can  be  found  at [ http://bobby-tables.com* ]&#40;http://bobby-tables.com/&#41; and  the *[ OWASP  Cheat  Sheet  on  Query Parameterization*.]&#40;https://www.owasp.org/index.php/Query_Parameterization_Cheat_Sheet&#41;*)
 
 [//]: # ()
 [//]: # (***Caution on Query Parameterization***)
