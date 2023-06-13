@@ -29,7 +29,7 @@ The list is ordered by importance with list item number 1 being the most importa
 
 - C2:**Leverage Security Frameworks and Libraries**
 
-- C3:**Secure Database Access**
+- C3:**Secure sDatabase Access**
 
 - C4:**Encode and Escape Data**
 
@@ -45,7 +45,7 @@ The list is ordered by importance with list item number 1 being the most importa
 
 - C10:**Handle All Errors and Exceptions**
 
-**C1: Define Security Requirements**
+***C1: Define Security Requirements***
 
 A security requirement is a statement of needed security functionality that ensures one of many different security properties of software is being satisfied. Security requirements are derived from industry standards, applicable laws, and a history of past vulnerabilities. Security requirements define new features or additions to existing features to solve a specific security problem or eliminate a potential vulnerability.
 
@@ -53,7 +53,7 @@ Security requirements provide a foundation of vetted security functionality for 
 
 ***The OWASP ASVS***
 
-The[ OWASP Application Security Verification Standard &ASVS]
+The[OWASPApplicationSecurityVerificationStandard&ASVS]
  (https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project) is a catalog of available security requirements and verification criteria. OWASP ASVS  can be a source of detailed security requirements for development teams.
 
 Security requirements are categorized into different buckets based on a shared higher order security function. For example, the ASVS contains categories such as authentication, access control, error handling / logging, and web services. Each category contains a collection of requirements  that  represent  the  best  practices  for  that  category  drafted  as  verifiable statements.
@@ -102,52 +102,40 @@ Security requirements define the security functionality of an application. Bette
 
 **References**
 
-- [OWASP Application Security Verification Standard &ASVS] 
+- [OWASPApplicationSecurityVerificationStandard&ASVS] 
 (https://www.owasp.org/index.php/Application_Security_Architecture_Cheat_Sheet)
 
-- [OWASP Mobile Application Security Verification Standard MASVS] 
+- [OWASPMobileApplicationSecurityVerificationStandardMASVS] 
 (https://github.com/OWASP/owasp-masvs)
 
-- [OWASP Top Ten ] 
+- [OWASPTopTen] 
 (https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project)
 
-[//]: # ()
-[//]: # (**C2: Leverage Security Frameworks and Libraries ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.006.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.006.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.019.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.020.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.021.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.018.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.018.png&#41;Description**)
+***C2: Leverage Security Frameworks and Libraries***
 
-[//]: # ()
-[//]: # (Secure  coding  libraries  and  software  frameworks  with  embedded  security  help  software developers  guard  against security-related  design  and  implementation  flaws.  A  developer writing an application from scratch might not have sufficient knowledge, time, or budget to properly  implement  or  maintain  security  features.  Leveraging  security  frameworks  helps accomplish security goals more efficiently and accurately.)
+Secure  coding  libraries  and  software  frameworks  with  embedded  security  help  software developers  guard  against security-related  design  and  implementation  flaws.  A  developer writing an application from scratch might not have sufficient knowledge, time, or budget to properly  implement  or  maintain  security  features.  Leveraging  security  frameworks  helps accomplish security goals more efficiently and accurately.
 
-[//]: # ()
-[//]: # (**Implementation Best Practices**)
+***Implementation Best Practices***
 
-[//]: # ()
-[//]: # (When incorporating third party libraries or frameworks into your software, it is important to consider the following best practices:)
+When incorporating third party libraries or frameworks into your software, it is important to consider the following best practices :)
 
-[//]: # ()
-[//]: # (1. Use libraries and frameworks from trusted sources that are actively maintained and widely used by many applications.)
+1. Use libraries and frameworks from trusted sources that are actively maintained and widely used by many applications.
 
-[//]: # (1. Create and maintain an inventory catalog of all the third party libraries.)
+2. Create and maintain an inventory catalog of all the third party libraries.)
 
-[//]: # (1. Proactively  keep  libraries  and  components  up  to  date.  Use  a  tool  like[ OWASP Dependency Check ]&#40;https://www.owasp.org/index.php/OWASP_Dependency_Check&#41;and[ Retire.JS ]&#40;https://retirejs.github.io/retire.js/&#41;to identify project dependencies and check if there are any known, publicly disclosed vulnerabilities for all third party code.)
+3. Proactively  keep  libraries  and  components  up  to  date.  Use  a  tool  like [OWASP Dependency Check](https://www.owasp.org/index.php/OWASP_Dependency_Check) and [Retire.JS](https://retirejs.github.io/retire.js/) to identify project dependencies and check if there are any known, publicly disclosed vulnerabilities for all third party code.
 
-[//]: # (1. Reduce the attack surface by encapsulating the library and expose only the required behaviour into your software.)
+4. Reduce the attack surface by encapsulating the library and expose only the required behaviour into your software.
 
-[//]: # ()
-[//]: # (**Vulnerabilities Prevented**)
+**Vulnerabilities Prevented**
 
-[//]: # ()
-[//]: # (Secure  frameworks  and  libraries  can  help  to  prevent  a  wide  range  of  web  application vulnerabilities. It is critical to keep these frameworks and libraries up to date as described in the[ using components with known vulnerabilities Top Ten 2017 risk.]&#40;https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project&#41;)
+Secure  frameworks  and  libraries  can  help  to  prevent  a  wide  range  of  web  application vulnerabilities. It is critical to keep these frameworks and libraries up to date as described in the [using components with known vulnerabilities Top Ten 2017 risk.](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project)
 
-[//]: # ()
-[//]: # (**Tools**)
+**Tools**
 
-[//]: # ()
-[//]: # (- [OWASP Dependency Check ]&#40;https://www.owasp.org/index.php/OWASP_Dependency_Check&#41;- identifies project dependencies and checks for publicly disclosed vulnerabilities)
+- [OWASPDependencyCheck](https://www.owasp.org/index.php/OWASP_Dependency_Check)- identifies project dependencies and checks for publicly disclosed vulnerabilities
 
-[//]: # (- [Retire.JS ]&#40;http://retirejs.github.io/retire.js/&#41;scanner for JavaScript libraries ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
-
-[//]: # ()
-[//]: # (**OWASP Proactive Controls v 3.0   ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.004.jpeg&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.005.png&#41;**)
+- [Retire.JS](http://retirejs.github.io/retire.js/) scanner for JavaScript libraries 
 
 [//]: # ()
 [//]: # (**C3: Secure Database Access ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.006.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.022.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.023.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.018.png&#41;Description**)
