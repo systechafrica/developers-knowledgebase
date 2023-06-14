@@ -409,209 +409,155 @@ All languages and most frameworks provide validation libraries or functions whic
 - PHP’s[ filter functions ](https://secure.php.net/manual/en/book.filter.php)
 
 --- 
-[//]: # ()
-[//]: # (**C6: Implement Digital Identity ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.026.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.030.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.031.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.018.png&#41;Description**)
+***C6: Implement Digital Identity***
 
-[//]: # ()
-[//]: # (Digital Identity is the unique representation of a user &#40;or other subject&#41; as they engage in an online transaction. Authentication is the process of verifying that an individual or entity is who they claim to be. Session management is a process by which a server maintains the state of the users  authentication  so  that  the  user  may  continue  to  use  the  system  without  re- authenticating. The [ NIST  Special  Publication  800-63B:  Digital  Identity  Guidelines  &#40;Authentication  and Lifecycle Management ]&#40;https://pages.nist.gov/800-63-3/sp800-63b.html&#41;provides solid guidance on implementing digital identity, authentication and session management controls.)
+Digital Identity is the unique representation of a user (or other subject)as they engage in an online transaction. Authentication is the process of verifying that an individual or entity is who they claim to be. Session management is a process by which a server maintains the state of the users  authentication  so  that  the  user  may  continue  to  use  the  system  without  re- authenticating. The [ NIST  Special  Publication  800-63B:  Digital  Identity  Guidelines Authentication  and Lifecycle Management ](https://pages.nist.gov/800-63-3/sp800-63b.html)provides solid guidance on implementing digital identity, authentication and session management controls.)
 
-[//]: # ()
-[//]: # (Below are some recommendations for secure implementation.)
+Below are some recommendations for secure implementation.
 
-[//]: # ()
-[//]: # (**Authentication Levels**)
+**Authentication Levels**
 
-[//]: # ()
-[//]: # (NIST 800-63b describes three levels of a authentication assurance called a authentication assurance level &#40;AAL&#41;. AAL level 1 is reserved for lower-risk applications that do not contain PII or other private data. At AAL level 1 only single-factor authentication is required, typically through the use of a password.)
+NIST 800-63b describes three levels of a authentication assurance called a authentication assurance level (AAL). AAL level 1 is reserved for lower-risk applications that do not contain PII or other private data. At AAL level 1 only single-factor authentication is required, typically through the use of a password.
 
-[//]: # ()
-[//]: # (***Level 1 : Passwords***)
+***Level 1 : Passwords***
 
-[//]: # ()
-[//]: # (Passwords are really really important. We need policy, we need to store them securely, we need to sometimes allow users to reset them.)
+Passwords are really really important. We need policy, we need to store them securely, we need to sometimes allow users to reset them.
 
-[//]: # ()
-[//]: # (***Password Requirements***)
+***Password Requirements***
 
-[//]: # ()
-[//]: # (Passwords should comply with the following requirements at the very least:)
+Passwords should comply with the following requirements at the very least :)
 
-[//]: # ()
-[//]: # (- be  at  least  8  characters  in  length  if  multi-factor  authentication  &#40;MFA&#41;  and  other controls are also used. If MFA is not possible, this should be increased to at least 10 characters)
+- be  at  least  8  characters  in  length  if  multi-factor  authentication  (MFA)  and  other controls are also used. If MFA is not possible, this should be increased to at least 10 characters
 
-[//]: # (- all printing ASCII characters as well as the space character should be acceptable in memorized secrets)
+- all printing ASCII characters as well as the space character should be acceptable in memorized secrets.
 
-[//]: # (- encourage the use of long passwords and passphrases ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
+- encourage the use of long passwords and passphrases.
 
-[//]: # (- remove  complexity  requirements  as  these  have  been  found  to  be  of  limited effectiveness.  Instead,  the  adoption  of  MFA  or  longer  password  lengths  is recommended)
+- remove  complexity  requirements  as  these  have  been  found  to  be  of  limited effectiveness.  Instead,  the  adoption  of  MFA  or  longer  password  lengths  is recommended
 
-[//]: # (- ensure  that  passwords  used  are  not  commonly  used  passwords  that  have  been already been leaked in a previous compromise.  You may choose to block the top 1000 or 10000 most common passwords which meet the above length requirements and are  found  in  compromised  password  lists.   The  following  link  contains  the  most commonly  found  passwords: [https://github.com/danielmiessler/SecLists/tree/master/Passwords ]&#40;https://github.com/danielmiessler/SecLists/tree/master/Passwords&#41;)
+- ensure  that  passwords  used  are  not  commonly  used  passwords  that  have  been already been leaked in a previous compromise.  You may choose to block the top 1000 or 10000 most common passwords which meet the above length requirements and are  found  in  compromised  password  lists.   The  following  link  contains  the  most commonly  found  passwords: 
+[https://github.com/danielmiessler/SecLists/tree/master/Passwords](https://github.com/danielmiessler/SecLists/tree/master/Passwords)
 
-[//]: # ()
-[//]: # (***Implement Secure Password Recovery Mechanism***)
+***Implement Secure Password Recovery Mechanism***
 
-[//]: # ()
-[//]: # (It is common for an application to have a mechanism for a user to gain access to their account in the event they forget their password. A good design workflow for a password recovery feature  will  use  multi-factor  authentication  elements.  For  example,  it  may  ask  a  security question - something they know, and then send a generated token to a device - something they own.)
+It is common for an application to have a mechanism for a user to gain access to their account in the event they forget their password. A good design workflow for a password recovery feature  will  use  multi-factor  authentication  elements.  For  example,  it  may  ask  a  security question - something they know, and then send a generated token to a device - something they own.
 
-[//]: # ()
-[//]: # (Please see the[ Forgot_Password_Cheat_Sheet ]&#40;https://www.owasp.org/index.php/Forgot_Password_Cheat_Sheet&#41;and [Choosing_and_Using_Security_Questions_Cheat_Sheet]&#40;https://www.owasp.org/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet&#41; for further details.)
+Please see the [Forgot_Password_Cheat_Sheet](https://www.owasp.org/index.php/Forgot_Password_Cheat_Sheet) and [Choosing_and_Using_Security_Questions_Cheat_Sheet](https://www.owasp.org/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet) for further details.
 
-[//]: # ()
-[//]: # (***Implement Secure Password Storage***)
+***Implement Secure Password Storage***
 
-[//]: # ()
-[//]: # (In order to provide strong authentication controls, an application must securely store user credentials. Furthermore, cryptographic controls should be in place such that if a credential &#40;e.g., a password&#41; is compromised, the attacker does not immediately have access to this information.)
+In order to provide strong authentication controls, an application must securely store user credentials. Furthermore, cryptographic controls should be in place such that if a credential e.g., a password is compromised, the attacker does not immediately have access to this information.
 
-[//]: # ()
-[//]: # (**PHP Example for Password Storage**)
+**PHP Example for Password Storage**
 
-[//]: # ()
-[//]: # (Below is an example for secure password hashing in PHP using password\_hash&#40;&#41; function &#40;available since 5.5.0&#41; which defaults to using the bcrypt algorithm. The example uses a work factor of 15.)
+Below is an example for secure password hashing in PHP using password_hash() function (available since 5.5.0) which defaults to using the bcrypt algorithm. The example uses a work factor of 15.
 
-[//]: # ()
-[//]: # (**<?php** ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.032.png&#41;)
+```
+<?php
+ $cost = 15;
+ $password_hash = password_hash("secret_password", PASSWORD_DEFAULT, ["cost" => $cost] );
+?>
+```
 
-[//]: # ()
-[//]: # (`  `$cost **=** **15;**)
+Please see the [OWASPPasswordStorageCheatSheet](https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet) for further details. 
 
-[//]: # ()
-[//]: # (`  `$password\_hash **=** password\_hash**&#40;**"secret\_password"**,** PASSWORD\_DEFAULT**,** **[**"cost" **=>** $cost**]** **&#41;;**)
+***Level 2 : Multi-Factor Authentication***
 
-[//]: # ()
-[//]: # (**?>**)
+NIST 800-63b AAL level 2 is reserved for higher-risk applications that contain "self-asserted PII or  other  personal  information  made  available  online."  At  AAL  level  2  multi-factor authentication is required including OTP or other forms of multi-factor implementation.
 
-[//]: # ()
-[//]: # (Please see the[ OWASP Password Storage Cheat Sheet]&#40;https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet&#41; for further details. ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
+Multi-factor authentication (MFA) ensures that users are who they claim to be by requiring them to identify themselves with a combination of :)
 
-[//]: # ()
-[//]: # (***Level 2 : Multi-Factor Authentication***)
+- Something you know – password or PIN
 
-[//]: # ()
-[//]: # (NIST 800-63b AAL level 2 is reserved for higher-risk applications that contain "self-asserted PII or  other  personal  information  made  available  online."  At  AAL  level  2  multi-factor authentication is required including OTP or other forms of multi-factor implementation.)
+- Something you own – token or phone
 
-[//]: # ()
-[//]: # (Multi-factor authentication &#40;MFA&#41; ensures that users are who they claim to be by requiring them to identify themselves with a combination of:)
+- Something you are – biometrics, such as a fingerprint
 
-[//]: # ()
-[//]: # (- Something you know – password or PIN)
+Using  passwords  as  a  sole  factor  provides  weak  security.  Multi-factor  solutions  provide  a more  robust  solution  by  requiring  an  attacker  to  acquire  more  than  one  element  to authenticate with the service..
 
-[//]: # (- Something you own – token or phone)
+It is worth noting that biometrics, when employed as a single factor of authentication, are not considered acceptable secrets for digital authentication. They can be obtained online or by taking a picture of someone with a camera phone ( e.g., facial images) with or without their knowledge, lifted from objects someone touches (e.g., latent fingerprints), or captured with high resolution images (e.g., iris patterns). Biometrics must be used only as part of multi- factor  authentication  with  a  physical  authenticator  (something  you  own).  For  example, accessing  a  multi-factor  one-time  password  (OTP) device  that  will  generate  a  one-time password that the user manually enters for the verifier.
 
-[//]: # (- Something you are – biometrics, such as a fingerprint)
+***Level 3 : Cryptographic Based Authentication***
 
-[//]: # ()
-[//]: # (Using  passwords  as  a  sole  factor  provides  weak  security.  Multi-factor  solutions  provide  a more  robust  solution  by  requiring  an  attacker  to  acquire  more  than  one  element  to authenticate with the service..)
+NIST  800-63b  Authentication  Assurance  Level  3  (AAL3)  is  required  when  the  impact  of compromised systems could lead to personal harm, significant financial loss, harm the public interest or involve civil or criminal violations. AAL3 requires authentication that is "based on proof of possession of a key through a cryptographic protocol." This type of authentication is used to achieve the strongest level of authentication assurance. This is typically done though hardware cryptographic modules.
 
-[//]: # ()
-[//]: # (It is worth noting that biometrics, when employed as a single factor of authentication, are not considered acceptable secrets for digital authentication. They can be obtained online or by taking a picture of someone with a camera phone &#40;e.g., facial images&#41; with or without their knowledge, lifted from objects someone touches &#40;e.g., latent fingerprints&#41;, or captured with high resolution images &#40;e.g., iris patterns&#41;. Biometrics must be used only as part of multi- factor  authentication  with  a  physical  authenticator  &#40;something  you  own&#41;.  For  example, accessing  a  multi-factor  one-time  password  &#40;OTP&#41;  device  that  will  generate  a  one-time password that the user manually enters for the verifier.)
+**Session Management**
 
-[//]: # ()
-[//]: # (***Level 3 : Cryptographic Based Authentication***)
+Once the initial successful user authentication has taken place, an application may choose to track and maintain this authentication state for a limited amount of time. This will allow the user to continue using the application without having to keep re-authentication with each request. Tracking of this user state is called Session Management.
 
-[//]: # ()
-[//]: # (NIST  800-63b  Authentication  Assurance  Level  3  &#40;AAL3&#41;  is  required  when  the  impact  of compromised systems could lead to personal harm, significant financial loss, harm the public interest or involve civil or criminal violations. AAL3 requires authentication that is "based on proof of possession of a key through a cryptographic protocol." This type of authentication is used to achieve the strongest level of authentication assurance. This is typically done though hardware cryptographic modules. ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
+***Session Generation and Expiration***
 
-[//]: # ()
-[//]: # (**Session Management**)
+User state is tracked in a session. This session is typically stored on the server for traditional web based session management. A session identifier is then given to the user so the user can identify which server-side session contains the correct user data. The client only needs to maintain this session identifier, which also keeps sensitive server-side session data off of the client.
 
-[//]: # ()
-[//]: # (Once the initial successful user authentication has taken place, an application may choose to track and maintain this authentication state for a limited amount of time. This will allow the user to continue using the application without having to keep re-authentication with each request. Tracking of this user state is called Session Management.)
+Here are a few controls to consider when building or implementing session management solutions :)
 
-[//]: # ()
-[//]: # (***Session Generation and Expiration***)
+- Ensure that the session id is long, unique and random.
 
-[//]: # ()
-[//]: # (User state is tracked in a session. This session is typically stored on the server for traditional web based session management. A session identifier is then given to the user so the user can identify which server-side session contains the correct user data. The client only needs to maintain this session identifier, which also keeps sensitive server-side session data off of the client.)
+- The application should generate a new session or at least rotate the session id during authentication and re-authentication.
 
-[//]: # ()
-[//]: # (Here are a few controls to consider when building or implementing session management solutions:)
+- The application should implement an idle timeout after a period of inactivity and an absolute maximum lifetime for each session, after which users must re-authenticate. The length of the timeouts should be inversely proportional with the value of the data protected.
 
-[//]: # ()
-[//]: # (- Ensure that the session id is long, unique and random.)
+Please  see  the [SessionManagementCheatSheet](https://www.owasp.org/index.php/Session_Management_Cheat_Sheet) further  details.  ASVS  Section  3  covers additional session management requirements.)
 
-[//]: # (- The application should generate a new session or at least rotate the session id during authentication and re-authentication.)
+***Browser Cookies***
 
-[//]: # (- The application should implement an idle timeout after a period of inactivity and an absolute maximum lifetime for each session, after which users must re-authenticate. The length of the timeouts should be inversely proportional with the value of the data protected.)
+Browser cookies are a common method for web application to store session identifiers for web  applications  implementing  standard session  management  techniques.  Here  are  some defenses to consider when using browser cookies.
 
-[//]: # ()
-[//]: # (Please  see  the [ Session  Management  Cheat  Sheet ]&#40;https://www.owasp.org/index.php/Session_Management_Cheat_Sheet&#41; further  details.  ASVS  Section  3  covers additional session management requirements.)
+- When  browser  cookies  are  used  as  the  mechanism  for  tracking  the  session  of  an authenticated user,  these should be accessible to a minimum set of domains and paths and should be tagged to expire at, or soon after, the session’s validity period.
 
-[//]: # ()
-[//]: # (***Browser Cookies***)
+- The ‘secure’ flag should be set to ensure the transfer is done via secure channel only (TLS).
 
-[//]: # ()
-[//]: # (Browser cookies are a common method for web application to store session identifiers for web  applications  implementing  standard session  management  techniques.  Here  are  some defenses to consider when using browser cookies.)
+- HttpOnly flag should be set to prevent the cookie from  being accessed via JavaScript.
 
-[//]: # ()
-[//]: # (- When  browser  cookies  are  used  as  the  mechanism  for  tracking  the  session  of  an authenticated user,  these should be accessible to a minimum set of domains and paths and should be tagged to expire at, or soon after, the session’s validity period.)
+- Adding  [“samesite”](https://www.owasp.org/index.php/SameSite)  attributes  to  cookies  prevents [ some  modern  browsers ](https://caniuse.com/#search=samesite) from sending  cookies  with  cross-site  requests  and  provides  protection  against  cross-site request forgery and information leakage attacks.
 
-[//]: # (- The ‘secure’ flag should be set to ensure the transfer is done via secure channel only &#40;TLS&#41;. ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
+***Tokens***
 
-[//]: # (- HttpOnly flag should be set to prevent the cookie from  being accessed via JavaScript.)
+Server-side sessions can be limiting for some forms of authentication. "Stateless services" allow for client side management of session data for performance purposes so they server has less of a burden to store and verify user session. These "stateless" applications generate a short-lived access token which can be used to authenticate a client request without sending the user's credentials after the initial authentication.)
 
-[//]: # (- Adding  [“samesite”]&#40;https://www.owasp.org/index.php/SameSite&#41;  attributes  to  cookies  prevents [ some  modern  browsers ]&#40;https://caniuse.com/#search=samesite&#41; from sending  cookies  with  cross-site  requests  and  provides  protection  against  cross-site request forgery and information leakage attacks.)
+***JWT (JSON Web Tokens)***)
 
-[//]: # ()
-[//]: # (***Tokens***)
+JSON Web Token (JWT) is an open standard [RFC 7519](https://tools.ietf.org/html/rfc7519) that defines a compact and self- contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. A JWT token is created during authentication and is verified by the server (or servers) before any processing.
 
-[//]: # ()
-[//]: # (Server-side sessions can be limiting for some forms of authentication. "Stateless services" allow for client side management of session data for performance purposes so they server has less of a burden to store and verify user session. These "stateless" applications generate a short-lived access token which can be used to authenticate a client request without sending the user's credentials after the initial authentication.)
+However, JWT's are often not saved by the server after initial creation. JWT's are typically created  and  then  handed  to  a  client  without  being  saved  by  the  server  in  any  way.  The integrity of the token is maintained through the use of digital signatures so a server can later verify that the JWT is still valid and was not tampered with since its creation.
 
-[//]: # ()
-[//]: # (***JWT &#40;JSON Web Tokens&#41;***)
+This approach is both stateless and portable in the way that client and server technologies can be different yet still interact.
 
-[//]: # ()
-[//]: # (JSON Web Token &#40;JWT&#41; is an open standard [&#40;RFC 7519&#41;]&#40;https://tools.ietf.org/html/rfc7519&#41; that defines a compact and self- contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. A JWT token is created during authentication and is verified by the server &#40;or servers&#41; before any processing.)
+**Caution**
 
-[//]: # ()
-[//]: # (However, JWT's are often not saved by the server after initial creation. JWT's are typically created  and  then  handed  to  a  client  without  being  saved  by  the  server  in  any  way.  The integrity of the token is maintained through the use of digital signatures so a server can later verify that the JWT is still valid and was not tampered with since its creation.)
+Digital identity, authentication and session management are very big topics. We're scratching the surface of the topic of Digital Identity here. Ensure that your most capable engineering talent is responsible for maintaining the complexity involved with most Identity solutions.
 
-[//]: # ()
-[//]: # (This approach is both stateless and portable in the way that client and server technologies can be different yet still interact.)
+**Vulnerabilities Prevented**
 
-[//]: # ()
-[//]: # (**Caution**)
+- [OWASP Top 10 2017 A2- Broken Authentication and Session Management](https://www.owasp.org/index.php/Top_10-2017_A2-Broken_Authentication)
 
-[//]: # ()
-[//]: # (Digital identity, authentication and session management are very big topics. We're scratching the surface of the topic of Digital Identity here. Ensure that your most capable engineering talent is responsible for maintaining the complexity involved with most Identity solutions.)
+- [OWASP Mobile Top 10 2014-M5- Poor Authorization and Authentication ](https://www.owasp.org/index.php/Mobile_Top_10_2014-M5)
 
-[//]: # ()
-[//]: # (**Vulnerabilities Prevented**)
+**References**
 
-[//]: # ()
-[//]: # (- [OWASP Top 10 2017 A2- Broken Authentication and Session Management]&#40;https://www.owasp.org/index.php/Top_10-2017_A2-Broken_Authentication&#41;)
+- [OWASP Cheat Sheet: Authentication](https://www.owasp.org/index.php/Authentication_Cheat_Sheet)
 
-[//]: # (- [OWASP Mobile Top 10 2014-M5- Poor Authorization and Authentication ]&#40;https://www.owasp.org/index.php/Mobile_Top_10_2014-M5&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
+- [OWASP Cheat Sheet: Password Storage ](https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet)
 
-[//]: # ()
-[//]: # (**References**)
+- [OWASP Cheat Sheet: Forgot Passwor](https://www.owasp.org/index.php/Forgot_Password_Cheat_Sheet)
 
-[//]: # ()
-[//]: # (- [OWASP Cheat Sheet: Authentication  ]&#40;https://www.owasp.org/index.php/Authentication_Cheat_Sheet&#41;)
+- [OWASP Cheat Sheet: Choosing and Using Security Questions](https://www.owasp.org/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet)
 
-[//]: # (- [OWASP Cheat Sheet: Password Storage ]&#40;https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet&#41;)
+- [OWASP Cheat Sheet: Session Management](https://www.owasp.org/index.php/Session_Management_Cheat_Sheet)
 
-[//]: # (- [OWASP Cheat Sheet: Forgot Passwor]&#40;https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet&#41;[d ]&#40;https://www.owasp.org/index.php/Forgot_Password_Cheat_Sheet&#41;)
+- [Testing for ](https://www.owasp.org/index.php/Testing_for_authentication)
 
-[//]: # (- [OWASP Cheat Sheet: Choosing and Using Security Questions  ]&#40;https://www.owasp.org/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet&#41;)
+- [OWASP Cheat Sheet: IOS Developer](https://www.owasp.org/index.php/IOS_Developer_Cheat_Sheet)
 
-[//]: # (- [OWASP Cheat Sheet: Session Management]&#40;https://www.owasp.org/index.php/Session_Management_Cheat_Sheet&#41;[  ]&#40;https://www.owasp.org/index.php/Testing_for_authentication&#41;)
+- [OWASP Testing Guide: Testing for Authentication](https://www.owasp.org/index.php/Testing_for_authentication)
 
-[//]: # (- [OWASP Cheat Sheet: IOS Developer]&#40;https://www.owasp.org/index.php/IOS_Developer_Cheat_Sheet&#41;)
+- [NIST Special Publication 800-63 Revision 3 - Digital Identity Guidelines ](https://pages.nist.gov/800-63-3/sp800-63-3.html)
 
-[//]: # (- [OWASP Testing Guide: Testing for Authentication]&#40;https://www.owasp.org/index.php/Testing_for_authentication&#41;)
+**Tools**
 
-[//]: # (- [NIST Special Publication 800-63 Revision 3 - Digital Identity Guidelines ]&#40;https://pages.nist.gov/800-63-3/sp800-63-3.html&#41;)
+- Daniel Miessler [Most commonly found passwords](https://github.com/danielmiessler/SecLists/tree/master/Passwords)
 
-[//]: # ()
-[//]: # (**Tools**)
-
-[//]: # ()
-[//]: # (- Daniel Miessler[: Most commonly found passwords  ]&#40;https://github.com/danielmiessler/SecLists/tree/master/Passwords&#41; ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.003.png&#41;)
-
-[//]: # ()
-[//]: # (**OWASP Proactive Controls v 3.0   ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.004.jpeg&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.014.png&#41;**)
-
+---
 [//]: # ()
 [//]: # (**C7: Enforce Access Controls ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.026.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.033.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.034.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.018.png&#41;Description**)
 
