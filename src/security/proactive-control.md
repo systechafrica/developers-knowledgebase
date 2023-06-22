@@ -647,7 +647,7 @@ All access control failures should be logged as these may be indicative of a mal
 
 - [OWASP Cheat Sheet:  iOS Developer - Poor Authorization and Authentication](https://www.owasp.org/index.php/IOS_Developer_Cheat_Sheet#Remediations_5)
 
-- [OWASP Testing Guide: Testing for Authoriz](https://www.owasp.org/index.php/Testing_for_Authorization)[ation ](https://www.owasp.org/index.php/IOS_Developer_Cheat_Sheet#Remediations_5)
+- [OWASP Testing Guide: Testing for Authorization](https://www.owasp.org/index.php/Testing_for_Authorization) and [ and IOS ](https://www.owasp.org/index.php/IOS_Developer_Cheat_Sheet#Remediations_5)
 
 **Tools**)
 
