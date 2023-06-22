@@ -653,310 +653,228 @@ All access control failures should be logged as these may be indicative of a mal
 
 - [OWASP ZAP](https://www.owasp.org/index.php/ZAP)with the optional[Access Control Testing ](https://github.com/zaproxy/zap-extensions/wiki/HelpAddonsAccessControlConcepts)add-on.
 
-[//]: # ()
-[//]: # (**C8: Protect Data Everywhere ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.039.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.040.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.041.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.042.png&#41;Description**)
+---
+**C8: Protect Data Everywhere**
 
-[//]: # ()
-[//]: # (<a name="_page30_x69.00_y203.92"></a>Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws &#40;EU's General Data Protection Regulation GDPR&#41;, financial data protection rules such as PCI Data Security Standard &#40;PCI DSS&#41; or other regulations.)
+Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU's General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations.
 
-[//]: # ()
-[//]: # (Attackers can steal data from web and webservice applications in a number of ways. For example, if sensitive information in sent over the internet  without communications security, then an attacker on a shared wireless connection could see and steal another user’s data. Also, an attacker could use SQL Injection to steal passwords and other credentials from an applications database and expose that information to the public.)
+Attackers can steal data from web and webservice applications in a number of ways. For example, if sensitive information in sent over the internet  without communications security, then an attacker on a shared wireless connection could see and steal another user’s data. Also, an attacker could use SQL Injection to steal passwords and other credentials from an applications database and expose that information to the public.
 
-[//]: # ()
-[//]: # (**Data Classification**)
+**Data Classification**
 
-[//]: # ()
-[//]: # (It's critical to classify data in your system and determine which level of sensitivity each piece of data belongs to. Each data category can then be mapped to protection rules necessary for each level of sensitivity. For example, public marketing information that is not sensitive may be categorized as public data which is ok to place on the public website. Credit card numbers may be classified as private user data which may need to be encrypted while stored or in transit.)
+It's critical to classify data in your system and determine which level of sensitivity each piece of data belongs to. Each data category can then be mapped to protection rules necessary for each level of sensitivity. For example, public marketing information that is not sensitive may be categorized as public data which is ok to place on the public website. Credit card numbers may be classified as private user data which may need to be encrypted while stored or in transit.
 
-[//]: # ()
-[//]: # (**Encrypting Data in Transit**)
+**Encrypting Data in Transit**
 
-[//]: # ()
-[//]: # (When transmitting sensitive data over any network, end-to-end communications security &#40;or encryption-in-transit&#41; of some kind should be considered. TLS is by far the most common and widely supported cryptographic protocol for communications security. It is used by many types of applications &#40;web, webservice, mobile&#41; to communicate over a network in a secure fashion. TLS must be properly configured in a variety of ways in order to properly defend secure communications.)
+When transmitting sensitive data over any network, end-to-end communications security (or encryption-in-transit) of some kind should be considered. TLS is by far the most common and widely supported cryptographic protocol for communications security. It is used by many types of applications (web, webservice, mobile) to communicate over a network in a secure fashion. TLS must be properly configured in a variety of ways in order to properly defend secure communications.
 
-[//]: # ()
-[//]: # (The primary benefit of transport layer security is the protection of web application data from unauthorized  disclosure  and  modification  when  it  is  transmitted  between  clients  &#40;web browsers&#41; and the web application server, and between the web application server and back end and other non-browser based enterprise components. ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.035.png&#41;)
+The primary benefit of transport layer security is the protection of web application data from unauthorized  disclosure  and  modification  when  it  is  transmitted  between  clients (web browsers) and the web application server, and between the web application server and back end and other non-browser based enterprise components.
 
-[//]: # ()
-[//]: # (**Encrypting Data at Rest**)
+**Encrypting Data at Rest**
 
-[//]: # ()
-[//]: # (The first rule of sensitive data management is to avoid storing sensitive data when at all possible. If you must store sensitive data then make sure it's cryptographically protected in some way to avoid unauthorized disclosure and modification.)
+The first rule of sensitive data management is to avoid storing sensitive data when at all possible. If you must store sensitive data then make sure it's cryptographically protected in some way to avoid unauthorized disclosure and modification.
 
-[//]: # ()
-[//]: # (Cryptography &#40;or crypto&#41; is one of the more advanced topics of information security, and one whose understanding requires the most schooling and experience. It is difficult to get right because there are many approaches to encryption, each with advantages and disadvantages that  need  to  be  thoroughly  understood  by  web  solution  architects  and  developers.  In addition,  serious  cryptography  research  is  typically  based  in  advanced  mathematics  and number theory, providing a serious barrier to entry.)
+Cryptography (or crypto) is one of the more advanced topics of information security, and one whose understanding requires the most schooling and experience. It is difficult to get right because there are many approaches to encryption, each with advantages and disadvantages that  need  to  be  thoroughly  understood  by  web  solution  architects  and  developers.  In addition,  serious  cryptography  research  is  typically  based  in  advanced  mathematics  and number theory, providing a serious barrier to entry.
 
-[//]: # ()
-[//]: # (Instead of building cryptographic capability from scratch, it is strongly recommended that peer reviewed and open solutions be used, such as the[ Google Tink ]&#40;https://github.com/google/tink&#41;project,[ Libsodium,]&#40;https://www.libsodium.org/&#41; and secure storage capability built into many software frameworks and cloud services.)
+Instead of building cryptographic capability from scratch, it is strongly recommended that peer reviewed and open solutions be used, such as the [Google Tink](https://github.com/google/tink)project,[ Libsodium,](https://www.libsodium.org/) and secure storage capability built into many software frameworks and cloud services.
 
-[//]: # ()
-[//]: # (***Mobile Application: Secure Local Storage***)
+***Mobile Application: Secure Local Storage***
 
-[//]: # ()
-[//]: # (Mobile applications are at particular risk of data leakage because mobile devices are regularly lost or stolen yet contain sensitive data.)
+Mobile applications are at particular risk of data leakage because mobile devices are regularly lost or stolen yet contain sensitive data.
 
-[//]: # ()
-[//]: # (As a general rule, only the minimum data required should be stored on the mobile device. But if you must store sensitive data on a mobile device, then sensitive data should be stored within each mobile operating systems specific data storage directory. On Android this will be the Android keystore and on iOS this will be the iOS keychain.)
+As a general rule, only the minimum data required should be stored on the mobile device. But if you must store sensitive data on a mobile device, then sensitive data should be stored within each mobile operating systems specific data storage directory. On Android this will be the Android keystore and on iOS this will be the iOS keychain.
 
-[//]: # ()
-[//]: # (***Key Lifecycle***)
+***Key Lifecycle***
 
-[//]: # ()
-[//]: # (Secret keys are used in applications number of sensitive functions. For example, secret keys can be used to to sign JWTs, protect credit cards, provide various forms of authentication as well as facilitation other sensitive security features. In managing keys, a number of rules should be followed including:)
+Secret keys are used in applications number of sensitive functions. For example, secret keys can be used to to sign JWTs, protect credit cards, provide various forms of authentication as well as facilitation other sensitive security features. In managing keys, a number of rules should be followed including :)
 
-[//]: # ()
-[//]: # (- Ensure that any secret key is protected from unauthorized access)
+- Ensure that any secret key is protected from unauthorized access
 
-[//]: # (- Store keys in a proper secrets vault as described below)
+- Store keys in a proper secrets vault as described below
 
-[//]: # (- Use independent keys when multiple keys are require[d ]&#40;https://www.owasp.org/index.php/Cryptographic_Storage_Cheat_Sheet#Rule_-_Document_concrete_procedures_for_managing_keys_through_the_lifecycle&#41;)
+- Use independent keys when multiple keys are required[Cryptographic_Storage_Cheat_Sheet](https://www.owasp.org/index.php/Cryptographic_Storage_Cheat_Sheet#Rule_-_Document_concrete_procedures_for_managing_keys_through_the_lifecycle)
 
-[//]: # (- Build support for changing algorithms and keys when needed)
+- Build support for changing algorithms and keys when needed
 
-[//]: # (- Build application features to handle a key rotation ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.035.png&#41;)
+- Build application features to handle a key rotation
 
-[//]: # ()
-[//]: # (***Application Secrets Management***)
+***Application Secrets Management***
 
-[//]: # ()
-[//]: # (Applications  contain  numerous  "secrets"  that  are  needed  for  security  operations.  These include  certificates,  SQL  connection  passwords,  third  party  service  account  credentials, passwords, SSH keys, encryption keys and more. The unauthorized disclosure or modification of these secrets could lead to complete system compromise. In managing application secrets, consider the following.)
+Applications  contain  numerous  "secrets"  that  are  needed  for  security  operations.  These include  certificates,  SQL  connection  passwords,  third  party  service  account  credentials, passwords, SSH keys, encryption keys and more. The unauthorized disclosure or modification of these secrets could lead to complete system compromise. In managing application secrets, consider the following.
 
-[//]: # ()
-[//]: # (- Don’t store secrets in code, config files or pass them through environment variables. Use tools like[ GitRob ]&#40;https://github.com/michenriksen/gitrob&#41;or[ TruffleHog ]&#40;https://github.com/dxa4481/truffleHog&#41;to scan code repos for secrets.)
+- Don’t store secrets in code, config files or pass them through environment variables. Use tools like[GitRob](https://github.com/michenriksen/gitrob) or [TruffleHog](https://github.com/dxa4481/truffleHog) to scan code repos for secrets.
 
-[//]: # (- Keep keys and your other application-level secrets in a secrets vault like[ KeyWhiz ]&#40;https://github.com/square/keywhiz&#41;or Hashicorp’s[ Vault project ]&#40;https://www.vaultproject.io/&#41;or[ Amazon KMS ]&#40;https://aws.amazon.com/kms/&#41;to provide secure storage and access to application-level secrets at run-time.)
+- Keep keys and your other application-level secrets in a secrets vault like[KeyWhiz](https://github.com/square/keywhiz) or Hashicorp’s [Vault project](https://www.vaultproject.io/) or [Amazon KMS](https://aws.amazon.com/kms/)to provide secure storage and access to application-level secrets at run-time.
 
-[//]: # ()
-[//]: # (**Vulnerabilities Prevented**)
+**Vulnerabilities Prevented**
 
-[//]: # ()
-[//]: # (- [OWASP Top 10 2017 - A3: Sensitive Data Exposure]&#40;https://www.owasp.org/index.php/Top_10-2017_A3-Sensitive_Data_Exposure&#41;)
+- [OWASP Top 10 2017 - A3: Sensitive Data Exposure](https://www.owasp.org/index.php/Top_10-2017_A3-Sensitive_Data_Exposure)
 
-[//]: # (- [OWASP Mobile Top 10 2014-M2 Insecure Data Storage ]&#40;https://www.owasp.org/index.php/Mobile_Top_10_2014-M2&#41;)
+- [OWASP Mobile Top 10 2014-M2 Insecure Data Storage ](https://www.owasp.org/index.php/Mobile_Top_10_2014-M2)
 
-[//]: # ()
-[//]: # (**References**)
+**References**
 
-[//]: # ()
-[//]: # (- [OWASP Cheat Sheet: Transport Layer Protection]&#40;https://www.owasp.org/index.php/Transport_Layer_Protection_Cheat_Sheet&#41;)
+- [OWASP Cheat Sheet: Transport Layer Protection](https://www.owasp.org/index.php/Transport_Layer_Protection_Cheat_Sheet)
 
-[//]: # (- [Ivan Ristic: SSL/TLS Deployment Best Practice]&#40;https://www.ssllabs.com/projects/best-practices/index.html&#41;[s ]&#40;https://www.owasp.org/index.php/Pinning_Cheat_Sheet&#41;)
+- [Ivan Ristic: SSL/TLS Deployment Best Practice](https://www.ssllabs.com/projects/best-practices/index.html)[s ](https://www.owasp.org/index.php/Pinning_Cheat_Sheet)
 
-[//]: # (- [OWASP Cheat Sheet: HSTS ]&#40;https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet&#41;)
+- [OWASP Cheat Sheet: HSTS ](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet)
 
-[//]: # (- [OWASP Cheat Sheet: Cryptographic Storage]&#40;https://www.owasp.org/index.php/Cryptographic_Storage_Cheat_Sheet&#41;)
+- [OWASP Cheat Sheet: Cryptographic Storage](https://www.owasp.org/index.php/Cryptographic_Storage_Cheat_Sheet)
 
-[//]: # (- [OWASP Cheat Sheet: Password Storage]&#40;https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet&#41;)
+- [OWASP Cheat Sheet: Password Storage](https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet)
 
-[//]: # (- [OWASP Cheat Sheet: IOS Developer - Insecure Data Storage ]&#40;https://www.owasp.org/index.php/IOS_Developer_Cheat_Sheet#Insecure_Data_Storage_.28M1.29&#41;)
+- [OWASP Cheat Sheet: IOS Developer - Insecure Data Storage ](https://www.owasp.org/index.php/IOS_Developer_Cheat_Sheet#Insecure_Data_Storage_.28M1.29)
 
-[//]: # (- [OWASP Testing Guide: Testing for T]&#40;https://www.owasp.org/index.php/Testing_for_Weak_SSL/TLS_Ciphers,_Insufficient_Transport_Layer_Protection_\&#40;OTG-CRYPST-001\&#41;&#41;[LS ]&#40;https://www.owasp.org/index.php/IOS_Application_Security_Testing_Cheat_Sheet#Insecure_data_storage&#41;)
+- [OWASP Testing Guide: Testing for T](https://www.owasp.org/index.php/Testing_for_Weak_SSL/TLS_Ciphers,_Insufficient_Transport_Layer_Protection_\(OTG-CRYPST-001\))[LS ](https://www.owasp.org/index.php/IOS_Application_Security_Testing_Cheat_Sheet#Insecure_data_storage)
 
-[//]: # ()
-[//]: # (**Tools**)
+**Tools**
 
-[//]: # ()
-[//]: # (- [SSLyze ]&#40;https://github.com/nabla-c0d3/sslyze&#41;- SSL configuration scanning library and CLI tool)
+- [SSLyze ](https://github.com/nabla-c0d3/sslyze)- SSL configuration scanning library and CLI tool)
 
-[//]: # (- [SSLLabs ]&#40;https://www.ssllabs.com/ssltest/&#41;- Free service for scanning and checking TLS/SSL configuration)
+- [SSLLabs](https://www.ssllabs.com/ssltest/)- Free service for scanning and checking TLS/SSL configuration)
 
-[//]: # (- [OWASP O-Saft TLS Tool ]&#40;https://www.owasp.org/index.php/O-Saft&#41;- TLS connection testing tool)
+- [OWASP O-Saft TLS Tool ](https://www.owasp.org/index.php/O-Saft)- TLS connection testing tool)
 
-[//]: # (- [GitRob ]&#40;https://github.com/michenriksen/gitrob&#41;- Command line tool to find sensitive information in publicly available files on GitHub)
+- [GitRob ](https://github.com/michenriksen/gitrob)- Command line tool to find sensitive information in publicly available files on GitHub)
 
-[//]: # (- [TruffleHog ]&#40;https://github.com/dxa4481/truffleHog&#41; - Searches for secrets accidentally committed)
+- [TruffleHog](https://github.com/dxa4481/truffleHog) - Searches for secrets accidentally committed)
 
-[//]: # (- [KeyWhiz ]&#40;https://github.com/square/keywhiz&#41;- Secrets manager)
+- [KeyWhiz](https://github.com/square/keywhiz)- Secrets manager
 
-[//]: # (- [Hashicorp Vault ]&#40;https://www.vaultproject.io/&#41;- Secrets manager)
+- [Hashicorp Vault ](https://www.vaultproject.io/)- Secrets manager
 
-[//]: # (- [Amazon KMS ]&#40;https://aws.amazon.com/kms/&#41;- Manage keys on Amazon AWS ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.035.png&#41;)
+- [Amazon KMS ](https://aws.amazon.com/kms/)- Manage keys on Amazon AWS 
 
-[//]: # ()
-[//]: # (**OWASP Proactive Controls v 3.0   ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.004.jpeg&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.043.png&#41;**)
+---
+**C9: Implement Security Logging and Monitoring**
 
-[//]: # ()
-[//]: # (**C9: Implement Security Logging and Monitoring ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.044.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.045.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.046.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.042.png&#41;Description**)
+Logging  is  a  concept  that  most  developers  already  use  for  debugging  and  diagnostic purposes. Security logging is an equally basic concept: to log security information during the runtime operation of an application. Monitoring is the live review of application and security logs  using  various  forms  of  automation.  The  same  tools  and  patterns  can  be  used  for operations, debugging and security purposes.
 
-[//]: # ()
-[//]: # (<a name="_page33_x69.00_y203.92"></a>Logging  is  a  concept  that  most  developers  already  use  for  debugging  and  diagnostic purposes. Security logging is an equally basic concept: to log security information during the runtime operation of an application. Monitoring is the live review of application and security logs  using  various  forms  of  automation.  The  same  tools  and  patterns  can  be  used  for operations, debugging and security purposes.)
+**Benefits of Security Logging**
 
-[//]: # ()
-[//]: # (**Benefits of Security Logging**)
+Security logging can be used for :)
 
-[//]: # ()
-[//]: # (Security logging can be used for:)
+- Feeding intrusion detection systems
 
-[//]: # ()
-[//]: # (1&#41; Feeding intrusion detection systems)
+- Forensic analysis and investigations
 
-[//]: # (1&#41; Forensic analysis and investigations)
+- Satisfying regulatory compliance requirements
 
-[//]: # (1&#41; Satisfying regulatory compliance requirements)
+**Security Logging Implementation**
 
-[//]: # ()
-[//]: # (**Security Logging Implementation**)
+The following is a list of security logging implementation best practices.
 
-[//]: # ()
-[//]: # (The following is a list of security logging implementation best practices.)
+- Follow a common logging format and approach within the system and across systems of  an  organization.  An  example  of  a  common  logging  framework  is  the[Apache Logging Services ](https://logging.apache.org/) which helps provide logging consistency between Java, PHP, .NET,  and C++ applications.
 
-[//]: # ()
-[//]: # (- Follow a common logging format and approach within the system and across systems of  an  organization.  An  example  of  a  common  logging  framework  is  the[ Apache Logging Services ]&#40;https://logging.apache.org/&#41;which helps provide logging consistency between Java, PHP, .NET,  and C++ applications.)
+- Do  not  log  too  much  or  too  little.  For  example,  make  sure  to  always  log  the timestamp and identifying information including the source IP and user-id, but be careful not to log private or confidential data.
 
-[//]: # (- Do  not  log  too  much  or  too  little.  For  example,  make  sure  to  always  log  the timestamp and identifying information including the source IP and user-id, but be careful not to log private or confidential data.)
+- Pay  close  attention  to  time  syncing  across  nodes  to  ensure  that  timestamps  are consistent.
 
-[//]: # (- Pay  close  attention  to  time  syncing  across  nodes  to  ensure  that  timestamps  are consistent. ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.035.png&#41;)
+***Logging for Intrusion Detection and Response***
 
-[//]: # ()
-[//]: # (***Logging for Intrusion Detection and Response***)
+Use logging to identify activity that indicates that a user is behaving maliciously.  Potentially malicious activity to log includes :)
 
-[//]: # ()
-[//]: # (Use logging to identify activity that indicates that a user is behaving maliciously.  Potentially malicious activity to log includes:)
+- Submitted data that is outside of an expected numeric range.
 
-[//]: # ()
-[//]: # (- Submitted data that is outside of an expected numeric range.)
+- Submitted data that involves changes to data that should not be modifiable (select list, checkbox or other limited entry component)
 
-[//]: # (- Submitted data that involves changes to data that should not be modifiable &#40;select list, checkbox or other limited entry component&#41;.)
+- Requests that violate server-side access control rules.
 
-[//]: # (- Requests that violate server-side access control rules.)
+- A more comprehensive list of possible detection points is available [here.](https://www.owasp.org/index.php/AppSensor_DetectionPoints)
 
-[//]: # (- A more comprehensive list of possible detection points is available[ here.]&#40;https://www.owasp.org/index.php/AppSensor_DetectionPoints&#41;)
+When your application encounters such activity, your application should at the very least log the activity and mark it as a high severity issue.  Ideally, your application should also respond to a possible identified attack, by for example invalidating the user’s session and locking the user's account. The response mechanisms allows the software to react in realtime to possible identified attacks.
 
-[//]: # ()
-[//]: # (When your application encounters such activity, your application should at the very least log the activity and mark it as a high severity issue.  Ideally, your application should also respond to a possible identified attack, by for example invalidating the user’s session and locking the user's account. The response mechanisms allows the software to react in realtime to possible identified attacks.)
+**Secure Logging Design**
 
-[//]: # ()
-[//]: # (**Secure Logging Design**)
+Logging solutions must be built and managed in a secure way. Secure Logging design may include the following :)
 
-[//]: # ()
-[//]: # (Logging solutions must be built and managed in a secure way. Secure Logging design may include)
+- Encode and validate any dangerous characters before logging to prevent[log injection](https://www.owasp.org/index.php/Log_Injection) or [log forging](https://www.owasp.org/index.php/Log_Forging) attacks.
 
-[//]: # ()
-[//]: # (the following:)
+- Do not log sensitive information. For example, do not log password, session ID, credit cards, or social security numbers.
 
-[//]: # ()
-[//]: # (- Encode and validate any dangerous characters before logging to prevent[ log injection ]&#40;https://www.owasp.org/index.php/Log_Injection&#41;or[ log forging ]&#40;https://www.owasp.org/index.php/Log_Forging&#41;attacks.)
+- Protect log integrity. An attacker may attempt to tamper with the logs. Therefore, the permission of log files and log changes audit should be considered.
 
-[//]: # (- Do not log sensitive information. For example, do not log password, session ID, credit cards, or social security numbers.)
+- Forward logs from distributed systems to a central, secure logging service. This will sure  log  data  cannot  be  lost  if  one  node  is  compromised.  This  also  allows  for centralized monitoring.
 
-[//]: # (- Protect log integrity. An attacker may attempt to tamper with the logs. Therefore, the permission of log files and log changes audit should be considered.)
+**References**
 
-[//]: # (- Forward logs from distributed systems to a central, secure logging service. This will sure  log  data  cannot  be  lost  if  one  node  is  compromised.  This  also  allows  for centralized monitoring. ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.035.png&#41;)
+- [OWASP AppSensor Detection Points](https://www.owasp.org/index.php/AppSensor_DetectionPoints) - Detection points used to identify a malicious user probing for vulnerabilities or weaknesses in application.
 
-[//]: # ()
-[//]: # (**References**)
+- [OWASP Log injection ](https://www.owasp.org/index.php/Log_Injection)
 
-[//]: # ()
-[//]: # (- [OWASP AppSensor Detection Points]&#40;https://www.owasp.org/index.php/AppSensor_DetectionPoints&#41; - Detection points used to identify a malicious user probing for vulnerabilities or weaknesses in application.)
+- [OWASP Log forging ](https://www.owasp.org/index.php/Log_Forging)
 
-[//]: # (- [OWASP Log injection ]&#40;https://www.owasp.org/index.php/Log_Injection&#41;)
+- [OWASP Cheat Sheet: Logging ](https://www.owasp.org/index.php/Logging_Cheat_Sheet) How to properly implement logging in an application
 
-[//]: # (- [OWASP Log forging ]&#40;https://www.owasp.org/index.php/Log_Forging&#41;)
+- [OWASP Development Guide: ](https://www.owasp.org/index.php/Error_Handling,_Auditing_and_Logging#Logging) [Logging ](https://www.owasp.org/index.php/Error_Handling,_Auditing_and_Logging)
 
-[//]: # (- [OWASP Cheat Sheet: Logging ]&#40;https://www.owasp.org/index.php/Logging_Cheat_Sheet&#41;How to properly implement logging in an application)
+- [OWASP Code Review Guide: Reviewing Code for Logging Issues ](https://www.owasp.org/index.php/Reviewing_Code_for_Logging_Issues)
 
-[//]: # (- [OWASP Development Guide: ]&#40;https://www.owasp.org/index.php/Error_Handling,_Auditing_and_Logging#Logging&#41;[Logging ]&#40;https://www.owasp.org/index.php/Error_Handling,_Auditing_and_Logging&#41;)
+**Tools**
 
-[//]: # (- [OWASP Code Review Guide: Reviewing Code for Logging Issues ]&#40;https://www.owasp.org/index.php/Reviewing_Code_for_Logging_Issues&#41;)
+- [OWASP Security Logging Project](https://www.owasp.org/index.php/OWASP_Security_Logging_Project)
 
-[//]: # ()
-[//]: # (**Tools**)
+- [Apache Logging Services ](https://logging.apache.org/)
 
-[//]: # ()
-[//]: # (- [OWASP Security Logging Project]&#40;https://www.owasp.org/index.php/OWASP_Security_Logging_Project&#41;)
+---
 
-[//]: # (- [Apache Logging Services ]&#40;https://logging.apache.org/&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.035.png&#41;)
+**C10: Handle all Errors and Exceptions**
 
-[//]: # ()
-[//]: # (**OWASP Proactive Controls v 3.0   ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.004.jpeg&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.014.png&#41;**)
+Exception  handling  is  a  programming  concept  that  allows  an  application  to  respond  to different error states (like network down, or database connection failed, etc) in various ways. Handling exceptions and errors correctly is critical to making your code reliable and secure.
 
-[//]: # ()
-[//]: # (**C10: Handle all Errors and Exceptions ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.026.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.047.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.048.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.018.png&#41;Description**)
+Error and exception handling occurs in all areas of an application including critical business logic as well as security features and framework code.
 
-[//]: # ()
-[//]: # (<a name="_page36_x69.00_y210.92"></a>Exception  handling  is  a  programming  concept  that  allows  an  application  to  respond  to different error states &#40;like network down, or database connection failed, etc&#41; in various ways. Handling exceptions and errors correctly is critical to making your code reliable and secure.)
+Error  handling  is  also  important  from  an  intrusion  detection  perspective.  Certain  attacks against your application may trigger errors which can help detect attacks in progress.
 
-[//]: # ()
-[//]: # (Error and exception handling occurs in all areas of an application including critical business logic as well as security features and framework code.)
+**Error Handling Mistakes**
 
-[//]: # ()
-[//]: # (Error  handling  is  also  important  from  an  intrusion  detection  perspective.  Certain  attacks against your application may trigger errors which can help detect attacks in progress.)
+Researchers  at  the  University  of  Toronto  have  found  that  even  small  mistakes  in  error handling  or  forgetting  to  handle  errors  can  lead  to[ catastrophic  failures  in  distributed systems.](https://www.usenix.org/system/files/conference/osdi14/osdi14-paper-yuan.pdf)
 
-[//]: # ()
-[//]: # (**Error Handling Mistakes**)
+Mistakes in error handling can lead to different kinds of security vulnerabilities.
 
-[//]: # ()
-[//]: # (Researchers  at  the  University  of  Toronto  have  found  that  even  small  mistakes  in  error handling  or  forgetting  to  handle  errors  can  lead  to[ catastrophic  failures  in  distributed systems.]&#40;https://www.usenix.org/system/files/conference/osdi14/osdi14-paper-yuan.pdf&#41;)
+- Information  leakage:  Leaking  sensitive  information  in  error  messages  can unintentionally help attackers. For example, an error that returns a stack trace or other  internal  error  details  can  provide  an  attacker  with  information  about  your environment.  Even  small  differences  in  handling  different  error  conditions (e.g., returning "invalid user" or "invalid password" on authentication errors) can provide valuable  clues  to  attackers.  As  described  above,  be  sure  to  log  error  details  for forensics and debugging purposes, but don’t expose this information, especially to an external client.
 
-[//]: # ()
-[//]: # (Mistakes in error handling can lead to different kinds of security vulnerabilities.)
+- TLS bypass:  The[ Apple goto "fail bug"](https://www.dwheeler.com/essays/apple-goto-fail.html) was a control-flow error in error handling code that lead to a complete compromise of TLS connections on apple systems.
 
-[//]: # ()
-[//]: # (- Information  leakage:  Leaking  sensitive  information  in  error  messages  can unintentionally help attackers. For example, an error that returns a stack trace or other  internal  error  details  can  provide  an  attacker  with  information  about  your environment.  Even  small  differences  in  handling  different  error  conditions  &#40;e.g., returning "invalid user" or "invalid password" on authentication errors&#41; can provide valuable  clues  to  attackers.  As  described  above,  be  sure  to  log  error  details  for forensics and debugging purposes, but don’t expose this information, especially to an external client.)
+- DOS: A lack of basic error handling can lead to system shutdown. This is usually a fairly easy vulnerability for attackers to exploit. Other error handling problems could lead to increased usage of CPU or disk in ways that could degrade the system.
 
-[//]: # (- TLS bypass:  The[ Apple goto "fail bug"]&#40;https://www.dwheeler.com/essays/apple-goto-fail.html&#41; was a control-flow error in error handling code that lead to a complete compromise of TLS connections on apple systems.)
+**Positive Advice**
 
-[//]: # (- DOS: A lack of basic error handling can lead to system shutdown. This is usually a fairly easy vulnerability for attackers to exploit. Other error handling problems could lead to increased usage of CPU or disk in ways that could degrade the system. ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.035.png&#41;)
+- Manage exceptions in a[centralized manner](https://www.owasp.org/index.php/Error_Handling#Centralised_exception_handling_.28Struts_Example.29) to avoid duplicated try/catch blocks in the  code.  Ensure  that  all  unexpected  behavior  is  correctly  handled  inside  the application.
 
-[//]: # ()
-[//]: # (**Positive Advice**)
+- Ensure that error messages displayed to users do not leak critical data, but are still verbose enough to enable the proper user response.
 
-[//]: # ()
-[//]: # (- Manage exceptions in a[ centralized manner ]&#40;https://www.owasp.org/index.php/Error_Handling#Centralised_exception_handling_.28Struts_Example.29&#41;to avoid duplicated try/catch blocks in the  code.  Ensure  that  all  unexpected  behavior  is  correctly  handled  inside  the application.)
+- Ensure that exceptions are logged in a way that gives enough information for support, QA, forensics or incident response teams to understand the problem.
 
-[//]: # (- Ensure that error messages displayed to users do not leak critical data, but are still verbose enough to enable the proper user response.)
+- Carefully test and verify error handling code.
 
-[//]: # (- Ensure that exceptions are logged in a way that gives enough information for support, QA, forensics or incident response teams to understand the problem.)
+**References**
 
-[//]: # (- Carefully test and verify error handling code.)
+- [OWASP Code Review Guide: Error Handling ](https://www.owasp.org/index.php/Error_Handling)
 
-[//]: # ()
-[//]: # (**References**)
+- [OWASP Testing Guide: Testing for Error Handling ](https://www.owasp.org/index.php/Testing_for_Error_Handling)
 
-[//]: # ()
-[//]: # (- [OWASP Code Review Guide: Error Handling ]&#40;https://www.owasp.org/index.php/Error_Handling&#41;)
+- [OWASP Improper Error Handling](https://www.owasp.org/index.php/Improper_Error_Handling)
 
-[//]: # (- [OWASP Testing Guide: Testing for Error Handling ]&#40;https://www.owasp.org/index.php/Testing_for_Error_Handling&#41;)
+- [CWE 209: Information Exposure Through an Error Message](https://cwe.mitre.org/data/definitions/209.html)
 
-[//]: # (- [OWASP Improper Error Handling]&#40;https://www.owasp.org/index.php/Improper_Error_Handling&#41;)
+- [CWE 391: Unchecked Error Condition ](https://cwe.mitre.org/data/definitions/391.html)
 
-[//]: # (- [CWE 209: Information Exposure Through an Error Message]&#40;https://cwe.mitre.org/data/definitions/209.html&#41;)
+**Tools**
 
-[//]: # (- [CWE 391: Unchecked Error Condition ]&#40;https://cwe.mitre.org/data/definitions/391.html&#41;)
+- [Error Prone ](http://errorprone.info/)- A static analysis tool from Google to catch common mistakes in error handling for Java developers)
 
-[//]: # ()
-[//]: # (**Tools**)
+- One of the most famous automated tools for finding errors at runtime [is Netflix's Chaos  Monkey,](https://github.com/Netflix/SimianArmy)  which  intentionally  disables  system  instances  to  ensure  that  the overall service will recover correctly. 
 
-[//]: # ()
-[//]: # (- [Error Prone ]&#40;http://errorprone.info/&#41;- A static analysis tool from Google to catch common mistakes in error handling for Java developers)
+**Final word**
 
-[//]: # (- One of the most famous automated tools for finding errors at runtime [is Netflix's Chaos  Monkey,]&#40;https://github.com/Netflix/SimianArmy&#41;  which  intentionally  disables  system  instances  to  ensure  that  the overall service will recover correctly. ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.035.png&#41;)
+This  document  should  be  seen  as  a  starting  point  rather  than  a  comprehensive  set  of techniques  and  practices.  We  want  to  again  emphasize  that  this document  is  intended  to provide initial awareness around building secure software.
 
-[//]: # ()
-[//]: # (**Final word**)
+Good next steps to help build an application security program include :)
 
-[//]: # ()
-[//]: # (This  document  should  be  seen  as  a  starting  point  rather  than  a  comprehensive  set  of techniques  and  practices.  We  want  to  again  emphasize  that  this document  is  intended  to provide initial awareness around building secure software.)
+- To understand some of the risks in web application security please review the [OWASP Top Ten ](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project) and the[ OWASP Mobile Top Ten. ](https://www.owasp.org/index.php/OWASP_Mobile_Security_Project#tab=Top_10_Mobile_Risks)
 
-[//]: # ()
-[//]: # (Good next steps to help build an application security program include:)
+- Per  Proactive  Control  #1,  a  secure  development  program  should  include  a *comprehensive list of security requirements* based on a standard such as the[ OWASP (Web) ASVS ](https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project) and the [ OWASP (Mobile) MASVS.](https://github.com/OWASP/owasp-masvs)
 
-[//]: # ()
-[//]: # (1&#41; To understand some of the risks in web application security please review the[ OWASP Top Ten ]&#40;https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project&#41;and the[ OWASP Mobile Top Ten. ]&#40;https://www.owasp.org/index.php/OWASP_Mobile_Security_Project#tab=Top_10_Mobile_Risks&#41;)
-
-[//]: # (1&#41; Per  Proactive  Control  #1,  a  secure  development  program  should  include  a *comprehensive list of security requirements* based on a standard such as the[ OWASP &#40;Web&#41; ASVS ]&#40;https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project&#41;and the[ OWASP &#40;Mobile&#41; MASVS.]&#40;https://github.com/OWASP/owasp-masvs&#41;)
-
-[//]: # (1&#41; To understand the core building blocks of a secure software program from a more macro point of view please review the[ OWASP OpenSAMM project.]&#40;https://www.owasp.org/index.php/OWASP_SAMM_Project&#41;)
-
-[//]: # ()
-[//]: # (If you have any questions for the project leadership team please sign up for our mailing list at [https://lists.owasp.org/mailman/listinfo/owasp_proactive_controls.]&#40;https://lists.owasp.org/mailman/listinfo/owasp_proactive_controls&#41; ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.035.png&#41;)
-
-[//]: # ()
-[//]: # (v 3.0  © 2002-2018 OWASP Foundation This document is licensed under the Creative Commons Attribution-ShareAlike 3.0 license.  38)
-
-[//]: # (OWASP Top Ten Proactive Controls Project  ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.002.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.035.png&#41;)
-
-[//]: # ()
-[//]: # (` `![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.049.png&#41;)
-
-[//]: # (v 3.0  © 2002-2018 OWASP Foundation This document is licensed under the Creative Commons Attribution-ShareAlike 3.0 license.  39)
+- To understand the core building blocks of a secure software program from a more macro point of view please review the [ OWASP OpenSAMM project.](https://www.owasp.org/index.php/OWASP_SAMM_Project)
