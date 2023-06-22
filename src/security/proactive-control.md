@@ -30,7 +30,7 @@ The list is ordered by importance with list item number 1 being the most importa
 
 - C2:**Leverage Security Frameworks and Libraries**
 
-- C3:**Secure sDatabase Access**
+- C3:**Secure Database Access**
 
 - C4:**Encode and Escape Data**
 
@@ -56,8 +56,7 @@ Security requirements provide a foundation of vetted security functionality for 
 
 ***The OWASP ASVS***
 
-The[OWASPApplicationSecurityVerificationStandard&ASVS]
- (https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project) is a catalog of available security requirements and verification criteria. OWASP ASVS  can be a source of detailed security requirements for development teams.
+The [OWASP Application Security Verification Standard (ASVS)](https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project) is a catalog of available security requirements and verification criteria. OWASP ASVS  can be a source of detailed security requirements for development teams.
 
 Security requirements are categorized into different buckets based on a shared higher order security function. For example, the ASVS contains categories such as authentication, access control, error handling / logging, and web services. Each category contains a collection of requirements  that  represent  the  best  practices  for  that  category  drafted  as  verifiable statements.
 
@@ -105,14 +104,11 @@ Security requirements define the security functionality of an application. Bette
 
 **References**
 
-- [OWASPApplicationSecurityVerificationStandard&ASVS] 
-(https://www.owasp.org/index.php/Application_Security_Architecture_Cheat_Sheet)
+- [OWASPApplicationSecurityVerificationStandard&ASVS](https://www.owasp.org/index.php/Application_Security_Architecture_Cheat_Sheet)
 
-- [OWASPMobileApplicationSecurityVerificationStandardMASVS] 
-(https://github.com/OWASP/owasp-masvs)
+- [OWASPMobileApplicationSecurityVerificationStandardMASVS](https://github.com/OWASP/owasp-masvs)
 
-- [OWASPTopTen] 
-(https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project)
+- [OWASPTopTen](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project)
 
 --- 
 
@@ -250,7 +246,7 @@ To be secure against canonicalization related attacks means an application shoul
 
 **References** 
 
-- https://www.owasp.org/index.php/Top_10_2013-A1-Injection)
+- [Top Ten](https://www.owasp.org/index.php/Top_10_2013-A1-Injection)
 
 - [XSS](https://www.owasp.org/index.php/XSS)
 
@@ -515,7 +511,7 @@ Browser cookies are a common method for web application to store session identif
 
 Server-side sessions can be limiting for some forms of authentication. "Stateless services" allow for client side management of session data for performance purposes so they server has less of a burden to store and verify user session. These "stateless" applications generate a short-lived access token which can be used to authenticate a client request without sending the user's credentials after the initial authentication.)
 
-***JWT (JSON Web Tokens)***)
+***JWT (JSON Web Tokens)***
 
 JSON Web Token (JWT) is an open standard [RFC 7519](https://tools.ietf.org/html/rfc7519) that defines a compact and self- contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. A JWT token is created during authentication and is verified by the server (or servers) before any processing.
 
@@ -558,143 +554,104 @@ Digital identity, authentication and session management are very big topics. We'
 - Daniel Miessler [Most commonly found passwords](https://github.com/danielmiessler/SecLists/tree/master/Passwords)
 
 ---
-[//]: # ()
-[//]: # (**C7: Enforce Access Controls ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.026.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.033.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.034.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.018.png&#41;Description**)
+***C7: Enforce Access Controls***
 
-[//]: # ()
-[//]: # (<a name="_page26_x69.00_y202.92"></a>Access Control &#40;or Authorization&#41; is the process of granting or denying *specific requests* from a user, program, or process. Access control also involves the act of *granting and revoking those privileges*.)
+Access Control or Authorization is the process of granting or denying *specific requests* from a user, program, or process. Access control also involves the act of *granting and revoking those privileges*.
 
-[//]: # ()
-[//]: # (It should be noted that authorization &#40;verifying access to specific features or resources&#41; is not equivalent to authentication &#40;verifying identity&#41;.)
+It should be noted that authorization (verifying access to specific features or resources) is not equivalent to authentication (verifying identity)
 
-[//]: # ()
-[//]: # (Access  Control  functionality  often  spans  many  areas  of  software  depending  on  the complexity of the access control system. For example, managing access control metadata or building caching for scalability purposes are often additional components in an access control system that need to be built or managed.)
+Access  Control  functionality  often  spans  many  areas  of  software  depending  on  the complexity of the access control system. For example, managing access control metadata or building caching for scalability purposes are often additional components in an access control system that need to be built or managed.
 
-[//]: # ()
-[//]: # (There are several different types of access control design that should be considered.)
+There are several different types of access control design that should be considered.
 
-[//]: # ()
-[//]: # (- Discretionary Access Control &#40;DAC&#41; is a means of restricting access to objects &#40;e.g., files, data entities&#41; based on the identity and need-to-know of subjects &#40;e.g., users, processes&#41; and/or groups to which the object belongs.)
+- Discretionary Access Control (DAC) is a means of restricting access to objects (e.g., files, data entities) based on the identity and need-to-know of subjects (e.g., users, processes) and/or groups to which the object belongs.
 
-[//]: # (- Mandatory Access Control &#40;MAC&#41; is a means of restricting access to system resources based on the sensitivity &#40;as represented by a label&#41; of the information contained in the system resource and the formal authorization &#40;i.e., clearance&#41; of users to access information of such sensitivity.)
+- Mandatory Access Control (MAC) is a means of restricting access to system resources based on the sensitivity (as represented by a label) of the information contained in the system resource and the formal authorization (i.e., clearance) of users to access information of such sensitivity.
 
-[//]: # (- Role Based Access Control &#40;RBAC&#41; is a model for controlling access to resources where permitted actions on resources are identified with roles rather than with individual subject identities.)
+- Role Based Access Control (RBAC) is a model for controlling access to resources where permitted actions on resources are identified with roles rather than with individual subject identities.
 
-[//]: # (- Attribute  Based  Access  Control  &#40;ABAC&#41;  will  grant  or  deny  user  requests  based  on arbitrary  attributes  of  the  user  and  arbitrary  attributes  of  the  object,  and environment conditions that may be globally recognized and more relevant to the policies at hand.  ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.035.png&#41;)
+- Attribute  Based  Access  Control  (ABAC)  will  grant  or  deny  user  requests  based  on arbitrary  attributes  of  the  user  and  arbitrary  attributes  of  the  object,  and environment conditions that may be globally recognized and more relevant to the policies at hand.  
 
-[//]: # ()
-[//]: # (**Access Control Design Principles**)
+**Access Control Design Principles**
 
-[//]: # ()
-[//]: # (The  following  "positive"  access  control  design  requirements  should  be  considered  at  the initial stages of application development.)
+The  following  "positive"  access  control  design  requirements  should  be  considered  at  the initial stages of application development.
 
-[//]: # ()
-[//]: # (1&#41; ***Design Access Control Thoroughly Up Front***)
+***Design Access Control Thoroughly Up Front***
 
-[//]: # ()
-[//]: # (Once you have chosen a specific access control design pattern, it is often difficult and time consuming  to  re-engineer  access  control  in  your  application  with  a  new  pattern.  Access Control  is  one  of  the  main  areas  of  application  security  design  that  must  be  thoroughly designed  up  front,  especially  when  addressing  requirements  like  multi-tenancy  and horizontal &#40;data dependent&#41; access control.)
+Once you have chosen a specific access control design pattern, it is often difficult and time consuming  to  re-engineer  access  control  in  your  application  with  a  new  pattern.  Access Control  is  one  of  the  main  areas  of  application  security  design  that  must  be  thoroughly designed  up  front,  especially  when  addressing  requirements  like  multi-tenancy  and horizontal (data dependent) access control.
 
-[//]: # ()
-[//]: # (Access Control design may start simple but can often grow into a complex and feature-heavy security control. When evaluating access control capability of software frameworks, ensure that your access control functionality will allow for customization for your specific access control feature need.)
+Access Control design may start simple but can often grow into a complex and feature-heavy security control. When evaluating access control capability of software frameworks, ensure that your access control functionality will allow for customization for your specific access control feature need.
 
-[//]: # ()
-[//]: # (2&#41; ***Force All Requests to Go Through Access Control Checks***)
+***Force All Requests to Go Through Access Control Checks***
 
-[//]: # ()
-[//]: # (Ensure  that  all  request  go  through  some  kind  of  access  control  verification  layer. Technologies like Java filters or other automatic request processing mechanisms are ideal programming artifacts that will help ensure that all requests go through some kind of access control check.)
+Ensure  that  all  request  go  through  some  kind  of  access  control  verification  layer. Technologies like Java filters or other automatic request processing mechanisms are ideal programming artifacts that will help ensure that all requests go through some kind of access control check.
 
-[//]: # ()
-[//]: # (3&#41; ***Deny by Default***)
+***Deny by Default***
 
-[//]: # ()
-[//]: # (Deny by default is the principle that if a request is not specifically allowed, it is denied. There are many ways that this rule will manifest in application code. Some examples of these are:)
+Deny by default is the principle that if a request is not specifically allowed, it is denied. There are many ways that this rule will manifest in application code. Some examples of these are :)
 
-[//]: # ()
-[//]: # (1. Application code may throw an error or exception while processing access control requests. In these cases access control should always be denied.)
+1. Application code may throw an error or exception while processing access control requests. In these cases access control should always be denied.
 
-[//]: # (1. When an administrator creates a new user or a user registers for a new account, that account should have minimal or no access by default until that access is configured.)
+2. When an administrator creates a new user or a user registers for a new account, that account should have minimal or no access by default until that access is configured.
 
-[//]: # (1. When a new feature is added to an application all users should be denied to use that feature until it's properly configured. ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.035.png&#41;)
+3. When a new feature is added to an application all users should be denied to use that feature until it's properly configured. 
 
-[//]: # (4&#41; ***Principle of Least Privilege***)
+***Principle of Least Privilege***
 
-[//]: # ()
-[//]: # (Ensure that all users, programs, or processes are only given as least or as little necessary access  as  possible.  Be  wary  of  systems  that  do  not  provide  granular  access  control configuration capabilities.)
+Ensure that all users, programs, or processes are only given as least or as little necessary access  as  possible.  Be  wary  of  systems  that  do  not  provide  granular  access  control configuration capabilities.
 
-[//]: # ()
-[//]: # (5&#41; ***Don't Hardcode Roles***)
+***Don't Hardcode Roles***
 
-[//]: # ()
-[//]: # (Many application frameworks default to access control that is role based. It is common to find application code that is filled with checks of this nature.)
+Many application frameworks default to access control that is role based. It is common to find application code that is filled with checks of this nature.
 
-[//]: # ()
-[//]: # (**if** **&#40;**user**.**hasRole**&#40;**"ADMIN"**&#41;&#41;** **||** **&#40;**user**.**hasRole**&#40;**"MANAGER"**&#41;&#41;** **{** ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.036.png&#41;)
+``` 
+if (user.hasRole("ADMIN")) || (user.hasRole("MANAGER")) {
+                    deleteAccount();
+    } 
+```
 
-[//]: # ()
-[//]: # (deleteAccount**&#40;&#41;;**)
+Be careful about this type of role-based programming in code. It has the following limitations or dangers.
 
-[//]: # ()
-[//]: # (**}**)
+- Role  based  programming  of  this  nature  is  fragile.  It  is  easy  to  create  incorrect  or missing role checks in code.
 
-[//]: # ()
-[//]: # (Be careful about this type of role-based programming in code. It has the following limitations or dangers.)
+- Role based programming does not allow for multi-tenancy. Extreme measures like forking the code or added checks for each customer will be required to allow role based systems to have different rules for different customers.
 
-[//]: # ()
-[//]: # (- Role  based  programming  of  this  nature  is  fragile.  It  is  easy  to  create  incorrect  or missing role checks in code.)
+- Role based programming does not allow for data-specific or horizontal access control rules.
 
-[//]: # (- Role based programming does not allow for multi-tenancy. Extreme measures like forking the code or added checks for each customer will be required to allow role based systems to have different rules for different customers.)
+- Large codebases with many access control checks can be difficult to audit or verify the overall application access control policy.
 
-[//]: # (- Role based programming does not allow for data-specific or horizontal access control rules.)
+Instead, please consider the following access control programming methodology:
 
-[//]: # (- Large codebases with many access control checks can be difficult to audit or verify the overall application access control policy.)
+```
+if (user.hasAccess("DELETE_ACCOUNT")) {
+    deleteAccount();
+}
 
-[//]: # ()
-[//]: # (Instead, please consider the following access control programming methodology:)
+```
 
-[//]: # ()
-[//]: # (**if** **&#40;**user**.**hasAccess**&#40;**"DELETE\_ACCOUNT"**&#41;&#41;** **{** ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.037.png&#41;)
+Attribute  or  feature-based  access  control  checks  of  this  nature  are  the  starting  point  to building well-designed and feature-rich access control systems. This type of programming also allows for greater access control customization capability over time. 
 
-[//]: # ()
-[//]: # (deleteAccount**&#40;&#41;;**)
+***Log All Access Control Events***
 
-[//]: # ()
-[//]: # (**}**)
+All access control failures should be logged as these may be indicative of a malicious user probing the application for vulnerabilities.
 
-[//]: # ()
-[//]: # (Attribute  or  feature-based  access  control  checks  of  this  nature  are  the  starting  point  to building well-designed and feature-rich access control systems. This type of programming also allows for greater access control customization capability over time. ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.035.png&#41;)
+**Vulnerabilities Prevented**
 
-[//]: # ()
-[//]: # (6&#41; ***Log All Access Control Events***)
+- [OWASP Top 10 2017-A5-Broken Access Control ](https://www.owasp.org/index.php/Top_10-2017_A5-Broken_Access_Control)
 
-[//]: # ()
-[//]: # (All access control failures should be logged as these may be indicative of a malicious user probing the application for vulnerabilities.)
+- [OWASP Mobile Top 10 2014-M5 Poor Authorization and Authentication](https://www.owasp.org/index.php/Mobile_Top_10_2014-M5)
 
-[//]: # ()
-[//]: # (**Vulnerabilities Prevented**)
+**References**
 
-[//]: # ()
-[//]: # (- [OWASP Top 10 2017-A5-Broken Access Control ]&#40;https://www.owasp.org/index.php/Top_10-2017_A5-Broken_Access_Control&#41;)
+- [OWASP Cheat Sheet: Access Control](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)
 
-[//]: # (- [OWASP Mobile Top 10 2014-M5 Poor Authorization and Authentication]&#40;https://www.owasp.org/index.php/Mobile_Top_10_2014-M5&#41;)
+- [OWASP Cheat Sheet:  iOS Developer - Poor Authorization and Authentication](https://www.owasp.org/index.php/IOS_Developer_Cheat_Sheet#Remediations_5)
 
-[//]: # ()
-[//]: # (**References**)
+- [OWASP Testing Guide: Testing for Authoriz](https://www.owasp.org/index.php/Testing_for_Authorization)[ation ](https://www.owasp.org/index.php/IOS_Developer_Cheat_Sheet#Remediations_5)
 
-[//]: # ()
-[//]: # (- [OWASP Cheat Sheet: Access Control]&#40;https://www.owasp.org/index.php/Access_Control_Cheat_Sheet&#41;[  ]&#40;https://www.owasp.org/index.php/Testing_for_Authorization&#41;)
+**Tools**)
 
-[//]: # (- [OWASP Cheat Sheet:  iOS Developer - Poor Authorization and Authentication]&#40;https://www.owasp.org/index.php/IOS_Developer_Cheat_Sheet#Remediations_5&#41;)
-
-[//]: # (- [OWASP Testing Guide: Testing for Authoriz]&#40;https://www.owasp.org/index.php/Testing_for_Authorization&#41;[ation ]&#40;https://www.owasp.org/index.php/IOS_Developer_Cheat_Sheet#Remediations_5&#41;)
-
-[//]: # ()
-[//]: # (**Tools**)
-
-[//]: # ()
-[//]: # (- [OWASP ZA]&#40;https://www.owasp.org/index.php/ZAP&#41;[P with]&#40;https://www.owasp.org/index.php/IOS_Developer_Cheat_Sheet#Remediations_5&#41; the optional[ Access Control Testing ]&#40;https://github.com/zaproxy/zap-extensions/wiki/HelpAddonsAccessControlConcepts&#41;add-on ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.035.png&#41;)
-
-[//]: # ()
-[//]: # (**OWASP Proactive Controls v 3.0   ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.004.jpeg&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.038.png&#41;**)
+- [OWASP ZAP](https://www.owasp.org/index.php/ZAP)with the optional[Access Control Testing ](https://github.com/zaproxy/zap-extensions/wiki/HelpAddonsAccessControlConcepts)add-on.
 
 [//]: # ()
 [//]: # (**C8: Protect Data Everywhere ![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.039.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.040.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.041.png&#41;![]&#40;Aspose.Words.554d3b2f-b08d-466a-accf-9ecc0048cbb6.042.png&#41;Description**)
