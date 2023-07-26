@@ -15,10 +15,24 @@ Use the steps below to down
 
 ### 1. Windows Installation 
  i. From the edb website click on the develpers -> Software downloads
- ![Software downloads](src/.vuepress/public/img/databases/softwaredownloads.png)
+ ![Software downloads](../../src/.vuepress/public/img/databases/softwaredownloads.png)
 
-ii. Select the one for windows
-![downloads](src/.vuepress/public/img/databases/downloads.png)
+ii. Choose the appropriate version of EDB Advanced Server based on your Windows operating system (32-bit or 64-bit).
+Make sure the version you select is compatible with your Windows version.
+![downloads](../../src/.vuepress/public/img/databases/downloads.png)
+
+iii. Once the download is complete run the Installer
+![installing](../../src/.vuepress/public/img/databases/initial-sinstallation-window.png)
+
+iv. Start EDB Advanced Server 
+After installation, you can start the EDB Advanced Server by running the "pg_ctl" utility or by starting the EDB Advanced Server service through the Windows Services Manager.
+
+v. Connect and Verify:
+Use your preferred database client (e.g., pgAdmin) to connect to the EDB Advanced Server and verify that it's up and running.
+
+![](../../src/.vuepress/public/img/databases/pgadmin.png)
+![](../../src/.vuepress/public/img/databases/edbtestconnection.png)
+![](../../src/.vuepress/public/img/databases/pgdashboard.png)
 
 ### 2. Linux Installation
 
