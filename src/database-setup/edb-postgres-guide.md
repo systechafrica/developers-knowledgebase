@@ -16,23 +16,23 @@ Use the steps below to down
 ### 1. Windows Installation 
 ------------------
 
- i. From the edb website click on the develpers -> Software downloads
+#### i. From the edb website click on the develpers -> Software downloads
 
  ![Software downloads](../../src/.vuepress/public/img/databases/softwaredownloads.png)
 
-ii. Choose the appropriate version of EDB Advanced Server based on your Windows operating system (32-bit or 64-bit).
+####  ii. Choose the appropriate version of EDB Advanced Server based on your Windows operating system (32-bit or 64-bit).
 Make sure the version you select is compatible with your Windows version.
 
 ![downloads](../../src/.vuepress/public/img/databases/downloads.png)
 
-iii. Once the download is complete run the Installer
+####  iii. Once the download is complete run the Installer
 
 ![installing](../../src/.vuepress/public/img/databases/initial-sinstallation-window.png)
 
-iv. Start EDB Advanced Server 
+#### iv. Start EDB Advanced Server 
 After installation, you can start the EDB Advanced Server by running the "pg_ctl" utility or by starting the EDB Advanced Server service through the Windows Services Manager.
 
-v. Connect and Verify:
+####  v. Connect and Verify:
 Use your preferred database client (e.g., pgAdmin) to connect to the EDB Advanced Server and verify that it's up and running.
 
 ![](../../src/.vuepress/public/img/databases/pgadmin.png)
@@ -49,12 +49,12 @@ EDB Connectors (also known as EDB Postgres Connectors) enable you to connect you
 
 ### 1. Windows 
 -------------
-i.Visit the EDB Website:
+####  i.Visit the EDB Website:
 [Go to the EDB website](https://www.enterprisedb.com/)
 Navigate to the "Products" or "Downloads" section.
 ![Software downloads](../../src/.vuepress/public/img/databases/softwaredownloads.png)
 
-ii. Select EDB Connectors:
+#### ii. Select EDB Connectors:
 Look for the appropriate EDB Connector you want to install. For example:
 EDB ODBC Connector
 EDB JDBC Connector
@@ -63,15 +63,15 @@ EDB Python Connector, etc.
 
 ![connecotors](../../src/.vuepress/public/img/databases/connectors.png)
 
-iii. Choose the Download:
+#### iii. Choose the Download:
 
 Select the download link for the EDB Connector that matches your application's requirements and Windows operating system version (32-bit or 64-bit).
 
-iv. Installation Progress:
+#### iv. Installation Progress:
 The installer will install the EDB Connector components on your Windows system. Wait for the installation to complete.
 Installation Complete:
 
-v. Verify Installation (Optional):
+####  v. Verify Installation (Optional):
 Depending on the connector type, you may need to configure your application or system to use the installed EDB Connector. [Consult the documentation](https://www.enterprisedb.com/docs/epas/14/connectors/) provided by EDB for specific instructions on how to use the connector with your applications.
 ### 2. Linux Operating System
 
