@@ -13,6 +13,8 @@ module.exports = {
                 '/database-setup/edb-postgres-guide',
                 '/database-setup/postgres-guide',
                 '/database-setup/mysql-guide',
+                '/database-setup/triggers',
+                '/database-setup/warehouse-readme',
             ]
         },
         {

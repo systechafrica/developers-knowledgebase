@@ -1,3 +1,9 @@
+# Track Database Table Changes
+
+```` 
+ Aim is to track changes to certain tables in database level not through application for purposes of accountability
+````
+
 ## CREATE SCHEMA
 
 Connect as administrator and :

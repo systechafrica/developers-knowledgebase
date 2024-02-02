@@ -10,6 +10,8 @@ module.exports =  [
             {text: 'EDB Postgres Setup', link: '/database-setup/edb-postgres-guide/' },
             {text: 'Postgres Setup', link: '/database-setup/postgres-guide/' },
             {text: 'Mysql Setup', link: '/database-setup/mysql-guide/' },
+            {text: 'Track Database Changes', link: '/database-setup/triggers/' },
+            {text: 'Warehouse Database', link: '/database-setup/warehouse-readme/' },
         ]
     },
     {

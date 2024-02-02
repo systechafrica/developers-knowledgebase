@@ -1,4 +1,4 @@
-# WAREHOUSE DATABASE 🚀️
+#  Warehouse Database 🚀️
 
 A database that houses all the data that we need to create:
 
