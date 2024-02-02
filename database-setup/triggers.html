@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Track Database Table Changes | Systech Knowledge Base</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="Contains the developers knowledge base">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <link rel="preload" href="/assets/css/0.styles.66c960d3.css" as="style"><link rel="preload" href="/assets/js/app.6a007f06.js" as="script"><link rel="preload" href="/assets/js/2.51e18b29.js" as="script"><link rel="preload" href="/assets/js/15.5f24f774.js" as="script"><link rel="prefetch" href="/assets/js/10.a95c35c6.js"><link rel="prefetch" href="/assets/js/11.478366af.js"><link rel="prefetch" href="/assets/js/12.d268cb2d.js"><link rel="prefetch" href="/assets/js/13.e294b8b0.js"><link rel="prefetch" href="/assets/js/14.c29c957f.js"><link rel="prefetch" href="/assets/js/16.1024252d.js"><link rel="prefetch" href="/assets/js/17.7bb946ac.js"><link rel="prefetch" href="/assets/js/18.abaccb34.js"><link rel="prefetch" href="/assets/js/19.f04c2444.js"><link rel="prefetch" href="/assets/js/20.e379bf4c.js"><link rel="prefetch" href="/assets/js/21.a37b1a90.js"><link rel="prefetch" href="/assets/js/22.a9510316.js"><link rel="prefetch" href="/assets/js/3.3e0d321a.js"><link rel="prefetch" href="/assets/js/4.11420379.js"><link rel="prefetch" href="/assets/js/5.d48d4777.js"><link rel="prefetch" href="/assets/js/6.982869b1.js"><link rel="prefetch" href="/assets/js/7.1d8808fd.js"><link rel="prefetch" href="/assets/js/8.1fdb41cb.js"><link rel="prefetch" href="/assets/js/9.ddabfbb1.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.66c960d3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="https://systechafrica.com/wp-content/uploads/2021/03/Overlay-logo.png" alt="Systech Knowledge Base" class="logo"> <span class="site-name can-hide">Systech Knowledge Base</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/getting-started/" class="nav-link">
+  Getting Started
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Database Setup" class="dropdown-title"><span class="title">Database Setup</span> <span class="arrow down"></span></button> <button type="button" aria-label="Database Setup" class="mobile-dropdown-title"><span class="title">Database Setup</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/database-setup/oracle-guide/" class="nav-link">
+  Oracle Database Setup
+</a></li><li class="dropdown-item"><!----> <a href="/database-setup/edb-postgres-guide/" class="nav-link">
+  EDB Postgres Setup
+</a></li><li class="dropdown-item"><!----> <a href="/database-setup/postgres-guide/" class="nav-link">
+  Postgres Setup
+</a></li><li class="dropdown-item"><!----> <a href="/database-setup/mysql-guide/" class="nav-link">
+  Mysql Setup
+</a></li><li class="dropdown-item"><!----> <a href="/database-setup/triggers/" class="nav-link">
+  Track Database Changes
+</a></li><li class="dropdown-item"><!----> <a href="/database-setup/warehouse-readme/" class="nav-link">
+  Warehouse Database
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="DevSecOps" class="dropdown-title"><span class="title">DevSecOps</span> <span class="arrow down"></span></button> <button type="button" aria-label="DevSecOps" class="mobile-dropdown-title"><span class="title">DevSecOps</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/security/" class="nav-link">
+  Introduction
+</a></li><li class="dropdown-item"><!----> <a href="/security/proactive-control/" class="nav-link">
+  Proactive Controls
+</a></li><li class="dropdown-item"><!----> <a href="/security/ssl-reverse-proxy/" class="nav-link">
+  SSL Installation Using Reverse Proxy
+</a></li><li class="dropdown-item"><!----> <a href="/security/ssl-letsencrypt/" class="nav-link">
+  SSl Installation using self signed certificate from letsencrypt, apache and reverse proxy
+</a></li></ul></div></div><div class="nav-item"><a href="/pension-domain/" class="nav-link">
+  Pension Domain
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Fundmaster Guide" class="dropdown-title"><span class="title">Fundmaster Guide</span> <span class="arrow down"></span></button> <button type="button" aria-label="Fundmaster Guide" class="mobile-dropdown-title"><span class="title">Fundmaster Guide</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://documentation.systechafrica.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Documentation
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://knowledgebase.systechafrica.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Knowledge Base
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/getting-started/" class="nav-link">
+  Getting Started
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Database Setup" class="dropdown-title"><span class="title">Database Setup</span> <span class="arrow down"></span></button> <button type="button" aria-label="Database Setup" class="mobile-dropdown-title"><span class="title">Database Setup</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/database-setup/oracle-guide/" class="nav-link">
+  Oracle Database Setup
+</a></li><li class="dropdown-item"><!----> <a href="/database-setup/edb-postgres-guide/" class="nav-link">
+  EDB Postgres Setup
+</a></li><li class="dropdown-item"><!----> <a href="/database-setup/postgres-guide/" class="nav-link">
+  Postgres Setup
+</a></li><li class="dropdown-item"><!----> <a href="/database-setup/mysql-guide/" class="nav-link">
+  Mysql Setup
+</a></li><li class="dropdown-item"><!----> <a href="/database-setup/triggers/" class="nav-link">
+  Track Database Changes
+</a></li><li class="dropdown-item"><!----> <a href="/database-setup/warehouse-readme/" class="nav-link">
+  Warehouse Database
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="DevSecOps" class="dropdown-title"><span class="title">DevSecOps</span> <span class="arrow down"></span></button> <button type="button" aria-label="DevSecOps" class="mobile-dropdown-title"><span class="title">DevSecOps</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/security/" class="nav-link">
+  Introduction
+</a></li><li class="dropdown-item"><!----> <a href="/security/proactive-control/" class="nav-link">
+  Proactive Controls
+</a></li><li class="dropdown-item"><!----> <a href="/security/ssl-reverse-proxy/" class="nav-link">
+  SSL Installation Using Reverse Proxy
+</a></li><li class="dropdown-item"><!----> <a href="/security/ssl-letsencrypt/" class="nav-link">
+  SSl Installation using self signed certificate from letsencrypt, apache and reverse proxy
+</a></li></ul></div></div><div class="nav-item"><a href="/pension-domain/" class="nav-link">
+  Pension Domain
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Fundmaster Guide" class="dropdown-title"><span class="title">Fundmaster Guide</span> <span class="arrow down"></span></button> <button type="button" aria-label="Fundmaster Guide" class="mobile-dropdown-title"><span class="title">Fundmaster Guide</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://documentation.systechafrica.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Documentation
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://knowledgebase.systechafrica.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Knowledge Base
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Getting Started</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Database Setup</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/database-setup/oracle-guide.html" class="sidebar-link">Oracle Database Setup</a></li><li><a href="/database-setup/edb-postgres-guide.html" class="sidebar-link">EDB Postgres database Setup</a></li><li><a href="/database-setup/postgres-guide.html" class="sidebar-link">ORACLE - POSTGRES MIGRATION</a></li><li><a href="/database-setup/mysql-guide.html" class="sidebar-link">MYSQL database Setup</a></li><li><a href="/database-setup/triggers.html" aria-current="page" class="active sidebar-link">Track Database Table Changes</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/database-setup/triggers.html#create-schema" class="sidebar-link">CREATE SCHEMA</a></li></ul></li><li><a href="/database-setup/warehouse-readme.html" class="sidebar-link">Warehouse Database 🚀️</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>DevSecOps</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Pension Domain</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="track-database-table-changes"><a href="#track-database-table-changes" class="header-anchor">#</a> Track Database Table Changes</h1> <div class="language- extra-class"><pre class="language-text"><code> Aim is to track changes to certain tables in database level not through application for purposes of accountability
+</code></pre></div><h2 id="create-schema"><a href="#create-schema" class="header-anchor">#</a> CREATE SCHEMA</h2> <p>Connect as administrator and :</p> <div class="language-sql extra-class"><pre class="language-sql"><code>    <span class="token keyword">create</span> <span class="token keyword">schema</span> logs<span class="token punctuation">;</span>
+</code></pre></div><p>Create table for tracking our logs:</p> <div class="language-sql extra-class"><pre class="language-sql"><code>    <span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> logs<span class="token punctuation">.</span>fm_log
+    <span class="token punctuation">(</span>
+        log_id      <span class="token keyword">SERIAL</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">,</span>
+        table_name  <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        record_id   <span class="token keyword">INT</span><span class="token punctuation">,</span> <span class="token comment">-- Assuming your table has an integer primary key</span>
+        user_id     <span class="token keyword">varchar</span><span class="token punctuation">,</span> <span class="token comment">-- Assuming you have a user_id in your system</span>
+        old_data    JSONB<span class="token punctuation">,</span>
+        new_data    JSONB<span class="token punctuation">,</span>
+        update_time TIMESTAMPTZ <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>Create a function to write the logs to table</p> <div class="language-sql extra-class"><pre class="language-sql"><code>    <span class="token keyword">CREATE</span> <span class="token operator">OR</span> <span class="token keyword">REPLACE</span> <span class="token keyword">FUNCTION</span> write_table_logs<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">RETURNS</span> <span class="token keyword">TRIGGER</span> <span class="token keyword">AS</span>
+    $$
+    <span class="token keyword">BEGIN</span>
+        <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> logs<span class="token punctuation">.</span>fm_log<span class="token punctuation">(</span>table_name<span class="token punctuation">,</span> record_id<span class="token punctuation">,</span> user_id<span class="token punctuation">,</span> old_data<span class="token punctuation">,</span> new_data<span class="token punctuation">)</span>
+        <span class="token keyword">VALUES</span> <span class="token punctuation">(</span>TG_TABLE_NAME<span class="token punctuation">,</span>
+                OLD<span class="token punctuation">.</span>id<span class="token punctuation">,</span> <span class="token comment">-- Assuming 'id' is your primary key</span>
+                   <span class="token comment">-- Replace 'user_id' with the actual user identifier in your system</span>
+                <span class="token keyword">CURRENT_USER</span><span class="token punctuation">,</span>
+                ROW_TO_JSON<span class="token punctuation">(</span>OLD<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                ROW_TO_JSON<span class="token punctuation">(</span>NEW<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">RETURN</span> NEW<span class="token punctuation">;</span>
+    <span class="token keyword">END</span><span class="token punctuation">;</span>
+    $$ <span class="token keyword">LANGUAGE</span> plpgsql<span class="token punctuation">;</span>
+</code></pre></div><p>Create triggers to monitor the tables in question</p> <div class="language-sql extra-class"><pre class="language-sql"><code>
+    <span class="token keyword">CREATE</span> <span class="token keyword">TRIGGER</span> members_logs_trigger
+        <span class="token keyword">AFTER</span> <span class="token keyword">INSERT</span> <span class="token operator">OR</span> <span class="token keyword">UPDATE</span> <span class="token operator">OR</span> <span class="token keyword">DELETE</span>
+        <span class="token keyword">ON</span> <span class="token keyword">public</span><span class="token punctuation">.</span>members
+        <span class="token keyword">FOR EACH ROW</span>
+    <span class="token keyword">EXECUTE</span> <span class="token keyword">FUNCTION</span> logs<span class="token punctuation">.</span>write_table_logs<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">CREATE</span> <span class="token keyword">TRIGGER</span> members_bios_logs_trigger
+        <span class="token keyword">AFTER</span> <span class="token keyword">INSERT</span> <span class="token operator">OR</span> <span class="token keyword">UPDATE</span> <span class="token operator">OR</span> <span class="token keyword">DELETE</span>
+        <span class="token keyword">ON</span> <span class="token keyword">public</span><span class="token punctuation">.</span>members_bios
+        <span class="token keyword">FOR EACH ROW</span>
+    <span class="token keyword">EXECUTE</span> <span class="token keyword">FUNCTION</span> logs<span class="token punctuation">.</span>write_table_logs<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">CREATE</span> <span class="token keyword">TRIGGER</span> contributions_trigger
+        <span class="token keyword">AFTER</span> <span class="token keyword">INSERT</span> <span class="token operator">OR</span> <span class="token keyword">UPDATE</span> <span class="token operator">OR</span> <span class="token keyword">DELETE</span>
+        <span class="token keyword">ON</span> <span class="token keyword">public</span><span class="token punctuation">.</span>contributions
+        <span class="token keyword">FOR EACH ROW</span>
+    <span class="token keyword">EXECUTE</span> <span class="token keyword">FUNCTION</span> logs<span class="token punctuation">.</span>write_table_logs<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">CREATE</span> <span class="token keyword">TRIGGER</span> closing_balances_trigger
+        <span class="token keyword">AFTER</span> <span class="token keyword">INSERT</span> <span class="token operator">OR</span> <span class="token keyword">UPDATE</span> <span class="token operator">OR</span> <span class="token keyword">DELETE</span>
+        <span class="token keyword">ON</span> <span class="token keyword">public</span><span class="token punctuation">.</span>closing_balances
+        <span class="token keyword">FOR EACH ROW</span>
+    <span class="token keyword">EXECUTE</span> <span class="token keyword">FUNCTION</span> logs<span class="token punctuation">.</span>write_table_logs<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2/2/2024, 6:36:56 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/database-setup/mysql-guide.html" class="prev">
+        MYSQL database Setup
+      </a></span> <span class="next"><a href="/database-setup/warehouse-readme.html">
+        Warehouse Database 🚀️
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6a007f06.js" defer></script><script src="/assets/js/2.51e18b29.js" defer></script><script src="/assets/js/15.5f24f774.js" defer></script>
+  </body>
+</html>
