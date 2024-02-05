@@ -6,7 +6,9 @@
 
 ## CREATE SCHEMA
 
+
 Connect as administrator and :
+
 ```sql
     create schema logs;
 ```
@@ -25,6 +27,7 @@ Create table for tracking our logs:
         update_time TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
     );
 ```
+
 Create a function to write the logs to table
 
 ```sql
@@ -44,7 +47,6 @@ Create a function to write the logs to table
     $$ LANGUAGE plpgsql;
 ```
 
-
 Create triggers to monitor the tables in question
 
 ```sql
@@ -54,19 +56,19 @@ Create triggers to monitor the tables in question
         ON public.members
         FOR EACH ROW
     EXECUTE FUNCTION logs.write_table_logs();
-    
+  
     CREATE TRIGGER members_bios_logs_trigger
         AFTER INSERT OR UPDATE OR DELETE
         ON public.members_bios
         FOR EACH ROW
     EXECUTE FUNCTION logs.write_table_logs();
-    
+  
     CREATE TRIGGER contributions_trigger
         AFTER INSERT OR UPDATE OR DELETE
         ON public.contributions
         FOR EACH ROW
     EXECUTE FUNCTION logs.write_table_logs();
-    
+  
     CREATE TRIGGER closing_balances_trigger
         AFTER INSERT OR UPDATE OR DELETE
         ON public.closing_balances
@@ -74,3 +76,22 @@ Create triggers to monitor the tables in question
     EXECUTE FUNCTION logs.write_table_logs();
 ```
 
+Create a user
+
+```sql
+    create  role username with password 'password' login 
+```
+
+Grant permissions to user
+
+```sql
+    GRANT USAGE ON SCHEMA logs TO username;
+    GRANT ALL ON ALL sequences in schema logs TO username;
+    GRANT UPDATE,SELECT, INSERT ON ALL TABLES IN SCHEMA logs TO username;
+```
+
+### Assumptions
+
+1. Only one superuser is allowed in database
+2. There is a separate application user
+3. Other users have been granted access to logs schema and its tables, else there will be no logs
