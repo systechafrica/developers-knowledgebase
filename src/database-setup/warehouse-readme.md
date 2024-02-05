@@ -55,10 +55,10 @@ The following extensions need to be installed to make queries lightweight:
    Export to members template:
 
       ```SQL
-         with series as (select *
-                      from generate_series(1, 10000000)
-                      order by random() fetch next :c rows only)
-   
+            with series as (select *
+                               from generate_series(1, 10000000) as id
+                               order by random() fetch next :c rows only)
+            
             select case gender
             when null then ''
             when 'MALE' then 'MR'
@@ -124,10 +124,9 @@ The following extensions need to be installed to make queries lightweight:
             ''                 as "DATE SUBSCRIBE",
             ''                 as "LIFESTYLE PRODUCT",
             'NO'               as "ALLOW NOTIFICATION"
-         
-            from peoplenames
-            where id in (select *
-            from series);
+            
+            from peoplenames p
+            inner join series s on p.id= s.id
       ```
 
 3. 
