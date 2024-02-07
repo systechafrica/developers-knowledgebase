@@ -11,7 +11,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     
-    <link rel="preload" href="/assets/css/0.styles.66c960d3.css" as="style"><link rel="preload" href="/assets/js/app.7b05a4cc.js" as="script"><link rel="preload" href="/assets/js/2.51e18b29.js" as="script"><link rel="preload" href="/assets/js/14.c29c957f.js" as="script"><link rel="prefetch" href="/assets/js/10.a95c35c6.js"><link rel="prefetch" href="/assets/js/11.478366af.js"><link rel="prefetch" href="/assets/js/12.748a663d.js"><link rel="prefetch" href="/assets/js/13.a2c0c882.js"><link rel="prefetch" href="/assets/js/15.a9eec15a.js"><link rel="prefetch" href="/assets/js/16.752dc87e.js"><link rel="prefetch" href="/assets/js/17.adc0307e.js"><link rel="prefetch" href="/assets/js/18.47f6f53b.js"><link rel="prefetch" href="/assets/js/19.1b31a6f2.js"><link rel="prefetch" href="/assets/js/20.e379bf4c.js"><link rel="prefetch" href="/assets/js/21.a37b1a90.js"><link rel="prefetch" href="/assets/js/22.a9510316.js"><link rel="prefetch" href="/assets/js/3.cc875e3d.js"><link rel="prefetch" href="/assets/js/4.11420379.js"><link rel="prefetch" href="/assets/js/5.d48d4777.js"><link rel="prefetch" href="/assets/js/6.982869b1.js"><link rel="prefetch" href="/assets/js/7.74d95d8c.js"><link rel="prefetch" href="/assets/js/8.1fdb41cb.js"><link rel="prefetch" href="/assets/js/9.ddabfbb1.js">
+    <link rel="preload" href="/assets/css/0.styles.66c960d3.css" as="style"><link rel="preload" href="/assets/js/app.024339eb.js" as="script"><link rel="preload" href="/assets/js/2.51e18b29.js" as="script"><link rel="preload" href="/assets/js/14.273bece4.js" as="script"><link rel="prefetch" href="/assets/js/10.a95c35c6.js"><link rel="prefetch" href="/assets/js/11.478366af.js"><link rel="prefetch" href="/assets/js/12.d268cb2d.js"><link rel="prefetch" href="/assets/js/13.e294b8b0.js"><link rel="prefetch" href="/assets/js/15.feca1ece.js"><link rel="prefetch" href="/assets/js/16.752dc87e.js"><link rel="prefetch" href="/assets/js/17.7bb946ac.js"><link rel="prefetch" href="/assets/js/18.abaccb34.js"><link rel="prefetch" href="/assets/js/19.5c1414b5.js"><link rel="prefetch" href="/assets/js/20.44f0ade3.js"><link rel="prefetch" href="/assets/js/21.19ae34c0.js"><link rel="prefetch" href="/assets/js/22.630c9d17.js"><link rel="prefetch" href="/assets/js/3.cc875e3d.js"><link rel="prefetch" href="/assets/js/4.11420379.js"><link rel="prefetch" href="/assets/js/5.d48d4777.js"><link rel="prefetch" href="/assets/js/6.982869b1.js"><link rel="prefetch" href="/assets/js/7.1d8808fd.js"><link rel="prefetch" href="/assets/js/8.1fdb41cb.js"><link rel="prefetch" href="/assets/js/9.ddabfbb1.js">
     <link rel="stylesheet" href="/assets/css/0.styles.66c960d3.css">
   </head>
   <body>
@@ -315,22 +315,169 @@ SELECT regexp_split_to_table('1,2,3,4,5', ',') AS ID;
 <span class="token keyword">from</span> information_schema<span class="token punctuation">.</span><span class="token keyword">columns</span>
 <span class="token keyword">where</span> table_name <span class="token operator">=</span> <span class="token string">'closing_balances'</span>
   <span class="token operator">and</span> data_type <span class="token operator">=</span> <span class="token string">'numeric'</span><span class="token punctuation">;</span>
-</code></pre></div><hr> <h1 id="reset-db-notifications"><a href="#reset-db-notifications" class="header-anchor">#</a> RESET DB NOTIFICATIONS</h1> <div class="language-SQL extra-class"><pre class="language-sql"><code><span class="token keyword">update</span> MEMBERS_BIOS <span class="token keyword">set</span> EMAIL<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">;</span>
-<span class="token keyword">update</span> USERS <span class="token keyword">set</span> EMAIL<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">;</span>
-<span class="token keyword">update</span> SPONSORS
-<span class="token keyword">set</span> EMAIL<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">;</span>
-<span class="token keyword">update</span> PRINCIPAL_OFFICERS
-<span class="token keyword">set</span> EMAIL <span class="token operator">=</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
-<span class="token keyword">update</span> BENEFICIARIES
-<span class="token keyword">set</span> EMAIL <span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">;</span>
-<span class="token keyword">delete</span>
-<span class="token keyword">from</span> mails<span class="token punctuation">;</span>
-<span class="token keyword">Update</span> minors
-<span class="token keyword">set</span> email <span class="token operator">=</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
-<span class="token keyword">delete</span>
-<span class="token keyword">from</span> smslist_conf<span class="token punctuation">;</span>
-<span class="token keyword">delete</span>
-<span class="token keyword">from</span> smses<span class="token punctuation">;</span>
+</code></pre></div><hr> <h1 id="reset-db-notifications"><a href="#reset-db-notifications" class="header-anchor">#</a> RESET DB NOTIFICATIONS</h1> <div class="language-SQL extra-class"><pre class="language-sql"><code>  <span class="token keyword">update</span> SCHEMES
+  <span class="token keyword">set</span> EMAIL<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      SECONDARY_EMAIL<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      FIXED_PHONE<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      SECONDARY_PHONE<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      ALLOW_NOTIFICATIONS<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">;</span>
+  
+  <span class="token comment">-- schemenames</span>
+  
+  <span class="token keyword">update</span> SPONSORS
+  <span class="token keyword">set</span> EMAIL<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      FIXED_PHONE<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      SECONDARY_PHONE<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      SECONDARY_EMAIL<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">;</span>
+  
+  <span class="token keyword">update</span> COMPANIES
+  <span class="token keyword">set</span> EMAIL<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      SECONDARY_EMAIL<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      FIXED_PHONE<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      SECONDARY_PHONE<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">;</span>
+  
+  <span class="token comment">-- member names</span>
+  
+  <span class="token keyword">update</span> MEMBERS_BIOS
+  <span class="token keyword">SET</span> CELL_PHONE<span class="token operator">=</span><span class="token boolean">NULL</span><span class="token punctuation">,</span>
+      FIXED_PHONE<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      EMAIL<span class="token operator">=</span>concat<span class="token punctuation">(</span><span class="token keyword">replace</span><span class="token punctuation">(</span>lower<span class="token punctuation">(</span>FIRSTNAME<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'@mailinator.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      SECONDARY_EMAIL<span class="token operator">=</span>concat<span class="token punctuation">(</span><span class="token keyword">replace</span><span class="token punctuation">(</span>lower<span class="token punctuation">(</span><span class="token keyword">coalesce</span><span class="token punctuation">(</span>SURNAME<span class="token punctuation">,</span> FIRSTNAME<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'@mailinator.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      PIN<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      ID_NO<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">;</span>
+  
+  
+  <span class="token keyword">update</span> NOTIFICATION_CONFIGS
+  <span class="token keyword">set</span> benefitpaymentappr<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      benefitpaymentcert<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      benefitpaymentpost<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      claimapproval<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      claimauthorization<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      claimcancellation<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      claimcertification<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      claiminitialization<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      claimmissingdocs<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      claimprocessingtoacc<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      contributionbilling<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      contributionposting<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      contributionreceipting<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      endorsementapproval<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      endorsementrejection<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      isglobal<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      memberapproval<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      memberauthorization<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      memberbioupdate<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      memberbirthday<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      membercertification<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      membercreation<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      onetimemiscellaneousmsg<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      reserveinflow<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      reserveoutflow<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      retirementcontributionsauthorization<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      retirementcontributionsprocessing<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      schemecreation<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      sponsorcontrreminder<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      sponsorcontrwithoutschedule<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      sponsoronmemberapproval<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      straighttobankpush<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      straighttobankrollback<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      contributionsponsorposting<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      deathinretirement<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      eventsdocuments<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      eventsreminder<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      eventsupdate<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      generationofcoe<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      pensionarrears<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      pensiondeduction<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      pensionrevisionapproval<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      pensionrevisioncertification<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      pensionerapproval<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      pensionerreinstatement<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      pensionersuspension<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      retirementnotification<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      sendnotificationonfirstdeclaredbalancerun<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      usesecondaryemailforclaimrelatednotification<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      docsexpiry<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      eventdeclination<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      exitoptionform<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      hremail<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      hrretirementnotification<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      member_ben_creation<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      member_ben_update<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      membersnotcontributedinawhile<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      allow_notification_to_scheme<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      ret_contr_authorization<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      ret_contrs_proc<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      declared_bal_not<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      trusteelicenseexpiry<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      secondary_email_claim_not<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      withoutnominatedbeneficiary<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      membermerger<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      members_not_cont_dea<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      transfervalueoptionform<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">;</span>
+  
+  <span class="token comment">-- minor names</span>
+  
+  <span class="token keyword">update</span> MINORS
+  <span class="token keyword">SET</span> CELL_PHONE<span class="token operator">=</span><span class="token boolean">NULL</span><span class="token punctuation">,</span>
+      FIXED_PHONE<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      EMAIL<span class="token operator">=</span>concat<span class="token punctuation">(</span><span class="token keyword">replace</span><span class="token punctuation">(</span>lower<span class="token punctuation">(</span>FIRST_NAME<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'@mailinator.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      SECONDARY_EMAIL<span class="token operator">=</span>concat<span class="token punctuation">(</span><span class="token keyword">replace</span><span class="token punctuation">(</span>lower<span class="token punctuation">(</span><span class="token keyword">coalesce</span><span class="token punctuation">(</span>SURNAME<span class="token punctuation">,</span> FIRST_NAME<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'@mailinator.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token keyword">update</span> SERVICE_PROVIDERS
+  <span class="token keyword">SET</span> CELL_PHONE<span class="token operator">=</span><span class="token boolean">NULL</span><span class="token punctuation">,</span>
+      FIXED_PHONE<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      EMAIL<span class="token operator">=</span>concat<span class="token punctuation">(</span><span class="token keyword">replace</span><span class="token punctuation">(</span>lower<span class="token punctuation">(</span>NAME<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'@mailinator.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      SECONDARY_EMAIL<span class="token operator">=</span>concat<span class="token punctuation">(</span><span class="token keyword">replace</span><span class="token punctuation">(</span>lower<span class="token punctuation">(</span><span class="token keyword">coalesce</span><span class="token punctuation">(</span>NAME<span class="token punctuation">,</span> ACCOUNTNUMBER<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'@mailinator.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token keyword">update</span> CUSTODIANS
+  <span class="token keyword">SET</span> CELL_PHONE<span class="token operator">=</span><span class="token boolean">NULL</span><span class="token punctuation">,</span>
+      FIXED_PHONE<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      EMAIL<span class="token operator">=</span>concat<span class="token punctuation">(</span><span class="token keyword">replace</span><span class="token punctuation">(</span>lower<span class="token punctuation">(</span>NAME<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'@mailinator.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      SECONDARY_EMAIL<span class="token operator">=</span>concat<span class="token punctuation">(</span>NAME<span class="token punctuation">,</span> <span class="token string">'@mailinator.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token keyword">update</span> banks
+  <span class="token keyword">SET</span> CELL_PHONE<span class="token operator">=</span><span class="token boolean">NULL</span><span class="token punctuation">,</span>
+      FIXED_PHONE<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      EMAIL<span class="token operator">=</span>concat<span class="token punctuation">(</span><span class="token keyword">replace</span><span class="token punctuation">(</span>lower<span class="token punctuation">(</span>NAME<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'@mailinator.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      SECONDARY_EMAIL<span class="token operator">=</span>concat<span class="token punctuation">(</span>NAME<span class="token punctuation">,</span> <span class="token string">'@mailinator.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token keyword">update</span> PRINCIPAL_OFFICERS
+  <span class="token keyword">SET</span> CELL_PHONE<span class="token operator">=</span><span class="token boolean">NULL</span><span class="token punctuation">,</span>
+      FIXED_PHONE<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      EMAIL<span class="token operator">=</span>concat<span class="token punctuation">(</span>lower<span class="token punctuation">(</span><span class="token keyword">replace</span><span class="token punctuation">(</span>NAME<span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'@mailinator.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      SECONDARY_EMAIL<span class="token operator">=</span>concat<span class="token punctuation">(</span>lower<span class="token punctuation">(</span><span class="token keyword">replace</span><span class="token punctuation">(</span>NAME<span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'@mailinator.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token keyword">update</span> USERS
+  <span class="token keyword">SET</span> MOBILE_NUMBER<span class="token operator">=</span><span class="token boolean">NULL</span><span class="token punctuation">,</span>
+      EMAIL<span class="token operator">=</span>concat<span class="token punctuation">(</span>lower<span class="token punctuation">(</span><span class="token keyword">replace</span><span class="token punctuation">(</span>FIRSTNAME<span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'@mailinator.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token keyword">update</span> SMTP_MAIL_SETUP
+  <span class="token keyword">set</span> ALLOWNOTIFICATIONS<span class="token operator">=</span><span class="token string">'NO'</span><span class="token punctuation">,</span>
+      SMTP_AUTH_USER<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      SENDING_EMAIL<span class="token operator">=</span><span class="token string">'bursting.reports@gmail.com'</span><span class="token punctuation">,</span>
+      SMTP_AUTH_PWD<span class="token operator">=</span><span class="token string">'some_pwd'</span><span class="token punctuation">;</span>
+  
+  <span class="token keyword">update</span> ESTATE_MANAGERS
+  <span class="token keyword">SET</span> CELL_PHONE<span class="token operator">=</span><span class="token boolean">NULL</span><span class="token punctuation">,</span>
+      FIXED_PHONE<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      EMAIL<span class="token operator">=</span>concat<span class="token punctuation">(</span>lower<span class="token punctuation">(</span><span class="token keyword">replace</span><span class="token punctuation">(</span>NAME<span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'@mailinator.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      SECONDARY_EMAIL<span class="token operator">=</span>concat<span class="token punctuation">(</span>lower<span class="token punctuation">(</span><span class="token keyword">replace</span><span class="token punctuation">(</span>NAME<span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'@mailinator.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token keyword">update</span> BENEFICIARIES
+  <span class="token keyword">SET</span> CELL_PHONE<span class="token operator">=</span><span class="token boolean">NULL</span><span class="token punctuation">,</span>
+      FIXED_PHONE<span class="token operator">=</span><span class="token boolean">null</span><span class="token punctuation">,</span>
+      EMAIL<span class="token operator">=</span>concat<span class="token punctuation">(</span>lower<span class="token punctuation">(</span><span class="token keyword">replace</span><span class="token punctuation">(</span>FIRSTNAME<span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'@mailinator.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      SECONDARY_EMAIL<span class="token operator">=</span>concat<span class="token punctuation">(</span>lower<span class="token punctuation">(</span><span class="token keyword">replace</span><span class="token punctuation">(</span>FIRSTNAME<span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'@mailinator.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  
+  <span class="token keyword">delete</span>
+  <span class="token keyword">from</span> MAILS<span class="token punctuation">;</span>
+  <span class="token keyword">delete</span>
+  <span class="token keyword">from</span> SMSES<span class="token punctuation">;</span>
+  
+  <span class="token keyword">commit</span> <span class="token punctuation">;</span>
+
 </code></pre></div><hr> <h1 id="backup"><a href="#backup" class="header-anchor">#</a> BACKUP</h1> <div class="language-bash extra-class"><pre class="language-bash"><code>Export	<span class="token builtin class-name">:</span>	pg_dump <span class="token parameter variable">-U</span> postgres <span class="token parameter variable">-d</span> testdb <span class="token parameter variable">-h</span> <span class="token number">127.0</span>.0.1 <span class="token operator">&gt;</span> dump<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d%H%M%S<span class="token variable">)</span></span>.sql
 		pg_dump <span class="token parameter variable">-U</span> postgres <span class="token parameter variable">-d</span> fundmaster <span class="token parameter variable">-h</span> <span class="token number">127.0</span>.0.1 <span class="token operator">&gt;</span> backup/fundmaster<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d%H%M%S<span class="token variable">)</span></span>.sql
 Import	<span class="token builtin class-name">:</span>	psql <span class="token parameter variable">-U</span> postgres <span class="token parameter variable">-d</span> xe <span class="token parameter variable">-a</span> <span class="token parameter variable">-f</span> myInsertFile
@@ -405,7 +552,7 @@ this names with quotes, and this can cause Syntax errors, so instead you can use
 </code></pre></div><p>3 To difference between Dto and Entity its good practice to use Entity in the end of the name of your Entity for example
 UserEntity</p> <h1 id="important-links"><a href="#important-links" class="header-anchor">#</a> IMPORTANT LINKS</h1> <p>https://www.postgresqltutorial.com/
 <a href="https://postgrescheatsheet.com/#/tables" target="_blank" rel="noopener noreferrer">https://postgrescheatsheet.com/#/tables<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <a href="https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e" target="_blank" rel="noopener noreferrer">https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>
-https://www.postgresqltutorial.com/postgresql-reset-password/</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2/6/2024, 7:30:47 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+https://www.postgresqltutorial.com/postgresql-reset-password/</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2/7/2024, 2:10:05 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
       ←
       <a href="/database-setup/edb-postgres-guide.html" class="prev">
         EDB Postgres database Setup
@@ -414,6 +561,6 @@ https://www.postgresqltutorial.com/postgresql-reset-password/</p></div> <footer 
       </a>
       →
     </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.7b05a4cc.js" defer></script><script src="/assets/js/2.51e18b29.js" defer></script><script src="/assets/js/14.c29c957f.js" defer></script>
+    <script src="/assets/js/app.024339eb.js" defer></script><script src="/assets/js/2.51e18b29.js" defer></script><script src="/assets/js/14.273bece4.js" defer></script>
   </body>
 </html>
