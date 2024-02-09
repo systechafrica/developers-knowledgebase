@@ -449,22 +449,169 @@ where table_name = 'closing_balances'
 # RESET DB NOTIFICATIONS
 
 ~~~SQL
-update MEMBERS_BIOS set EMAIL=null;
-update USERS set EMAIL=null;
-update SPONSORS
-set EMAIL=null;
-update PRINCIPAL_OFFICERS
-set EMAIL = null;
-update BENEFICIARIES
-set EMAIL =null;
-delete
-from mails;
-Update minors
-set email = null;
-delete
-from smslist_conf;
-delete
-from smses;
+  update SCHEMES
+  set EMAIL=null,
+      SECONDARY_EMAIL=null,
+      FIXED_PHONE=null,
+      SECONDARY_PHONE=null,
+      ALLOW_NOTIFICATIONS='NO';
+  
+  -- schemenames
+  
+  update SPONSORS
+  set EMAIL=null,
+      FIXED_PHONE=null,
+      SECONDARY_PHONE=null,
+      SECONDARY_EMAIL=null;
+  
+  update COMPANIES
+  set EMAIL=null,
+      SECONDARY_EMAIL=null,
+      FIXED_PHONE=null,
+      SECONDARY_PHONE=null;
+  
+  -- member names
+  
+  update MEMBERS_BIOS
+  SET CELL_PHONE=NULL,
+      FIXED_PHONE=null,
+      EMAIL=concat(replace(lower(FIRSTNAME), ' ', ''), '@mailinator.com'),
+      SECONDARY_EMAIL=concat(replace(lower(coalesce(SURNAME, FIRSTNAME)), ' ', ''), '@mailinator.com'),
+      PIN=null,
+      ID_NO=null;
+  
+  
+  update NOTIFICATION_CONFIGS
+  set benefitpaymentappr='NO',
+      benefitpaymentcert='NO',
+      benefitpaymentpost='NO',
+      claimapproval='NO',
+      claimauthorization='NO',
+      claimcancellation='NO',
+      claimcertification='NO',
+      claiminitialization='NO',
+      claimmissingdocs='NO',
+      claimprocessingtoacc='NO',
+      contributionbilling='NO',
+      contributionposting='NO',
+      contributionreceipting='NO',
+      endorsementapproval='NO',
+      endorsementrejection='NO',
+      isglobal='NO',
+      memberapproval='NO',
+      memberauthorization='NO',
+      memberbioupdate='NO',
+      memberbirthday='NO',
+      membercertification='NO',
+      membercreation='NO',
+      onetimemiscellaneousmsg='NO',
+      reserveinflow='NO',
+      reserveoutflow='NO',
+      retirementcontributionsauthorization='NO',
+      retirementcontributionsprocessing='NO',
+      schemecreation='NO',
+      sponsorcontrreminder='NO',
+      sponsorcontrwithoutschedule='NO',
+      sponsoronmemberapproval='NO',
+      straighttobankpush='NO',
+      straighttobankrollback='NO',
+      contributionsponsorposting='NO',
+      deathinretirement='NO',
+      eventsdocuments='NO',
+      eventsreminder='NO',
+      eventsupdate='NO',
+      generationofcoe='NO',
+      pensionarrears='NO',
+      pensiondeduction='NO',
+      pensionrevisionapproval='NO',
+      pensionrevisioncertification='NO',
+      pensionerapproval='NO',
+      pensionerreinstatement='NO',
+      pensionersuspension='NO',
+      retirementnotification='NO',
+      sendnotificationonfirstdeclaredbalancerun='NO',
+      usesecondaryemailforclaimrelatednotification='NO',
+      docsexpiry='NO',
+      eventdeclination='NO',
+      exitoptionform='NO',
+      hremail='NO',
+      hrretirementnotification='NO',
+      member_ben_creation='NO',
+      member_ben_update='NO',
+      membersnotcontributedinawhile='NO',
+      allow_notification_to_scheme='NO',
+      ret_contr_authorization='NO',
+      ret_contrs_proc='NO',
+      declared_bal_not='NO',
+      trusteelicenseexpiry='NO',
+      secondary_email_claim_not='NO',
+      withoutnominatedbeneficiary='NO',
+      membermerger='NO',
+      members_not_cont_dea='NO',
+      transfervalueoptionform='NO';
+  
+  -- minor names
+  
+  update MINORS
+  SET CELL_PHONE=NULL,
+      FIXED_PHONE=null,
+      EMAIL=concat(replace(lower(FIRST_NAME), ' ', ''), '@mailinator.com'),
+      SECONDARY_EMAIL=concat(replace(lower(coalesce(SURNAME, FIRST_NAME)), ' ', ''), '@mailinator.com');
+  
+  update SERVICE_PROVIDERS
+  SET CELL_PHONE=NULL,
+      FIXED_PHONE=null,
+      EMAIL=concat(replace(lower(NAME), ' ', ''), '@mailinator.com'),
+      SECONDARY_EMAIL=concat(replace(lower(coalesce(NAME, ACCOUNTNUMBER)), ' ', ''), '@mailinator.com');
+  
+  update CUSTODIANS
+  SET CELL_PHONE=NULL,
+      FIXED_PHONE=null,
+      EMAIL=concat(replace(lower(NAME), ' ', ''), '@mailinator.com'),
+      SECONDARY_EMAIL=concat(NAME, '@mailinator.com');
+  
+  update banks
+  SET CELL_PHONE=NULL,
+      FIXED_PHONE=null,
+      EMAIL=concat(replace(lower(NAME), ' ', ''), '@mailinator.com'),
+      SECONDARY_EMAIL=concat(NAME, '@mailinator.com');
+  
+  update PRINCIPAL_OFFICERS
+  SET CELL_PHONE=NULL,
+      FIXED_PHONE=null,
+      EMAIL=concat(lower(replace(NAME, ' ', '')), '@mailinator.com'),
+      SECONDARY_EMAIL=concat(lower(replace(NAME, ' ', '')), '@mailinator.com');
+  
+  update USERS
+  SET MOBILE_NUMBER=NULL,
+      EMAIL=concat(lower(replace(FIRSTNAME, ' ', '')), '@mailinator.com');
+  
+  update SMTP_MAIL_SETUP
+  set ALLOWNOTIFICATIONS='NO',
+      SMTP_AUTH_USER=null,
+      SENDING_EMAIL='bursting.reports@gmail.com',
+      SMTP_AUTH_PWD='some_pwd';
+  
+  update ESTATE_MANAGERS
+  SET CELL_PHONE=NULL,
+      FIXED_PHONE=null,
+      EMAIL=concat(lower(replace(NAME, ' ', '')), '@mailinator.com'),
+      SECONDARY_EMAIL=concat(lower(replace(NAME, ' ', '')), '@mailinator.com');
+  
+  update BENEFICIARIES
+  SET CELL_PHONE=NULL,
+      FIXED_PHONE=null,
+      EMAIL=concat(lower(replace(FIRSTNAME, ' ', '')), '@mailinator.com'),
+      SECONDARY_EMAIL=concat(lower(replace(FIRSTNAME, ' ', '')), '@mailinator.com');
+  
+  
+  delete
+  from MAILS;
+  delete
+  from SMSES;
+  
+  commit ;
+
 ~~~
 
 <hr/>
