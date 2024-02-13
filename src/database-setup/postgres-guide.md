@@ -1,4 +1,3 @@
-
 # ORACLE - POSTGRES MIGRATION
 
 ## Target
@@ -433,8 +432,6 @@ where table_name = 'closing_balances'
   and data_type = 'numeric';
 ````
 
-
-
 ## Reset Database Notifications
 
 ~~~SQL
@@ -444,162 +441,162 @@ where table_name = 'closing_balances'
       FIXED_PHONE=null,
       SECONDARY_PHONE=null,
       ALLOW_NOTIFICATIONS='NO';
-  
-  -- schemenames
-  
-  update SPONSORS
-  set EMAIL=null,
-      FIXED_PHONE=null,
-      SECONDARY_PHONE=null,
-      SECONDARY_EMAIL=null;
-  
-  update COMPANIES
-  set EMAIL=null,
-      SECONDARY_EMAIL=null,
-      FIXED_PHONE=null,
-      SECONDARY_PHONE=null;
-  
-  -- member names
-  
-  update MEMBERS_BIOS
-  SET CELL_PHONE=NULL,
-      FIXED_PHONE=null,
-      EMAIL=concat(replace(lower(FIRSTNAME), ' ', ''), '@mailinator.com'),
-      SECONDARY_EMAIL=concat(replace(lower(coalesce(SURNAME, FIRSTNAME)), ' ', ''), '@mailinator.com'),
-      PIN=null,
-      ID_NO=null;
-  
-  
-  update NOTIFICATION_CONFIGS
-  set benefitpaymentappr='NO',
-      benefitpaymentcert='NO',
-      benefitpaymentpost='NO',
-      claimapproval='NO',
-      claimauthorization='NO',
-      claimcancellation='NO',
-      claimcertification='NO',
-      claiminitialization='NO',
-      claimmissingdocs='NO',
-      claimprocessingtoacc='NO',
-      contributionbilling='NO',
-      contributionposting='NO',
-      contributionreceipting='NO',
-      endorsementapproval='NO',
-      endorsementrejection='NO',
-      isglobal='NO',
-      memberapproval='NO',
-      memberauthorization='NO',
-      memberbioupdate='NO',
-      memberbirthday='NO',
-      membercertification='NO',
-      membercreation='NO',
-      onetimemiscellaneousmsg='NO',
-      reserveinflow='NO',
-      reserveoutflow='NO',
-      retirementcontributionsauthorization='NO',
-      retirementcontributionsprocessing='NO',
-      schemecreation='NO',
-      sponsorcontrreminder='NO',
-      sponsorcontrwithoutschedule='NO',
-      sponsoronmemberapproval='NO',
-      straighttobankpush='NO',
-      straighttobankrollback='NO',
-      contributionsponsorposting='NO',
-      deathinretirement='NO',
-      eventsdocuments='NO',
-      eventsreminder='NO',
-      eventsupdate='NO',
-      generationofcoe='NO',
-      pensionarrears='NO',
-      pensiondeduction='NO',
-      pensionrevisionapproval='NO',
-      pensionrevisioncertification='NO',
-      pensionerapproval='NO',
-      pensionerreinstatement='NO',
-      pensionersuspension='NO',
-      retirementnotification='NO',
-      sendnotificationonfirstdeclaredbalancerun='NO',
-      usesecondaryemailforclaimrelatednotification='NO',
-      docsexpiry='NO',
-      eventdeclination='NO',
-      exitoptionform='NO',
-      hremail='NO',
-      hrretirementnotification='NO',
-      member_ben_creation='NO',
-      member_ben_update='NO',
-      membersnotcontributedinawhile='NO',
-      allow_notification_to_scheme='NO',
-      ret_contr_authorization='NO',
-      ret_contrs_proc='NO',
-      declared_bal_not='NO',
-      trusteelicenseexpiry='NO',
-      secondary_email_claim_not='NO',
-      withoutnominatedbeneficiary='NO',
-      membermerger='NO',
-      members_not_cont_dea='NO',
-      transfervalueoptionform='NO';
-  
-  -- minor names
-  
-  update MINORS
-  SET CELL_PHONE=NULL,
-      FIXED_PHONE=null,
-      EMAIL=concat(replace(lower(FIRST_NAME), ' ', ''), '@mailinator.com'),
-      SECONDARY_EMAIL=concat(replace(lower(coalesce(SURNAME, FIRST_NAME)), ' ', ''), '@mailinator.com');
-  
-  update SERVICE_PROVIDERS
-  SET CELL_PHONE=NULL,
-      FIXED_PHONE=null,
-      EMAIL=concat(replace(lower(NAME), ' ', ''), '@mailinator.com'),
-      SECONDARY_EMAIL=concat(replace(lower(coalesce(NAME, ACCOUNTNUMBER)), ' ', ''), '@mailinator.com');
-  
-  update CUSTODIANS
-  SET CELL_PHONE=NULL,
-      FIXED_PHONE=null,
-      EMAIL=concat(replace(lower(NAME), ' ', ''), '@mailinator.com'),
-      SECONDARY_EMAIL=concat(NAME, '@mailinator.com');
-  
-  update banks
-  SET CELL_PHONE=NULL,
-      FIXED_PHONE=null,
-      EMAIL=concat(replace(lower(NAME), ' ', ''), '@mailinator.com'),
-      SECONDARY_EMAIL=concat(NAME, '@mailinator.com');
-  
-  update PRINCIPAL_OFFICERS
-  SET CELL_PHONE=NULL,
-      FIXED_PHONE=null,
-      EMAIL=concat(lower(replace(NAME, ' ', '')), '@mailinator.com'),
-      SECONDARY_EMAIL=concat(lower(replace(NAME, ' ', '')), '@mailinator.com');
-  
-  update USERS
-  SET MOBILE_NUMBER=NULL,
-      EMAIL=concat(lower(replace(FIRSTNAME, ' ', '')), '@mailinator.com');
-  
-  update SMTP_MAIL_SETUP
-  set ALLOWNOTIFICATIONS='NO',
-      SMTP_AUTH_USER=null,
-      SENDING_EMAIL='bursting.reports@gmail.com',
-      SMTP_AUTH_PWD='some_pwd';
-  
-  update ESTATE_MANAGERS
-  SET CELL_PHONE=NULL,
-      FIXED_PHONE=null,
-      EMAIL=concat(lower(replace(NAME, ' ', '')), '@mailinator.com'),
-      SECONDARY_EMAIL=concat(lower(replace(NAME, ' ', '')), '@mailinator.com');
-  
-  update BENEFICIARIES
-  SET CELL_PHONE=NULL,
-      FIXED_PHONE=null,
-      EMAIL=concat(lower(replace(FIRSTNAME, ' ', '')), '@mailinator.com'),
-      SECONDARY_EMAIL=concat(lower(replace(FIRSTNAME, ' ', '')), '@mailinator.com');
-  
-  
-  delete
-  from MAILS;
-  delete
-  from SMSES;
-  
-  commit ;
+
+-- schemenames
+
+update SPONSORS
+set EMAIL=null,
+    FIXED_PHONE=null,
+    SECONDARY_PHONE=null,
+    SECONDARY_EMAIL=null;
+
+update COMPANIES
+set EMAIL=null,
+    SECONDARY_EMAIL=null,
+    FIXED_PHONE=null,
+    SECONDARY_PHONE=null;
+
+-- member names
+
+update MEMBERS_BIOS
+SET CELL_PHONE=NULL,
+    FIXED_PHONE=null,
+    EMAIL=concat(replace(lower(FIRSTNAME), ' ', ''), '@mailinator.com'),
+    SECONDARY_EMAIL=concat(replace(lower(coalesce(SURNAME, FIRSTNAME)), ' ', ''), '@mailinator.com'),
+    PIN=null,
+    ID_NO=null;
+
+
+update NOTIFICATION_CONFIGS
+set benefitpaymentappr='NO',
+    benefitpaymentcert='NO',
+    benefitpaymentpost='NO',
+    claimapproval='NO',
+    claimauthorization='NO',
+    claimcancellation='NO',
+    claimcertification='NO',
+    claiminitialization='NO',
+    claimmissingdocs='NO',
+    claimprocessingtoacc='NO',
+    contributionbilling='NO',
+    contributionposting='NO',
+    contributionreceipting='NO',
+    endorsementapproval='NO',
+    endorsementrejection='NO',
+    isglobal='NO',
+    memberapproval='NO',
+    memberauthorization='NO',
+    memberbioupdate='NO',
+    memberbirthday='NO',
+    membercertification='NO',
+    membercreation='NO',
+    onetimemiscellaneousmsg='NO',
+    reserveinflow='NO',
+    reserveoutflow='NO',
+    retirementcontributionsauthorization='NO',
+    retirementcontributionsprocessing='NO',
+    schemecreation='NO',
+    sponsorcontrreminder='NO',
+    sponsorcontrwithoutschedule='NO',
+    sponsoronmemberapproval='NO',
+    straighttobankpush='NO',
+    straighttobankrollback='NO',
+    contributionsponsorposting='NO',
+    deathinretirement='NO',
+    eventsdocuments='NO',
+    eventsreminder='NO',
+    eventsupdate='NO',
+    generationofcoe='NO',
+    pensionarrears='NO',
+    pensiondeduction='NO',
+    pensionrevisionapproval='NO',
+    pensionrevisioncertification='NO',
+    pensionerapproval='NO',
+    pensionerreinstatement='NO',
+    pensionersuspension='NO',
+    retirementnotification='NO',
+    sendnotificationonfirstdeclaredbalancerun='NO',
+    usesecondaryemailforclaimrelatednotification='NO',
+    docsexpiry='NO',
+    eventdeclination='NO',
+    exitoptionform='NO',
+    hremail='NO',
+    hrretirementnotification='NO',
+    member_ben_creation='NO',
+    member_ben_update='NO',
+    membersnotcontributedinawhile='NO',
+    allow_notification_to_scheme='NO',
+    ret_contr_authorization='NO',
+    ret_contrs_proc='NO',
+    declared_bal_not='NO',
+    trusteelicenseexpiry='NO',
+    secondary_email_claim_not='NO',
+    withoutnominatedbeneficiary='NO',
+    membermerger='NO',
+    members_not_cont_dea='NO',
+    transfervalueoptionform='NO';
+
+-- minor names
+
+update MINORS
+SET CELL_PHONE=NULL,
+    FIXED_PHONE=null,
+    EMAIL=concat(replace(lower(FIRST_NAME), ' ', ''), '@mailinator.com'),
+    SECONDARY_EMAIL=concat(replace(lower(coalesce(SURNAME, FIRST_NAME)), ' ', ''), '@mailinator.com');
+
+update SERVICE_PROVIDERS
+SET CELL_PHONE=NULL,
+    FIXED_PHONE=null,
+    EMAIL=concat(replace(lower(NAME), ' ', ''), '@mailinator.com'),
+    SECONDARY_EMAIL=concat(replace(lower(coalesce(NAME, ACCOUNTNUMBER)), ' ', ''), '@mailinator.com');
+
+update CUSTODIANS
+SET CELL_PHONE=NULL,
+    FIXED_PHONE=null,
+    EMAIL=concat(replace(lower(NAME), ' ', ''), '@mailinator.com'),
+    SECONDARY_EMAIL=concat(NAME, '@mailinator.com');
+
+update banks
+SET CELL_PHONE=NULL,
+    FIXED_PHONE=null,
+    EMAIL=concat(replace(lower(NAME), ' ', ''), '@mailinator.com'),
+    SECONDARY_EMAIL=concat(NAME, '@mailinator.com');
+
+update PRINCIPAL_OFFICERS
+SET CELL_PHONE=NULL,
+    FIXED_PHONE=null,
+    EMAIL=concat(lower(replace(NAME, ' ', '')), '@mailinator.com'),
+    SECONDARY_EMAIL=concat(lower(replace(NAME, ' ', '')), '@mailinator.com');
+
+update USERS
+SET MOBILE_NUMBER=NULL,
+    EMAIL=concat(lower(replace(FIRSTNAME, ' ', '')), '@mailinator.com');
+
+update SMTP_MAIL_SETUP
+set ALLOWNOTIFICATIONS='NO',
+    SMTP_AUTH_USER=null,
+    SENDING_EMAIL='bursting.reports@gmail.com',
+    SMTP_AUTH_PWD='some_pwd';
+
+update ESTATE_MANAGERS
+SET CELL_PHONE=NULL,
+    FIXED_PHONE=null,
+    EMAIL=concat(lower(replace(NAME, ' ', '')), '@mailinator.com'),
+    SECONDARY_EMAIL=concat(lower(replace(NAME, ' ', '')), '@mailinator.com');
+
+update BENEFICIARIES
+SET CELL_PHONE=NULL,
+    FIXED_PHONE=null,
+    EMAIL=concat(lower(replace(FIRSTNAME, ' ', '')), '@mailinator.com'),
+    SECONDARY_EMAIL=concat(lower(replace(FIRSTNAME, ' ', '')), '@mailinator.com');
+
+
+delete
+from MAILS;
+delete
+from SMSES;
+
+commit;
 
 ~~~
 
@@ -657,16 +654,19 @@ psql -h 3.7.212.215 -p 5432 -d fundmaster -U postgres -W
 ## Creating A Cluster
 
 Switch to user postgres
+
 ```bash
  sudo su - postgres
 ```
 
 Create a data directory to store cluster db files
+
 ```bash 
 mkdir <YOUR_FOLDER_NAME>
 ```
 
 Initialize the database cluster
+
 ```bash 
 initdb -D <YOUR_FOLDER_NAME>
 ```
@@ -694,6 +694,7 @@ pg_ctl -D <YOUR_FOLDER_NAME> -l logfile start
 ```
 
 Stop the cluster
+
 ```bash 
 pg_ctl -D <YOUR_FOLDER_NAME> -m immediate stop
 ```
@@ -775,29 +776,224 @@ select application_name, state, sent_lsn, write_lsn, sync_state
 from pg_stat_replication;
 ````
 
+## Master-to-Master Replication v16
+To achieve Multi-master asynchronous replication using Bucardo
+
+> [Bucardo](https://bucardo.org/Bucardo/): is an asynchronous PostgreSQL replication system, allowing for multi-source,
+> multi-target operations. It was developed at Backcountry by Jon Jensen and Greg Sabino Mullane of End Point Corporation,
+> and is now in use at many other organizations. Bucardo is free and open source software released under the BSD license.
+
+### References:
+1. [PostgreSQL Replication](https://medium.com/@logeshmohan/postgresql-replication-using-bucardo-5-4-1-6e78541ceb5e)
+2. [Bucardo Installation](https://bucardo.org/Bucardo/installation/)
+
+### Requirements
+This tutorial was implemented in Fedora 39
+1. Two or more database cluster
+2. Bucardo
+
+### Setup Database
+This assumes Postgres was compiled with Perl support. Install Perl
+```bash 
+sudo yum install perl-devel
+```
+Create Extension in template1 postgres database
+```sql 
+CREATE EXTENSION plperl;
+CREATE LANGUAGE plperlu;
+```
+Create bucardo user
+```sql
+create role bucardo superuser password 'PASSWORD';
+```
+Create bucardo database using **bucardo** user
+```sql
+create database bucardo;
+```
+Create <span style="color:orangered"><i>~/.pgpass</i></span> file
+```bash
+touch .pgpass
+```
+
+Edit the file with following contents:
+> 127.0.0.1:5432:bucardo:bucardo:<BUCARDO_USER_PASSWORD> <br/>
+> 127.0.0.1:5432:*:postgres:<POSTGRES_USER_PASSWORD>
+
+### Other Installations (Fedora 39)
+```bash 
+yum install perl-Pod-Html
+yum install perl-Test-Simple
+sudo yum -y install perl-DBI
+sudo yum install perl-DBD-Pg
+dnf install postgresql16-plperl
+sudo dnf install perl-sigtrap
+sudo dnf install perl-Sys-Hostname
+sudo dnf install perl-Log-Report-Dispatcher-Syslog
+```
+### Install Bucardo
+> Refer to references section for installation link and documentation. Steps:
+
+Download latest version of Bucardo [here](latest version of Bucardo), untar it and switch to the directory:
+```bash 
+tar xzf Bucardo-5.6.0.tar.gz
+cd Bucardo-5.6.0
+perl Makefile.PL
+make
+sudo make install
+```
+Create this directories
+```bash 
+sudo mkdir /var/run/bucardo/
+sudo mkdir /var/log/bucardo/
+```
+
+Install bucardo
+```bash 
+bucardo install
+```
+You will have an opportunity to change the default parameters:
+```html 
+Current connection settings:
+
+1. Host:          <none>
+2. Port:          5432
+3. User:          postgres
+4. Database:      postgres
+5. PID directory: /var/run/bucardo 
+```
+
+### Testing
+> We need a database in both masters with some similar tables:
+
+Setting Master 1 (SourceDb)
+```sql 
+psql -U postgres -W
+create database clustered;
+\c clustered
+create table one(id bigint primary key ,num bigint);
+```
+> Repeat for Master 2 (DestDb)
+
+
+Setting Bucardo
+
+> Add the databases
+>  Bucardo needs to know about each database it needs to talk to
+
+```bash 
+bucardo add db sourcedb dbhost=127.0.0.1 dbport=5432 dbname=clustered user=postgres dbpass=postgres
+
+bucardo add db destdb dbhost=127.0.0.1 dbport=5433 dbname=clustered user=postgres dbpass=postgres
+```
+
+```bash 
+bucardo list dbs
+```
+```bash 
+bucardo list dbgroups
+```
+
+> Add the tables
+> Bucardo also needs to know about any tables that it may be called on to replicate. (Adding tables by the add table command does not actually start replicating them.)
+
+```bash 
+bucardo add all tables --herd=source_dest db=sourcedb
+bucardo add all tables --herd=dest_source db=destdb
+```
+
+```bash 
+bucardo list tables
+```
+
+> Add the sequences (If exists)
+> 1. Sequences should not be similar to avoid conflict
+> 2. [Best Practices](https://bucardo.org/Bucardo/operations/sequences)
+
+```bash 
+bucardo add all sequences --herd=source_dest
+bucardo add all sequences --herd=dest_source
+```
+
+```bash 
+bucardo list herds
+bucardo list relgroups
+```
+Set logging levels
+```bash
+bucardo set quick_delta_check=0
+bucardo set log_level=VERBOSE
+```
+
+> Add the syncs
+> A sync is a named replication event. Each sync has a source relgroup.
+
+```bash
+bucardo add sync sync_source_dest relgroup=source_dest db=sourcedb,destdb
+bucardo add sync sync_dest_source relgroup=dest_source db=destdb,sourcedb
+```
+
+```bash 
+bucardo list syncs
+```
+
+### Start Bucardo
+> The final step is to start the Bucardo service:
+
+```bash 
+bucardo start
+```
+Verify that the Bucardo daemons are running
+```bash 
+ ps -Afw | grep Bucardo
+```
+### Test Replication
+> Insert some records in SourceDb table(s)
+```sql
+    with data as (
+        select * from generate_series(1,2000000) as id
+    )
+    insert into one(num)
+    select id
+    from data;
+```
+> Repeat for DestDb table(s)
+
+### Checking Status
+
+```bash 
+ bucardo status
+```
+
+### Stopping Replication
+
+```bash 
+ bucardo stop
+```
+
 
 ## Good practices
 
     [https://stackoverflow.com/questions/45782327/org-postgresql-util-psqlexception-error-column-user0-id-does-not-exist-hibe](https://stackoverflow.com/questions/45782327/org-postgresql-util-psqlexception-error-column-user0-id-does-not-exist-hibe)
 
-1.  Don't use Upper letters in the name of database, schema, tables or columns in PostgreSQL. Else you should to escape
-this names with quotes, and this can cause Syntax errors, so instead you can use :
+1. Don't use Upper letters in the name of database, schema, tables or columns in PostgreSQL. Else you should to escape
+   this names with quotes, and this can cause Syntax errors, so instead you can use :
 
-        @Table(name="table_name", schema = "schame_name")
-        ^^^^^^^^^^             ^^^^^^^^^^^
+       @Table(name="table_name", schema = "schame_name")
+       ^^^^^^^^^^             ^^^^^^^^^^^
 
 2. The keyword USER is reserved keyword in PostgreSQL take a look at
 
-    **+----------+-----------+----------+-----------+---------+
-    | Key Word |PostgreSQL |SQL:2003  | SQL:1999  | SQL-92  |
-    +----------+-----------+----------+-----------+---------+
-    |  ....        ....       ....       ....       ....    |
-    +----------+-----------+----------+-----------+---------+
-    | USER     |  reserved |reserved  | reserved  | reserved|**
-    +----------+-----------+----------+-----------+---------+
+   **+----------+-----------+----------+-----------+---------+
+   | Key Word |PostgreSQL |SQL:2003 | SQL:1999 | SQL-92 |
+   +----------+-----------+----------+-----------+---------+
+   | .... .... .... .... .... |
+   +----------+-----------+----------+-----------+---------+
+   | USER | reserved |reserved | reserved | reserved|**
+   +----------+-----------+----------+-----------+---------+
 
-3. The difference between Dto and Entity, its good practice to use Entity in the end of the name of your Entity for example
-UserEntity
+3. The difference between Dto and Entity, its good practice to use Entity in the end of the name of your Entity for
+   example
+   UserEntity
 
 ## Important Links
 
