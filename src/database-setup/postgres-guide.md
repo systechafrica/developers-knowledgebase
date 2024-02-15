@@ -804,7 +804,7 @@ CREATE LANGUAGE plperlu;
 ```
 Create bucardo user
 ```sql
-create role bucardo superuser password 'PASSWORD';
+create role bucardo superuser login password 'PASSWORD';
 ```
 Create bucardo database using **bucardo** user
 ```sql
@@ -819,21 +819,51 @@ Edit the file with following contents:
 > 127.0.0.1:5432:bucardo:bucardo:<BUCARDO_USER_PASSWORD> <br/>
 > 127.0.0.1:5432:*:postgres:<POSTGRES_USER_PASSWORD>
 
+Edit <span style="color:orangered"><i>pg_hba.conf</i></span> file, add lines
+
+```txt
+local	bucardo		bucardo					    trust
+host	bucardo		bucardo		0.0.0.0/0		trust
+```
+Restart postgres service
+```bash 
+systemctl restart postgresql-16.service
+```
+
+Change file permission
+```bash
+sudo chmod 0600 .pgpass 
+```
+
 ### Other Installations (Fedora 39)
 ```bash 
-yum install perl-Pod-Html
-yum install perl-Test-Simple
+sudo yum install perl-Pod-Html
+sudo yum install perl-Test-Simple
 sudo yum -y install perl-DBI
 sudo yum install perl-DBD-Pg
-dnf install postgresql16-plperl
+sudo dnf install postgresql16-plperl
 sudo dnf install perl-sigtrap
 sudo dnf install perl-Sys-Hostname
 sudo dnf install perl-Log-Report-Dispatcher-Syslog
+sudo dnf install perl-open.noarch
 ```
 ### Install Bucardo
+
+First we need to install DBIx::Safe. Download it [here](https://bucardo.org/DBIx-Safe/)
+> DBIx::Safe is a Perl module that allows for safe and controlled access to a DBI database handle. It is similar in spirit to the standard Perl module “Safe”. It is used by Bucardo to ensure that custom code does not interfere with the normal running of Bucardo.
+
+```bash 
+tar xzf DBIx-Safe-1.2.5.tar.gz
+cd DBIx-Safe-1.2.5
+perl Makefile.PL
+make
+sudo make install
+```
+
+Proceed to bucardo installation
 > Refer to references section for installation link and documentation. Steps:
 
-Download latest version of Bucardo [here](latest version of Bucardo), untar it and switch to the directory:
+Download latest version of Bucardo [here](https://bucardo.org/Bucardo/#obtaining-bucardo), untar it and switch to the directory:
 ```bash 
 tar xzf Bucardo-5.6.0.tar.gz
 cd Bucardo-5.6.0
