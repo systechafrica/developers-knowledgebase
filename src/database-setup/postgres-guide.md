@@ -1057,7 +1057,7 @@ alter sequence hibernate_sequence start 1 increment 2 no maxvalue ;
 -- master 2 database
 alter sequence hibernate_sequence start 2 increment 2 no maxvalue ;
 ```
-> Having more than 1 masters complicates the problem further 🤔
+> Having more than 2 masters complicates the problem further 🤔
 
 -------------End Sample----------------------
 <hr/>
