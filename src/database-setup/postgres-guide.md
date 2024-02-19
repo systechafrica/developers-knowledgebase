@@ -1000,6 +1000,54 @@ Verify that the Bucardo daemons are running
  bucardo stop
 ```
 
+### Sample using Fundmaster Database
+
+-------------Start Sample----------------------
+> Assumes you have already loaded your existing database to both masters
+
+```bash
+bucardo add db pac_sourcedb dbhost=127.0.0.1 dbport=5432 dbname=pacific user=bucardo dbpass=bucardo
+bucardo add db pac_destdb dbhost=127.0.0.1 dbport=5433 dbname=pacific user=bucardo dbpass=bucardo
+bucardo add all tables --herd=pac_source_dest db=pac_sourcedb
+bucardo add all tables --herd=pac_dest_source db=pac_destdb
+```
+
+> Remove tables without Primary Key
+
+```sql
+with mytables as (
+SELECT table_schema || '.' || table_name as tbName
+FROM information_schema.tables
+WHERE
+(table_catalog, table_schema, table_name) NOT IN (
+SELECT table_catalog, table_schema, table_name
+FROM information_schema.table_constraints
+WHERE constraint_type = 'PRIMARY KEY') AND
+table_schema NOT IN ('information_schema', 'pg_catalog', 'pgq', 'londiste')
+)
+select 'bucardo remove table '|| m.tbName|| ' db=pac_sourcedb' from mytables m
+union all 
+select ' bucardo remove table '|| m.tbName|| ' db=pac_destdb' from mytables m;
+```
+> Run the generated scripts above in bash
+
+```bash
+bucardo remove table public.fmxi_lv db=pac_sourcedb
+bucardo remove table public.fmxi_lv db=pac_destdb
+
+bucardo validate all
+bucardo reload
+
+bucardo list herds
+
+bucardo add sync pac_source_dest_sync relgroup=pac_source_dest db=pac_sourcedb,pac_destdb
+
+bucardo add sync pac_dest_source_sync relgroup=pac_dest_source db=pac_destdb,pac_sourcedb
+```
+
+-------------End Sample----------------------
+<hr/>
+
 
 ## Good practices
 
