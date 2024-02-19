@@ -1045,6 +1045,20 @@ bucardo add sync pac_source_dest_sync relgroup=pac_source_dest db=pac_sourcedb,p
 bucardo add sync pac_dest_source_sync relgroup=pac_dest_source db=pac_destdb,pac_sourcedb
 ```
 
+### Dealing with Sequences
+
+Replicating sequences can be difficult, to avoid that:
+> Update sequences to start at a value less 1 the other and increment by 2 
+
+```sql
+-- master 1 database
+alter sequence hibernate_sequence start 1 increment 2 no maxvalue ;
+
+-- master 2 database
+alter sequence hibernate_sequence start 2 increment 2 no maxvalue ;
+```
+> Having more than 1 masters complicates the problem further 🤔
+
 -------------End Sample----------------------
 <hr/>
 
