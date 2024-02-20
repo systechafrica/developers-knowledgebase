@@ -1211,6 +1211,77 @@ defaults
 	    option      tcp-check
 	    server  slave-db  127.0.0.1:5434 check
 ```
+Another sample configuration
+```text
+global
+    log         127.0.0.1 local2
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+    maxconn     4000
+    user        haproxy
+    group       haproxy
+    daemon
+    stats socket /var/lib/haproxy/stats mode 660 level admin
+    stats timeout 30s
+    # utilize system-wide crypto-policies
+    ssl-default-bind-ciphers PROFILE=SYSTEM
+    ssl-default-server-ciphers PROFILE=SYSTEM
+
+defaults
+    mode		    tcp
+    log                     global
+    option                  tcplog
+    option 	            tcpka
+    option                  dontlognull
+    option	            http-server-close
+    option                  redispatch
+    retries                 3
+    timeout http-request    10s
+    timeout queue           1m
+    timeout connect         10s
+    timeout client          1m
+    timeout server          1m
+    timeout http-keep-alive 10s
+    timeout check           10s
+    maxconn                 3000
+
+#---------------------------------------------------------------------
+# main frontend which proxys to the backends
+#---------------------------------------------------------------------
+
+# Frontend for read-only operations
+frontend readonly_frontend
+    bind *:5001
+    mode tcp
+    tcp-request content accept if WAIT_END
+    tcp-request inspect-delay 1s
+    tcp-request content accept if WAIT_END
+    acl is_read_only dst_port 5434
+    use_backend readonly_backend if is_read_only
+    default_backend write_backend
+
+# Frontend for write operations
+frontend write_frontend
+    bind *:5000
+    mode tcp
+    tcp-request content accept if WAIT_END
+    tcp-request inspect-delay 1s
+    tcp-request content accept if WAIT_END
+    use_backend write_backend
+
+# Backend for read-only operations
+backend readonly_backend
+    mode tcp
+    balance roundrobin
+    server pg_readonly_node1 127.0.0.1:5434 check
+
+# Backend for write operations
+backend write_backend
+    mode tcp
+    balance leastconn
+    server pg_write_node1 127.0.0.1:5432 check
+    server pg_write_node2 127.0.0.1:5433 check
+```
 
 ### Finish configuration
 
@@ -1237,11 +1308,61 @@ psql -h 127.0.0.1 -p 5000 -U postgres -d postgres -c "select inet_server_addr(),
 <hr/>
 
 ### 2. PgPool-II
+> Using PgPool-II to do load balancing
+
+<hr/>
 
 ## Connection Pooling
+
 > Connection Pooling
 
 ### PgBouncer
+> Using pgBouncer for connection pooling
+
+<hr/>
+
+## Performance Testing
+> Aim is to use a load testing tool to test postgreSQL database setup
+
+### PgBench
+> A tool shipped together with postgres. Found in **/usr/pgsql-16/bin** directory
+
+Generate Test Data
+```bash
+/usr/pgsql-16/bin/pgbench -i -s 100 stressdb -U postgres -p 5432
+```
+> Use  a scale_factor of 100 to generate data i.e 10M records
+
+Bench mark database
+```bash 
+/usr/pgsql-16/bin/pgbench -h 127.0.0.1 -p 5000 -c 100 -T 120 stressdb -U postgres
+```
+> 5000 = database connection port or load balancer binding port, 100 = number of connections 120 - Time in seconds
+
+Bench mark using threads
+```bash 
+/usr/pgsql-16/bin/pgbench -c 100 -j 2 -T 120  stressdb -U postgres -h 127.0.0.1 -p 5000
+```
+> 2 = number of threads
+
+Using sql script
+> Create a file readonly.sql
+
+Contents of readonly.sql
+```sql
+select abalance from pgbench_accounts where aid = 1;
+select abalance from pgbench_accounts where aid = 1;
+select * from pgbench_tellers  where tid = 1;
+select * from pgbench_branches where bid = 1;
+select tid from pgbench_history where bid =1;
+```
+
+Run the bench mark
+```bash
+/usr/pgsql-16/bin/pgbench -c 100 -j 2 -T 60 -f readonly.sql stress -U postgres -h 127.0.0.1 -p 5000
+```
+
+<hr/>
 
 ## Good practices
 
