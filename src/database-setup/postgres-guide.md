@@ -1064,6 +1064,8 @@ alter sequence hibernate_sequence start 2 increment 2 no maxvalue ;
 
 ## Load Balancing
 
+### 1. HAProxy
+
 Load balancing refers to efficiently distributing incoming network traffic across a group of backend servers, also known as a server farm or server pool.
 The aim to achieve a load balancer for postgreSQL cluster with multimaster and slave databases.
 > [HAProxy](https://www.haproxy.org/) is a free, very fast and reliable reverse-proxy offering high availability, load balancing, and proxying for TCP and HTTP-based applications.
@@ -1198,11 +1200,13 @@ defaults
 	    use_backend pgsql if pgsql
 
 	backend pgsql
+        balance leastconn
 	    mode        tcp
 	    option      tcp-check
 	    server  master-db 127.0.0.1:5432 check
 
 	backend readonly.pgsql
+        balance roundrobin
 	    mode        tcp
 	    option      tcp-check
 	    server  slave-db  127.0.0.1:5434 check
@@ -1231,6 +1235,13 @@ psql -h 127.0.0.1 -p 5000 -U postgres -d postgres -c "select inet_server_addr(),
 **Do more tests using pgbench and monitor**
 
 <hr/>
+
+### 2. PgPool-II
+
+## Connection Pooling
+> Connection Pooling
+
+### PgBouncer
 
 ## Good practices
 
