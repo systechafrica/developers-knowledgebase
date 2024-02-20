@@ -1342,6 +1342,8 @@ Bench mark database
 Bench mark using threads
 ```bash 
 /usr/pgsql-16/bin/pgbench -c 100 -j 2 -T 120  stressdb -U postgres -h 127.0.0.1 -p 5000
+
+/usr/pgsql-16/bin/pgbench -c 100 -t 1000 -S -j 2 -T 60 -C -f readonly.sql stress -U postgres -h 127.0.0.1 -p 5000
 ```
 > 2 = number of threads
 
