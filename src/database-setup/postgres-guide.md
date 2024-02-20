@@ -1062,6 +1062,175 @@ alter sequence hibernate_sequence start 2 increment 2 no maxvalue ;
 -------------End Sample----------------------
 <hr/>
 
+## Load Balancing
+
+Load balancing refers to efficiently distributing incoming network traffic across a group of backend servers, also known as a server farm or server pool.
+The aim to achieve a load balancer for postgreSQL cluster with multimaster and slave databases.
+> [HAProxy](https://www.haproxy.org/) is a free, very fast and reliable reverse-proxy offering high availability, load balancing, and proxying for TCP and HTTP-based applications.
+
+### References:
+1. [Official Site](https://www.haproxy.com/blog/haproxy-configuration-basics-load-balance-your-servers)
+2. [Youtube](https://www.youtube.com/watch?v=k4if9Ywht8U)
+
+> This tutorial was implemented in Fedora 39 on a master-slave unidirectional replica
+
+### Installation
+There are 2 ways for installing:
+1. [Using source packages](http://www.haproxy.org/download/2.9/src/haproxy-2.9.5.tar.gz)
+2. Using native libraries
+
+> We will be using native libraries
+
+### Process
+
+Install HAProxy
+```bash 
+yum install -y haproxy
+```
+
+Setting up HAProxy for your server
+```bash 
+mkdir  -p /etc/haproxy
+mkdir  -p /var/lib/haproxy
+touch /var/lib/haproxy/stats
+```
+create a service
+```bash 
+systemctl enable haproxy.service
+```
+Add User
+```bash 
+useradd -r haproxy
+haproxy -v
+cd /etc/haproxy/
+```
+Backup config file before your edit
+```bash 
+cp haproxy.cfg haproxy.cfg.bkp
+```
+
+Edit configuration file
+```bash 
+vim haproxy.cfg
+```
+> remove backend static & backend app sections
+
+Defaults section content
+```text
+defaults
+	    mode                    tcp
+	    log                     global
+	    option                  tcplog
+	    option                  dontlognull
+	    option                  http-server-close
+	    option                  redispatch
+	    retries                 3
+	    timeout http-request    10s
+	    timeout queue           1m
+	    timeout connect         10s
+	    timeout client          1m
+	    timeout server          1m
+	    timeout http-keep-alive 10s
+	    timeout check           10s
+	    maxconn                 3000
+```
+Changes made
+1. mode set to **tcp**
+2. option                  **tcplog**
+3. maxconn                 **3000**
+
+Frontend section content
+```text
+frontend	main
+	    mode        tcp
+	    bind        *:5000
+	    acl readonly.pgsql nbsrv(pgsql) eq 0
+	    use_backend readonly.pgsql if readonly.pgsql
+	    acl pgsql nbsrv(pgsql) gt 0
+	    use_backend pgsql if pgsql
+```
+> The section is the entry point of request. The proxy listens to port **5000**, for select statements will be sent to readonly backend service and for write operations will be sent to pgsql backend service
+
+Backend pgsql section content
+```text
+backend pgsql
+	    mode        tcp
+	    option      tcp-check
+	    server  master-db 127.0.0.1:5432 check
+```
+> Forward request to master server port 5432
+
+Backend readonly.pgsql section content
+```text
+backend readonly.pgsql
+	    mode        tcp
+	    option      tcp-check
+	    server  slave-db  127.0.0.1:5434 check
+```
+> Forward request to slave server port 5434
+
+### Complete configuration
+After the editing, the haproxy.cfg should look like below
+```text
+defaults
+	    mode                    tcp
+	    log                     global
+	    option                  tcplog
+	    option                  dontlognull
+	    option                  http-server-close
+	    option                  redispatch
+	    retries                 3
+	    timeout http-request    10s
+	    timeout queue           1m
+	    timeout connect         10s
+	    timeout client          1m
+	    timeout server          1m
+	    timeout http-keep-alive 10s
+	    timeout check           10s
+	    maxconn                 3000
+
+	frontend	main
+	    mode        tcp
+	    bind        *:5000
+	    acl readonly.pgsql nbsrv(pgsql) eq 0
+	    use_backend readonly.pgsql if readonly.pgsql
+	    acl pgsql nbsrv(pgsql) gt 0
+	    use_backend pgsql if pgsql
+
+	backend pgsql
+	    mode        tcp
+	    option      tcp-check
+	    server  master-db 127.0.0.1:5432 check
+
+	backend readonly.pgsql
+	    mode        tcp
+	    option      tcp-check
+	    server  slave-db  127.0.0.1:5434 check
+```
+
+### Finish configuration
+
+```bash 
+setsebool -P haproxy_connect_any 1
+systemctl restart haproxy.service
+```
+Check service
+```bash
+netstat -antp | egrep 5000
+journalctl -xeu haproxy.service
+```
+
+### Testing
+
+```bash
+psql -h 127.0.0.1 -p 5000 -U postgres -d postgres -c "select setting from pg_settings where name='port'";
+psql -h 127.0.0.1 -p 5000 -U postgres -d postgres -c "select inet_server_addr(), inet_server_port()";
+```
+> We are making the requests to proxy port 5000, we expect it to redirect our request to the servers specified
+
+**Do more tests using pgbench and monitor**
+
+<hr/>
 
 ## Good practices
 
