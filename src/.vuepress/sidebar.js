@@ -18,6 +18,13 @@ module.exports = {
             ]
         },
         {
+            title: 'Backups Guide',
+            children: [
+                '/backups-guide/',
+                '/backups-guide/git-backup',
+            ]
+        },
+        {
             title: 'DevSecOps',
             children: [
                 '/security/',
