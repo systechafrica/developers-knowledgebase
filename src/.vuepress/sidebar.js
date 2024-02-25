@@ -22,6 +22,7 @@ module.exports = {
             children: [
                 '/backups-guide/',
                 '/backups-guide/git-backup',
+                '/backups-guide/database-backups/databases',
             ]
         },
         {
