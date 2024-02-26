@@ -3,13 +3,13 @@
 
 ### Prerequisites
 ````
-  	Remove password login between the two servers involved in the backup process.
+  Remove password login between the two servers involved in the backup process.
 	Generate ssh-key in the destination server using the command: ssh-keygen -t rsa.
 	Input the password of your choice or leave it blank and confirm.
 	Input the paraphrase of your choice or leave it blank and confirm.
 	Run: ssh-copy-id user@remote_host
 	Test connection: ssh user@remote_host
-	Create a bash script to run the backup using the following bash commands provided for both oracle and postgres
+	Create a bash script to run the backup using the following bash commands provided for both oracle and postgres.
 ````
 
 ### Oracle
@@ -72,6 +72,13 @@ else
     echo 'pg_dump returned a non-zero code'
     exit 1
 fi
+````
+
+````
+  Next create a cronjob using the command:
+  crontab -e
+  specify the period after which your job should run, e.g for every 6 hours:
+  * */6 * * * path/to/backup_script
 ````
 
 
