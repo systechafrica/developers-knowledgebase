@@ -50,3 +50,50 @@ Input the password of your choice or leave it blank and confirm.
 Input the paraphrase of your choice or leave it blank and confirm.
 Run: ssh-copy-id user@gitlab_host
 Test connection: ssh user@gitlab_host
+Create a script to obtain the backup items from the cloud to the local server:
+
+````bash
+REMOTE_HOST="<git_cloud_server_ip>"
+REMOTE_USER="git_cloud_server_user"
+REMOTE_PASSWORD="git_cloud_server_password"
+REMOTE_PATH="remote/path"
+LOCAL_PATH="locla/path"
+
+# Create local directory if it doesn't exist
+mkdir -p "$LOCAL_PATH"
+
+# Function to get the latest file based on timestamp
+get_latest_file() {
+    ssh "$REMOTE_USER@$REMOTE_HOST" "ls -1t $REMOTE_PATH/$1 2>/dev/null | head -n1"
+}
+
+# Function to copy the latest file of a given type
+copy_latest_file() {
+    latest_file=$(get_latest_file "$1")
+    if [ -n "$latest_file" ]; then
+        scp "$REMOTE_USER@$REMOTE_HOST:$latest_file" "$LOCAL_PATH"
+        if [ $? -eq 0 ]; then
+            echo "$1 file copied successfully!"
+        else
+            echo "Error copying $1 file."
+        fi
+    else
+        echo "No $1 files found."
+    fi
+}
+
+# Copy the latest .json file
+#copy_latest_file "*.json"*
+
+# Copy the latest .rb file
+copy_latest_file "*.rb"*
+
+# Copy the latest .tar file
+copy_latest_file "*.tar"
+````
+Next create a cronjob for your script:
+  In the terminal, run: crontab -e
+  crontab file will open.
+  specify the period after which your job should run, e.g for every 3 hours:
+  * */3 * * * path/to/backup_script
+
