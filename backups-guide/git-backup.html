@@ -11,7 +11,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     
-    <link rel="preload" href="/assets/css/0.styles.66c960d3.css" as="style"><link rel="preload" href="/assets/js/app.8802a81e.js" as="script"><link rel="preload" href="/assets/js/2.51e18b29.js" as="script"><link rel="preload" href="/assets/js/15.15bbe489.js" as="script"><link rel="prefetch" href="/assets/js/10.7769c363.js"><link rel="prefetch" href="/assets/js/11.478366af.js"><link rel="prefetch" href="/assets/js/12.ef930450.js"><link rel="prefetch" href="/assets/js/13.3d2f8dd0.js"><link rel="prefetch" href="/assets/js/14.05742c7a.js"><link rel="prefetch" href="/assets/js/16.cc979429.js"><link rel="prefetch" href="/assets/js/17.0cd12d5d.js"><link rel="prefetch" href="/assets/js/18.6cac63bb.js"><link rel="prefetch" href="/assets/js/19.dc72222a.js"><link rel="prefetch" href="/assets/js/20.ebbbcc28.js"><link rel="prefetch" href="/assets/js/21.d2393c57.js"><link rel="prefetch" href="/assets/js/22.fa7b5dc2.js"><link rel="prefetch" href="/assets/js/23.42633694.js"><link rel="prefetch" href="/assets/js/24.790394c0.js"><link rel="prefetch" href="/assets/js/25.6ee0ab54.js"><link rel="prefetch" href="/assets/js/26.7aabeb0f.js"><link rel="prefetch" href="/assets/js/3.c63690de.js"><link rel="prefetch" href="/assets/js/4.10a69982.js"><link rel="prefetch" href="/assets/js/5.d48d4777.js"><link rel="prefetch" href="/assets/js/6.982869b1.js"><link rel="prefetch" href="/assets/js/7.e2278dfa.js"><link rel="prefetch" href="/assets/js/8.1fdb41cb.js"><link rel="prefetch" href="/assets/js/9.ddabfbb1.js">
+    <link rel="preload" href="/assets/css/0.styles.66c960d3.css" as="style"><link rel="preload" href="/assets/js/app.6e702bca.js" as="script"><link rel="preload" href="/assets/js/2.51e18b29.js" as="script"><link rel="preload" href="/assets/js/15.ecb64be3.js" as="script"><link rel="prefetch" href="/assets/js/10.7769c363.js"><link rel="prefetch" href="/assets/js/11.478366af.js"><link rel="prefetch" href="/assets/js/12.ef930450.js"><link rel="prefetch" href="/assets/js/13.3d2f8dd0.js"><link rel="prefetch" href="/assets/js/14.05742c7a.js"><link rel="prefetch" href="/assets/js/16.b63f59bb.js"><link rel="prefetch" href="/assets/js/17.381e7cec.js"><link rel="prefetch" href="/assets/js/18.5073702b.js"><link rel="prefetch" href="/assets/js/19.dc72222a.js"><link rel="prefetch" href="/assets/js/20.ff5e35bf.js"><link rel="prefetch" href="/assets/js/21.472c9511.js"><link rel="prefetch" href="/assets/js/22.ecafbe40.js"><link rel="prefetch" href="/assets/js/23.7fb4f79d.js"><link rel="prefetch" href="/assets/js/24.790394c0.js"><link rel="prefetch" href="/assets/js/25.6ee0ab54.js"><link rel="prefetch" href="/assets/js/26.7aabeb0f.js"><link rel="prefetch" href="/assets/js/3.174a4438.js"><link rel="prefetch" href="/assets/js/4.10a69982.js"><link rel="prefetch" href="/assets/js/5.d48d4777.js"><link rel="prefetch" href="/assets/js/6.982869b1.js"><link rel="prefetch" href="/assets/js/7.e2278dfa.js"><link rel="prefetch" href="/assets/js/8.1fdb41cb.js"><link rel="prefetch" href="/assets/js/9.ddabfbb1.js">
     <link rel="stylesheet" href="/assets/css/0.styles.66c960d3.css">
   </head>
   <body>
@@ -112,7 +112,48 @@ EOF</span>
 Input the password of your choice or leave it blank and confirm.
 Input the paraphrase of your choice or leave it blank and confirm.
 Run: ssh-copy-id user@gitlab_host
-Test connection: ssh user@gitlab_host</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2/26/2024, 5:24:43 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+Test connection: ssh user@gitlab_host
+Create a script to obtain the backup items from the cloud to the local server:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token assign-left variable">REMOTE_HOST</span><span class="token operator">=</span><span class="token string">&quot;&lt;git_cloud_server_ip&gt;&quot;</span>
+<span class="token assign-left variable">REMOTE_USER</span><span class="token operator">=</span><span class="token string">&quot;git_cloud_server_user&quot;</span>
+<span class="token assign-left variable">REMOTE_PASSWORD</span><span class="token operator">=</span><span class="token string">&quot;git_cloud_server_password&quot;</span>
+<span class="token assign-left variable">REMOTE_PATH</span><span class="token operator">=</span><span class="token string">&quot;remote/path&quot;</span>
+<span class="token assign-left variable">LOCAL_PATH</span><span class="token operator">=</span><span class="token string">&quot;locla/path&quot;</span>
+
+<span class="token comment"># Create local directory if it doesn't exist</span>
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> <span class="token string">&quot;<span class="token variable">$LOCAL_PATH</span>&quot;</span>
+
+<span class="token comment"># Function to get the latest file based on timestamp</span>
+<span class="token function-name function">get_latest_file</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">ssh</span> <span class="token string">&quot;<span class="token variable">$REMOTE_USER</span>@<span class="token variable">$REMOTE_HOST</span>&quot;</span> <span class="token string">&quot;ls -1t <span class="token variable">$REMOTE_PATH</span>/<span class="token variable">$1</span> 2&gt;/dev/null | head -n1&quot;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment"># Function to copy the latest file of a given type</span>
+<span class="token function-name function">copy_latest_file</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token assign-left variable">latest_file</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>get_latest_file <span class="token string">&quot;<span class="token variable">$1</span>&quot;</span><span class="token variable">)</span></span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-n</span> <span class="token string">&quot;<span class="token variable">$latest_file</span>&quot;</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token function">scp</span> <span class="token string">&quot;<span class="token variable">$REMOTE_USER</span>@<span class="token variable">$REMOTE_HOST</span>:<span class="token variable">$latest_file</span>&quot;</span> <span class="token string">&quot;<span class="token variable">$LOCAL_PATH</span>&quot;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$?</span> <span class="token parameter variable">-eq</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">&quot;<span class="token variable">$1</span> file copied successfully!&quot;</span>
+        <span class="token keyword">else</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">&quot;Error copying <span class="token variable">$1</span> file.&quot;</span>
+        <span class="token keyword">fi</span>
+    <span class="token keyword">else</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">&quot;No <span class="token variable">$1</span> files found.&quot;</span>
+    <span class="token keyword">fi</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment"># Copy the latest .json file</span>
+<span class="token comment">#copy_latest_file &quot;*.json&quot;*</span>
+
+<span class="token comment"># Copy the latest .rb file</span>
+copy_latest_file <span class="token string">&quot;*.rb&quot;</span>*
+
+<span class="token comment"># Copy the latest .tar file</span>
+copy_latest_file <span class="token string">&quot;*.tar&quot;</span>
+</code></pre></div><p>Next create a cronjob for your script:
+In the terminal, run: crontab -e
+crontab file will open.
+specify the period after which your job should run, e.g for every 3 hours:</p> <ul><li>*/3 * * * path/to/backup_script</li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2/26/2024, 5:57:49 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
       ←
       <a href="/backups-guide/" class="prev router-link-active">
         Introduction
@@ -121,6 +162,6 @@ Test connection: ssh user@gitlab_host</p></div> <footer class="page-edit"><!----
       </a>
       →
     </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.8802a81e.js" defer></script><script src="/assets/js/2.51e18b29.js" defer></script><script src="/assets/js/15.15bbe489.js" defer></script>
+    <script src="/assets/js/app.6e702bca.js" defer></script><script src="/assets/js/2.51e18b29.js" defer></script><script src="/assets/js/15.ecb64be3.js" defer></script>
   </body>
 </html>
