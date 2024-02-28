@@ -1063,11 +1063,9 @@ alter sequence hibernate_sequence start 2 increment 2 no maxvalue ;
 <hr/>
 
 ## Load Balancing
+> Load balancing refers to efficiently distributing incoming network traffic across a group of backend servers, also known as a server farm or server pool. The aim to achieve a load balancer for postgreSQL cluster with multimaster and slave databases.
 
 ### 1. HAProxy
-
-Load balancing refers to efficiently distributing incoming network traffic across a group of backend servers, also known as a server farm or server pool.
-The aim to achieve a load balancer for postgreSQL cluster with multimaster and slave databases.
 > [HAProxy](https://www.haproxy.org/) is a free, very fast and reliable reverse-proxy offering high availability, load balancing, and proxying for TCP and HTTP-based applications.
 
 ### References:
@@ -1308,9 +1306,93 @@ psql -h 127.0.0.1 -p 5000 -U postgres -d postgres -c "select inet_server_addr(),
 <hr/>
 
 ### 2. PgPool-II
-> Using PgPool-II to do load balancing
+> Read [Reference Guide](https://www.pgpool.net/docs/latest/en/html/runtime-config-load-balancing.html)
 
-<hr/>
+Install
+```bash
+sudo dnf install pgpool-II
+```
+Configuration
+```bash 
+cd /etc/pgpool-II
+cp pgpool.conf.sample pgpool.conf
+vi  pgpool.conf
+```
+Update **pgpool.conf** contents
+```text
+listen_addresses = '*'
+port = 9999
+
+pid_file_name = 'pgpool.pid'
+
+backend_hostname0 = 'localhost'
+backend_port0 = 5432
+backend_weight0 = 0   # send select statements to qreplica
+backend_data_directory0 = '/var/lib/pgsql/16/data'
+backend_flag0 = 'ALWAYS_PRIMARY'
+backend_application_name0 = 'server5432'
+                                   
+backend_hostname1 = 'localhost'
+backend_port1 = 5434
+backend_weight1 = 1
+backend_data_directory1 = '/var/lib/pgsql/replica'
+backend_flag1 = 'ALLOW_TO_FAILOVER'
+backend_application_name1 = 'server5434'
+
+health_check_period = 10
+load_balance_mode = on
+
+#replication user and password
+sr_check_user = 'replicator'
+health_check_user = 'replicator'
+sr_check_password = 'postgres'
+health_check_password = 'postgres'
+
+#comment in production
+log_statement = on
+log_per_node_statement = on
+
+allow_clear_text_frontend_auth = on
+authentication_timeout = 1min
+allow_sql_comments = on
+ignore_leading_white_space = on
+
+```
+
+Test Load Balancing & Read-Write separation
+```bash
+sudo su &&  pgpool -Dn
+# OR
+sudo su &&  pgpool -D
+```
+
+Start with logfile
+```bash
+pgpool -Dn > /var/log/pgpool-II/pgpool.log 2>&1 &
+```
+
+Confirm PgPool is running
+```bash
+psql -U postgres -h 127.0.0.1 -p 9999 --command="SHOW POOL_NODES;"
+```
+> 9999 - PgPool port
+
+You can also configure PgPool II for connection pooling
+> You can use **PgBouncer** instead, read below
+```text
+process_management_mode = dynamic
+process_management_strategy = gentle
+num_init_children = 32
+min_spare_children = 1
+max_spare_children = 32
+max_pool = 32
+child_life_time = 1min
+```
+
+****
+
+## Failover & Failback
+> 
 
 ## Connection Pooling
 
