@@ -26,6 +26,14 @@ module.exports = {
             ]
         },
         {
+            title: 'Testing',
+            children: [
+                '/testing/unit-testing',
+                '/testing/integration-testing',
+                '/testing/automation-testing',
+            ]
+        },
+        {
             title: 'DevSecOps',
             children: [
                 '/security/',
