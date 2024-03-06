@@ -18,6 +18,22 @@ module.exports = {
             ]
         },
         {
+            title: 'Backups Guide',
+            children: [
+                '/backups-guide/git-backup',
+                '/backups-guide/terminal-send-email',
+                '/backups-guide/database-backups/databases',
+            ]
+        },
+        {
+            title: 'Testing',
+            children: [
+                '/testing/unit-testing',
+                '/testing/integration-testing',
+                '/testing/automation-testing',
+            ]
+        },
+        {
             title: 'DevSecOps',
             children: [
                 '/security/',

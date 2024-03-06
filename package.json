@@ -14,7 +14,10 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "vuepress": "^1.5.3",
-    "gh-pages": "^5.0.0"
+    "gh-pages": "^5.0.0",
+    "vuepress": "^1.5.3"
+  },
+  "dependencies": {
+    "yarn": "^1.22.21"
   }
 }
