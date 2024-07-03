@@ -248,3 +248,278 @@ impdp "$PDB_ADMIN_USER"/"$PDB_ADMIN_PASSWORD"@localhost:1522/"$NEW_PDB_NAME" dum
 EOF
 
 ```
+
+## INSTALLING ORACLE 21C IN ORACLE LINUX 8
+
+> Set the correct hostname in the "/etc/hostname" file.
+```bash 
+ sudo su && hostnamectl set-hostname YOUR_HOSTNAME
+```
+> The "/etc/hosts" file must contain a fully qualified name for the server.
+```bash
+vim /etc/hosts
+```
+```html
+MACHINE_IP_ADDRESS  YOUR_HOSTNAME.localdomain  YOUR_HOSTNAME
+```
+> Use the "oracle-database-preinstall-21c" package to perform all your prerequisite setup.
+
+```bash 
+dnf install -y oracle-database-preinstall-21c
+dnf install -y bc
+dnf install -y binutils
+dnf install -y compat-openssl10
+dnf install -y elfutils-libelf
+dnf install -y glibc
+dnf install -y glibc-devel
+dnf install -y ksh
+dnf install -y libaio
+dnf install -y libXrender
+dnf install -y libX11
+dnf install -y libXau
+dnf install -y libXi
+dnf install -y libXtst
+dnf install -y libgcc
+dnf install -y libnsl
+dnf install -y libstdc++
+dnf install -y libxcb
+dnf install -y libibverbs
+dnf install -y make
+dnf install -y policycoreutils
+dnf install -y policycoreutils-python-utils
+dnf install -y smartmontools
+dnf install -y sysstat
+dnf install -y unixODBC
+
+dnf update -y
+```
+
+> Set the password for the "oracle" user.
+```bash
+passwd oracle
+```
+
+> Set secure Linux to permissive by editing the "/etc/selinux/config".
+```text
+SELINUX=permissive
+```
+> Enforce change
+```bash
+setenforce Permissive
+```
+
+> Disable firewall.
+
+```bash
+systemctl stop firewalld
+systemctl disable firewalld
+```
+
+> Create the directories in which the Oracle software will be installed.
+```bash
+mkdir -p /u01/app/oracle/product/21.0.0/dbhome_1
+mkdir -p /u02/oradata
+chown -R oracle:oinstall /u01 /u02
+chmod -R 775 /u01 /u02
+```
+> Show Machine name
+
+```bash 
+hostname
+```
+> Login as root and issue the following command.
+```bash 
+# replace MACHINE_NAME with hostname above
+
+xhost +MACHINE_NAME
+```
+
+> Create a "scripts" directory.
+```bash
+mkdir /home/oracle/scripts
+```
+```bash
+# replace YOUR_HOSTNAME with hostname
+
+cat > /home/oracle/scripts/setEnv.sh <<EOF
+# Oracle Settings
+export TMP=/tmp
+export TMPDIR=\$TMP
+
+export ORACLE_HOSTNAME=YOUR_HOSTNAME.localdomain
+export ORACLE_UNQNAME=cdb1
+export ORACLE_BASE=/u01/app/oracle
+export ORACLE_HOME=\$ORACLE_BASE/product/21.0.0/dbhome_1
+export ORA_INVENTORY=/u01/app/oraInventory
+export ORACLE_SID=cdb1
+export PDB_NAME=pdb1
+export DATA_DIR=/u02/oradata
+
+export PATH=/usr/sbin:/usr/local/bin:\$PATH
+export PATH=\$ORACLE_HOME/bin:\$PATH
+
+export LD_LIBRARY_PATH=\$ORACLE_HOME/lib:/lib:/usr/lib
+export CLASSPATH=\$ORACLE_HOME/jlib:\$ORACLE_HOME/rdbms/jlib
+EOF
+```
+> Add a reference to the "setEnv.sh" file at the end of the "/home/oracle/.bash_profile" file.
+```bash
+echo ". /home/oracle/scripts/setEnv.sh" >> /home/oracle/.bash_profile
+```
+
+> Create a "start_all.sh" and "stop_all.sh" script that can be called from a startup/shutdown service. Make sure the ownership and permissions are correct.
+
+```bash
+cat > /home/oracle/scripts/start_all.sh <<EOF
+#!/bin/bash
+. /home/oracle/scripts/setEnv.sh
+
+export ORAENV_ASK=NO
+. oraenv
+export ORAENV_ASK=YES
+
+dbstart \$ORACLE_HOME
+EOF
+
+
+cat > /home/oracle/scripts/stop_all.sh <<EOF
+#!/bin/bash
+. /home/oracle/scripts/setEnv.sh
+
+export ORAENV_ASK=NO
+. oraenv
+export ORAENV_ASK=YES
+
+dbshut \$ORACLE_HOME
+EOF
+
+chown -R oracle:oinstall /home/oracle/scripts
+chmod u+x /home/oracle/scripts/*.sh
+```
+> Download the software [here](http://planetone.online/downloads/oracle/LINUX.X64_213000_db_home.zip)  and copy the file to  ORACLE_HOME directory
+
+```bash
+# replace ORACLE_HOME with directory
+
+cd ORACLE_HOME &&  chown oracle:oinstall ORACLE_HOME/LINUX.X64_213000_db_home.zip
+```
+
+#### Installation
+
+> Log into the **oracle user**. If you are using X emulation then set the DISPLAY environmental variable.
+
+```bash
+# replace MACHINE_NAME with hostname
+
+DISPLAY=MACHINE_NAME:0.0; 
+export DISPLAY
+```
+
+```bash
+cd $ORACLE_HOME
+
+unzip -oq /path/to/software/LINUX.X64_213000_db_home.zip
+```
+
+```bash
+# do not exclude backslashes \
+
+./runInstaller -ignorePrereq -waitforcompletion -silent                        \
+    -responseFile ${ORACLE_HOME}/install/response/db_install.rsp               \
+    oracle.install.option=INSTALL_DB_SWONLY                                    \
+    ORACLE_HOSTNAME=${ORACLE_HOSTNAME}                                         \
+    UNIX_GROUP_NAME=oinstall                                                   \
+    INVENTORY_LOCATION=${ORA_INVENTORY}                                        \
+    SELECTED_LANGUAGES=en,en_GB                                                \
+    ORACLE_HOME=${ORACLE_HOME}                                                 \
+    ORACLE_BASE=${ORACLE_BASE}                                                 \
+    oracle.install.db.InstallEdition=EE                                        \
+    oracle.install.db.OSDBA_GROUP=dba                                          \
+    oracle.install.db.OSBACKUPDBA_GROUP=dba                                    \
+    oracle.install.db.OSDGDBA_GROUP=dba                                        \
+    oracle.install.db.OSKMDBA_GROUP=dba                                        \
+    oracle.install.db.OSRACDBA_GROUP=dba                                       \
+    SECURITY_UPDATES_VIA_MYORACLESUPPORT=false                                 \
+    DECLINE_SECURITY_UPDATES=true
+```
+
+> As **root user** execute
+```bash
+sh /u01/app/oracle/product/21.0.0/dbhome_1/root.sh
+```
+#### Database Creation
+> You create a database using the Database Configuration Assistant (DBCA)
+
+```bash
+lsnrctl start
+
+# do not exclude backslashes \
+
+dbca -silent -createDatabase                                                   \
+     -templateName General_Purpose.dbc                                         \
+     -gdbname ${ORACLE_SID} -sid  ${ORACLE_SID} -responseFile NO_VALUE         \
+     -characterSet AL32UTF8                                                    \
+     -sysPassword SysPassword1                                                 \
+     -systemPassword SysPassword1                                              \
+     -createAsContainerDatabase true                                           \
+     -numberOfPDBs 1                                                           \
+     -pdbName ${PDB_NAME}                                                      \
+     -pdbAdminPassword PdbPassword1                                            \
+     -databaseType MULTIPURPOSE                                                \
+     -memoryMgmtType auto_sga                                                  \
+     -totalMemory 2000                                                         \
+     -storageType FS                                                           \
+     -datafileDestination "${DATA_DIR}"                                        \
+     -redoLogFileSize 50                                                       \
+     -emConfiguration NONE                                                     \
+     -ignorePreReqs
+```
+
+#### Post Installation
+> Edit the "/etc/oratab" file setting the restart flag for each instance to 'Y'.
+```bash
+cdb1:/u01/app/oracle/product/21.0.0/dbhome_1:Y
+```
+> Enable Oracle Managed Files (OMF) and make sure the PDB starts when the instance starts.
+```bash
+sqlplus / as sysdba <<EOF
+alter system set db_create_file_dest='${DATA_DIR}';
+alter pluggable database ${PDB_NAME} save state;
+exit;
+EOF
+```
+
+#### Start the database
+> you should be able to start/stop the database with the following scripts run from the "oracle" user
+
+```bash
+~/scripts/start_all.sh
+```
+
+> You can stop the database using :
+```bash
+~/scripts/stop_all.sh
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
