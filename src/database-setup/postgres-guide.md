@@ -1765,6 +1765,46 @@ Run the bench mark
 
 <hr/>
 
+## Postgres Upgrade
+> How to upgrade from one version of postgres to another
+
+## CPU, Memory & Storage Metrics
+> How to configure pg_stats extension to show CPU, Memory and Storage metrics in PgAdmin4 dashboard
+
+### POSTGRES STATS EXTENSION 
+> A postgresql extension that provides system metrics.
+> Reference link [here](https://www.snowdba.com/install-system_stats-extenstion-postgres-16-rhel-8/)
+
+```bash 
+subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+```
+```bash 
+yum install perl-IPC-Run
+```
+```bash 
+sudo dnf install -y postgresql16-devel
+```
+```bash 
+sudo dnf install redhat-rpm-config
+```
+
+> Download the file zip file [here](https://github.com/EnterpriseDB/system_stats/releases) 
+
+```bash 
+gunzip system_stats-2.1.tar.gz
+```
+```bash 
+cd system_stats-2.1
+PATH="/usr/pgsql-16/bin:$PATH" make USE_PGXS=1
+PATH="/usr/pgsql-16/bin:$PATH" make install USE_PGXS=1
+```
+### Create the extension
+> Connect to database using psql and:
+```bash 
+create extension system_stats;
+```
+> Refresh PgAdmin4 for changes to reflect
+
 ## Good practices
 
     [https://stackoverflow.com/questions/45782327/org-postgresql-util-psqlexception-error-column-user0-id-does-not-exist-hibe](https://stackoverflow.com/questions/45782327/org-postgresql-util-psqlexception-error-column-user0-id-does-not-exist-hibe)
