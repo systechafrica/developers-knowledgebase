@@ -75,6 +75,60 @@ Grant dba to fm;
 - [x] `startup;`
 - [x] `alter pluugable database demo open;`
 
+## Starting database (Using Bash Script)
+- Create a file with the extentions .sh
+- configure the files in references to your dump file
+```bash 
+#!/bin/bash
+
+export PLUGGABLE_NAME=
+export ALL_PLUGGABLES=
+read -p 'Do You want to start all the pluggables: type "y/yes"   ' ALL_PLUGGABLES
+ALL_PLUGGABLES=${ALL_PLUGGABLES:-y}
+
+if [ "$ALL_PLUGGABLES" == "n" ] || [ "$ALL_PLUGGABLES" == "No" ]|| [ "$ALL_PLUGGABLES" == "no" ]|| [ "$ALL_PLUGGABLES" == "NO" ]; then
+    read -p 'Type the name of the Pluggable you want to start: ' PLUGGABLE_NAME
+    PLUGGABLE_NAME=${PLUGGABLE_NAME}
+fi
+
+echo "************************* switching user oracle *************************" 
+
+sudo su - oracle <<EOF
+# The rest of your script goes here
+# ...
+
+echo "************************* starting listener *************************" 
+
+lsnrctl start
+
+echo "************************* Starting Oracle *************************" 
+
+# Step 4: Creating Pluggables
+sqlplus / as sysdba <<SQL
+ startup;
+SQL
+
+if [ "$ALL_PLUGGABLES" == "n" ] || [ "$ALL_PLUGGABLES" == "No" ]; then
+    # Step 3: Creating Pluggables
+sqlplus / as sysdba <<SQL
+ alter session set container="$PLUGGABLE_NAME";
+SQL
+
+else 
+
+ # Step 3: starting pluggable
+sqlplus / as sysdba <<SQL
+ alter pluggable database all open;
+SQL
+
+fi
+
+
+EOF
+
+
+```
+
 ## starting the listener services
 
 - [x] `lsnrctl start`
@@ -155,3 +209,42 @@ Grant dba to fm;
   ```console
   expdp fm/password@dbname dumpfile=dumpfilename.dmp version=19 schemas=fm directory=PLUGGABLE_DATA_PUMP_DIR
   ```
+  ## Import pluggable database (Using Bash Script)
+- Create a file with the extentions .sh
+- configure the files in references to your dump file 
+```bash
+#!/bin/bash
+
+# Set Oracle environment variables for the first user
+export ORACLE_SID="dump_database"
+export ORACLE_USERNAME="sys"
+
+# Set PDB and dump file information
+export EXISTING_PDB_NAME="dump_database"
+export NEW_PDB_NAME="dump_database"
+export FOLDER_NAME="dump_database"
+export DUMP_NAME="dump_database.dmp"
+export PDB_ADMIN_USER="oracle_user"
+export PDB_ADMIN_PASSWORD="user_password"
+export DUMP_FILE_PATH="/home/user/Documents/database_tools/oracle_dumps/dump_database.dmp"
+export PLUGGABLE_ORCL="/u01/app/oracle/oradata/ORCL"
+
+echo "************************* copying dump to oracle *************************"
+
+cp "$DUMP_FILE_PATH" "$PLUGGABLE_ORCL"/"$FOLDER_NAME"
+
+echo "************************* switching user oracle *************************"
+# Switch to the oracle user
+sudo su - oracle <<EOF
+
+echo "************************* Updating Permissions & Ownership **************************"
+sudo chown -R oracle:oinstall "$PLUGGABLE_ORCL"/"$FOLDER_NAME"/"$DUMP_NAME"
+sudo chmod +x  "$PLUGGABLE_ORCL"/"$FOLDER_NAME"/"$DUMP_NAME"
+
+echo "************************* Importing New Dump **************************"
+
+impdp "$PDB_ADMIN_USER"/"$PDB_ADMIN_PASSWORD"@localhost:1522/"$NEW_PDB_NAME" dumpfile="$DUMP_NAME" metrics=y transport_datafiles='$PLUGGABLE_ORCL/$FOLDER_NAME/FUND_TABLESPACE.DBF', '$PLUGGABLE_ORCL/$FOLDER_NAME/FUND_TABLESPACE.DBF' version=19.3.0 schemas=fm directory=PLUGGABLE_DATA_PUMP_DIR
+
+EOF
+
+```
