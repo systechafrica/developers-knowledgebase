@@ -1766,14 +1766,63 @@ Run the bench mark
 <hr/>
 
 ## Postgres Upgrade
-> How to upgrade from one version of postgres to another
+> How to upgrade from one version of postgres to another.
+> Reference [Upgrade PostgreSQL 14 to 16 Effortlessly with pg_upgrade](https://medium.com/@malymohsem/say-goodbye-to-downtime-upgrade-postgresql-14-to-16-effortlessly-with-pg-upgrade-42ef4dbf8524)
+
+##### Stop the old cluster
+```bash
+systemctl stop postgresql-14.service
+```
+#### Install new cluster
+
+```bash
+sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/F-39-x86_64/pgdg-fedora-repo-latest.noarch.rpm
+sudo dnf install -y postgresql16-server
+sudo /usr/pgsql-16/bin/postgresql-16-setup initdb
+sudo systemctl enable postgresql-16
+sudo systemctl start postgresql-16
+```
+
+##### Change the port
+
+```bash
+vim /var/lib/pgsql/16/data/postgresql.conf
+``` 
+#### Run upgrade
+```bash
+/usr/pgsql-16/bin/pg_upgrade -b /usr/pgsql-14/bin/ -B /usr/pgsql-16/bin/ -d /var/lib/pgsql/14/data/ -D /var/lib/pgsql/16/data/ -o ' -c config_file=/var/lib/pgsql/14/data/postgresql.conf' -O ' -c config_file=/var/lib/pgsql/16/data/postgresql.conf'
+```
+
+##### Start new cluster
+```bash
+systemctl start postgresql-16.service
+```
+
+#### Flush changes
+```bash
+/usr/pgsql-16/bin/vacuumdb -U postgres -p 5433 --all --analyze-in-stages
+```
+
+#### Confirmation
+```bash
+/usr/pgsql-16/bin/psql -U postgres -p 5433
+```
+
+#### Winding Up
+```bash
+sh delete_old_cluster.sh or rm -rf '/var/lib/pgsql/14/data'
+```
+#### Remove old PostgreSQL packages
+```bash
+dnf remove  postgresql14-*
+```
 
 ## CPU, Memory & Storage Metrics
 > How to configure pg_stats extension to show CPU, Memory and Storage metrics in PgAdmin4 dashboard
 
 ### POSTGRES STATS EXTENSION 
 > A postgresql extension that provides system metrics.
-> Reference link [here](https://www.snowdba.com/install-system_stats-extenstion-postgres-16-rhel-8/)
+> Reference link [Install system_stats extenstion postgres 16 rhel 8](https://www.snowdba.com/install-system_stats-extenstion-postgres-16-rhel-8/)
 
 ```bash 
 subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
@@ -1788,7 +1837,7 @@ sudo dnf install -y postgresql16-devel
 sudo dnf install redhat-rpm-config
 ```
 
-> Download the file zip file [here](https://github.com/EnterpriseDB/system_stats/releases) 
+> Download the file zip file [EnterpriseDB /system_stats](https://github.com/EnterpriseDB/system_stats/releases) 
 
 ```bash 
 gunzip system_stats-2.1.tar.gz
