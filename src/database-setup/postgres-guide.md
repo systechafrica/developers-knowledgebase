@@ -1854,6 +1854,87 @@ create extension system_stats;
 ```
 > Refresh PgAdmin4 for changes to reflect
 
+## PostgreSQL, Prometheus & Grafana
+
+> We will be using docker for this setup. It's good to setup the CPU, Memory & Storage Metrics setup above
+
+#### Pull the docker images
+
+```bash 
+docker pull prom/prometheus
+docker pull grafana/grafana
+docker pull quay.io/prometheuscommunity/postgres-exporter
+```
+
+### Create a docker virtual network
+```bash 
+docker network create monitoring-network
+```
+
+### Run postgres-exporter
+
+```bash
+# Replace with database credentials
+
+cat > postgres_exporter.yml <<EOF
+#DATA_SOURCE_NAME: "postgresql://DB_USER:DB_PASSWORD@DB_HOST:DB_PORT/DB_NAME?sslmode=disable"
+EOF
+```
+
+### Run postgres-exporter container
+```bash 
+# Replace with database credentials
+
+docker run -d   --name=postgres-exporter  --network=monitoring-network   -p 9187:9187   -v ./postgres_exporter.yml:/etc/postgres_exporter.yml   -e DATA_SOURCE_NAME: "postgresql://DB_USER:DB_PASSWORD@DB_HOST:DB_PORT/DB_NAME?sslmode=disable"   quay.io/prometheuscommunity/postgres-exporter   --config.file=/etc/postgres_exporter.yml
+```
+
+### Run Prometheus
+
+```bash 
+cat > prometheus.yml <<EOF
+scrape_configs:
+- job_name: 'postgres'
+  static_configs:
+    - targets: ['postgres-exporter:9187']
+EOF
+```
+
+### Run prometheus container
+```bash 
+docker run --name prometheus  --network=monitoring-network  -d  -p 9090:9090  -v ./prometheus.yml:/etc/prometheus/prometheus.yml  prom/prometheus
+```
+### Confirm prometheus is running
+```bash
+# Navigate on browser. 
+# Replace with your IP address
+
+http://MACHINE_IP:9090
+```
+
+### Run grafana
+```bash 
+docker run -d --name=grafana --network=monitoring-network  -p 3000:3000 grafana/grafana
+```
+### Confirm prometheus is running
+
+```bash
+# Navigate on browser. 
+# Replace with your IP address
+
+http://MACHINE_IP:3000
+```
+
+### Onwards
+
+```bash
+# Remember to replace containers if IP address changes
+
+docker container start postgres-exporter
+docker container start prometheus
+docker container start grafana
+```
+
+
 ## Good practices
 
     [https://stackoverflow.com/questions/45782327/org-postgresql-util-psqlexception-error-column-user0-id-does-not-exist-hibe](https://stackoverflow.com/questions/45782327/org-postgresql-util-psqlexception-error-column-user0-id-does-not-exist-hibe)
