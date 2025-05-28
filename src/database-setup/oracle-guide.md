@@ -500,23 +500,266 @@ EOF
 ```bash
 ~/scripts/stop_all.sh
 ```
+## Patching Oracle 19c
+
+[Article Reference](https://ocptechnology.com/patching-in-19c/)
+
+> After release of Oracle 19c database,  oracle released patches that addressed many security loopholes in the release. This section covers how to apply a patch to oracle 19c
+
+> Ensure to get the OS version where the database is running and the type ie single standalone or Grid Infrastructure
+
+> Ensure there is a backup of database or vm.
+
+Login to Oracle Account
+
+1. Download OPatch - A utility for applying patch. 
+2. Download the patch to apply
 
 
+### Steps to applying Patching
+
+#### 1. Check oraInventory
+
+If the directory is empty, rebuild it using:
+```bash
+$ORACLE_HOME/oui/bin/runInstaller -silent -ignoreSysPrereqs -attachHome \
+  -invPtrLoc $ORACLE_HOME/oraInst.loc \
+  ORACLE_HOME=$ORACLE_HOME \
+  ORACLE_HOME_NAME="OraDB19Home1"
+```
+
+#### 2. Update OPatch Utility
+1. Check OPatch version
+    ```bash
+    cd $ORACLE_HOME/OPatch
+    ./opatch version
+    OPatch Version: 12.2.0.1.17
+    OPatch succeeded.
+    ```
+2. Backup the existing OPatch
+    ```bash
+    cd $ORACLE_HOME/
+    mv OPatch OPatch_bkp
+   ```
+
+#### 3. Upgrade OPatch
+
+Upgrade the OPATCH utility, just unzip the newly downloaded opatch utility version in ORACLE_HOME directly.
+```bash
+unzip /u02/p6880880_190000_Linux-x86-64 -d $ORACLE_HOME/
+```
+Check the OPATCH version again.
+```bash
+./opatch version
+OPatch Version: 12.2.0.1.35
+OPatch succeeded.
+```
+
+#### 4. Verify the Database Current version
+```bash
+select BANNER_FULL from v$version;
+BANNER_FULL
+--------------------------------------------------------------------------------
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+```
+
+> Check dba_registry status
+
+```bash
+SQL>col comp_id for a10
+SQL>col version for a11
+SQL>col status for a10
+SQL>col comp_name for a37
+SQL>select comp_id,comp_name,version,status from dba_registry;
+COMP_ID    COMP_NAME                             VERSION     STATUS
+---------- ------------------------------------- ----------- ----------
+CATALOG    Oracle Database Catalog Views         19.0.0.0.0  VALID
+CATPROC    Oracle Database Packages and Types    19.0.0.0.0  VALID
+RAC        Oracle Real Application Clusters      19.0.0.0.0  OPTION OFF
+JAVAVM     JServer JAVA Virtual Machine          19.0.0.0.0  VALID
+XML        Oracle XDK                            19.0.0.0.0  VALID
+CATJAVA    Oracle Database Java Packages         19.0.0.0.0  VALID
+APS        OLAP Analytic Workspace               19.0.0.0.0  VALID
+XDB        Oracle XML Database                   19.0.0.0.0  VALID
+OWM        Oracle Workspace Manager              19.0.0.0.0  VALID
+CONTEXT    Oracle Text                           19.0.0.0.0  VALID
+ORDIM      Oracle Multimedia                     19.0.0.0.0  VALID
+SDO        Spatial                               19.0.0.0.0  VALID
+XOQ        Oracle OLAP API                       19.0.0.0.0  VALID
+OLS        Oracle Label Security                 19.0.0.0.0  VALID
+DV         Oracle Database Vault                 19.0.0.0.0  VALID
+15 rows selected.
+```
+
+#### 5. Apply the patch
+
+> Unzip the patch
+```bash
+unzip /u02/p34133642_19.16.00_Linux-x86-64.zip -d /u02
+```
+
+> Check prerequisites
+
+Navigate in unzipped folder
+
+```bash 
+cd /u02/34133642  # can be different 
+$ORACLE_HOME/OPatch/opatch prereq CheckConflictAgainstOHWithDetail -ph ./
+```
+> Sample Output
+```text
+Oracle Interim Patch Installer version 12.2.0.1.35
+Copyright (c) 2023, Oracle Corporation.  All rights reserved.
+PREREQ session
+Oracle Home       : /u02/app/oracle/product/19.3.0/db_home
+Central Inventory : /u01/app/oraInventory
+   from           : /u02/app/oracle/product/19.3.0/db_home/oraInst.loc
+OPatch version    : 12.2.0.1.35
+OUI version       : 12.2.0.7.0
+Log file location : /u02/app/oracle/product/19.3.0/db_home/cfgtoollogs/opatch/opatch2023-01-12_23-58-36PM_1.log
+Invoking prereq "checkconflictagainstohwithdetail"
+Prereq "checkConflictAgainstOHWithDetail" passed.
+OPatch succeeded.
+```
+
+> Stop all database service. 
+```bash
+SQL> shutdown immediate;
+
+## stop services
+lsnrctl stop
+```
+
+```bash 
+ps -ef|grep pmon
+oracle    3027 30927  0 00:00 pts/3    00:00:00 grep --color=auto pmon
+oracle    3376     1  0 Jan12 ?        00:00:01 ora_pmon_orcl
+
+ps -ef|grep tns
+root        14     2  0 Jan12 ?        00:00:00 [netns]
+oracle    3035 30927  0 00:00 pts/3    00:00:00 grep --color=auto tns
+oracle    6197     1  0 Jan12 ?        00:00:01 /u02/app/oracle/product/19.3.0/db_home/bin/tnslsnr LISTENER -inherit
+```
+
+#### 6. Execute OPatch apply
+
+```bash 
+cd /u02/34133642
+$ORACLE_HOME/OPatch/opatch apply
+
+Patching component oracle.precomp.common, 19.0.0.0.0...
+Patching component oracle.precomp.lang, 19.0.0.0.0...
+Patching component oracle.jdk, 1.8.0.201.0...
+Patch 34133642 successfully applied.
+Sub-set patch [29517242] has become inactive due to the application of a super-set patch [34133642].
+Please refer to Doc ID 2161861.1 for any possible further required actions.
+Log file location: /u02/app/oracle/product/19.3.0/db_home/cfgtoollogs/opatch/opatch2023-01-13_00-09-07AM_1.log
+OPatch succeeded.
+```
 
 
+#### 7. Start all database services
+```bash 
+lsnrctl start LISTENER
+```
+
+> start database
+```bash 
+sqlplus / as sysdba
+SQL*Plus: Release 19.0.0.0.0 - Production on Fri Jan 13 00:33:15 2023
+Version 19.16.0.0.0
+Copyright (c) 1982, 2022, Oracle.  All rights reserved.
+Connected to an idle instance.
+
+SQL> startup
+ORACLE instance started.
+Total System Global Area 2466250360 bytes
+Fixed Size                  9137784 bytes
+Variable Size             570425344 bytes
+Database Buffers         1879048192 bytes
+Redo Buffers                7639040 bytes
+Database mounted.
+Database opened.
+
+SQL> show pdbs
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED
+---------- ------------------------------ ---------- ----------
+         2 PDB$SEED                       READ ONLY  YES
+         3 PDB                            MOUNTED
+ 
+SQL> alter session set container=PDB;
+Session altered.
+
+SQL> ALTER DATABASE OPEN;
+Database altered.
+
+SQL> SHOW PDBS
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED
+---------- ------------------------------ ---------- ----------
+         3 PDB                            READ WRITE YES
+```
+
+#### 7. Post Patch Steps
+> Now it's time to run datapatch -verbose which updates the patch information at the database binary & dictionary level as well as binary files.
 
 
+```bash 
+cd $ORACLE_HOME/OPatch
+./datapatch -verbose
+```
 
+> Once datapatch -verbose is completed then execute the utlrp script to validate the invalid objects.
 
+```bash 
+SQL> @?/rdbms/admin/utlrp.sql
+Session altered.
+```
 
+> Check applied patch details using lsinventory command.
 
+```bash 
+./opatch lsinventory
 
+Oracle Interim Patch Installer version 12.2.0.1.35
+Copyright (c) 2023, Oracle Corporation.  All rights reserved.
+Oracle Home       : /u02/app/oracle/product/19.3.0/db_home
+Central Inventory : /u01/app/oraInventory
+   from           : /u02/app/oracle/product/19.3.0/db_home/oraInst.loc
+OPatch version    : 12.2.0.1.35
+OUI version       : 12.2.0.7.0
+Log file location : /u02/app/oracle/product/19.3.0/db_home/cfgtoollogs/opatch/opatch2023-01-13_07-35-21AM_1.log
+Lsinventory Output file location : /u02/app/oracle/product/19.3.0/db_home/cfgtoollogs/opatch/lsinv/lsinventory2023-01-13_07-35-21AM.txt
+--------------------------------------------------------------------------------
+Local Machine Information::
+Hostname: noida
+ARU platform id: 226
+ARU platform description:: Linux x86-64
+Installed Top-level Products (1):
+Oracle Database 19c                                                  19.0.0.0.0
+There are 1 products installed in this Oracle Home.
+Interim patches (2) :
+Patch  34133642     : applied on Fri Jan 13 00:17:16 IST 2023
+Unique Patch ID:  24865470
+Patch description:  "Database Release Update : 19.16.0.0.220719 (34133642)"
+   Created on 14 Jul 2022, 16:09:56 hrs UTC
+   Bugs fixed:
+```
 
+> Verify at the Database Level
 
+```bash 
+SQL> select patch_uid,patch_id,SOURCE_VERSION, TARGET_VERSION, action, status,action_time,description from dba_registry_sqlpatch;
 
-
-
-
+```
+> Check Invalid Objects
+```bash 
+SQL>COLUMN object_name FORMAT A30
+SQL>SELECT owner,object_type,object_name,status FROM dba_objects
+WHERE status = 'INVALID'
+ORDER BY owner, object_type, object_name;
+no rows selected
+```
 
 
 
